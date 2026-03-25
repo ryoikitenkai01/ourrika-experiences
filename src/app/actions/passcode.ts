@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // Real implementation would use an environment variable (e.g., process.env.ADMIN_PASSCODE)
 // We default to "ourrika2026" if no ENV is provided for immediate testing.
@@ -29,12 +29,11 @@ export async function loginWithPasscode(formData: FormData) {
     path: "/",
   });
 
-  revalidatePath("/admin", "layout");
-  return { success: true };
+  redirect("/admin");
 }
 
 export async function logoutAdmin() {
   const cookieStore = await cookies();
   cookieStore.delete("ourrika_admin_token");
-  revalidatePath("/admin", "layout");
+  redirect("/admin");
 }

@@ -11,9 +11,13 @@ export function PasscodeAuth() {
   async function onSubmit(formData: FormData) {
     setError(null);
     startTransition(async () => {
-      const response = await loginWithPasscode(formData);
-      if (response && response.error) {
-        setError(response.error);
+      try {
+        const response = await loginWithPasscode(formData);
+        if (response && response.error) {
+          setError(response.error);
+        }
+      } catch {
+        // redirect() throws internally in Next.js — this is expected on success
       }
     });
   }
