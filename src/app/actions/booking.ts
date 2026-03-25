@@ -1,7 +1,6 @@
 "use server";
 
 import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase-admin";
-import * as admin from "firebase-admin";
 import type { BookingRequest, BookingResult } from "@/lib/types/booking";
 
 export async function submitBookingRequest(data: BookingRequest): Promise<BookingResult> {
@@ -40,7 +39,7 @@ export async function submitBookingRequest(data: BookingRequest): Promise<Bookin
       preferred_date: data.preferred_date,
       guests_count: Number(data.guests_count) || 1,
       message: data.message?.trim() || null,
-      created_at: admin.firestore.FieldValue.serverTimestamp(),
+      created_at: new Date().toISOString(),
       status: "new",
       source_page: data.source_page || null,
       service_type: data.service_type || null,

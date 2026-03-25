@@ -61,7 +61,14 @@ export async function getBookings() {
       .orderBy("created_at", "desc")
       .get();
 
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as BookingLead));
+    return snapshot.docs.map(doc => {
+      const data = doc.data();
+      const raw = data.created_at;
+      const created_at: string =
+        raw?.toDate?.()?.toISOString?.() ??
+        (typeof raw === "string" ? raw : new Date().toISOString());
+      return { ...data, id: doc.id, created_at } as BookingLead;
+    });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     console.error("[getBookings] error:", message);
