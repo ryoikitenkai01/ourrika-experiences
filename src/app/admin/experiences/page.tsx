@@ -51,13 +51,21 @@ export default async function AdminExperiencesPage() {
 
       {/* Error state */}
       {fetchError && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-sans text-sm">
-          Failed to load experiences: {fetchError.message}
+        <div className='bg-[#F5EFE4] border border-[#C0714F]/30 text-[#C0714F] text-sm p-4 rounded-sm'>
+          Unable to connect to the database. Check your Firebase environment variables.
         </div>
       )}
 
-      {/* Table */}
-      <ExperiencesTable experiences={experiences} />
+      {/* Table or Empty State */}
+      {!fetchError && (
+        experiences.length > 0 ? (
+          <ExperiencesTable experiences={experiences} />
+        ) : (
+          <div className='text-[#5c605d] text-sm p-8 text-center'>
+            No records yet. Add your first one.
+          </div>
+        )
+      )}
     </div>
   );
 }
