@@ -45,6 +45,7 @@ export function OfferBookingClient({ offer, whatsappUrl, whatsappMessage, whatsa
         service={{
           id: offer.id,
           title: offer.title,
+          slug: offer.slug,
           type: "offer",
           whatsappMessage: whatsappMessage,
           whatsappNumber: whatsappNumber,
@@ -90,6 +91,7 @@ export function MobileStickyOfferBar({
         service={{
           id: offer.id,
           title: offer.title,
+          slug: offer.slug,
           type: "offer",
           whatsappMessage: whatsappMessage,
           whatsappNumber: whatsappNumber,

@@ -23,7 +23,7 @@ interface BookingModalProps {
   };
 }
 
-type FormState = Omit<BookingRequest, "service_id" | "service_title" | "service_type" | "source_page">;
+type FormState = Omit<BookingRequest, "service_id" | "service_title" | "service_type" | "service_slug" | "source_page">;
 
 const INITIAL_FORM: FormState = {
   full_name: "",
