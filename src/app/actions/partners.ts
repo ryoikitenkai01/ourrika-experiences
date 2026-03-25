@@ -37,9 +37,10 @@ export async function createPartner(_prevState: PartnerFormState, formData: Form
   try {
     const docRef = adminDb.collection("partners").doc();
     await docRef.set({ id: docRef.id, ...data, created_at: new Date().toISOString() });
-  } catch (error: any) {
-    console.error("[createPartner]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[createPartner]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/partners");
@@ -56,9 +57,10 @@ export async function updatePartner(id: string, _prevState: PartnerFormState, fo
 
   try {
     await adminDb.collection("partners").doc(id).update({ ...data, updated_at: new Date().toISOString() });
-  } catch (error: any) {
-    console.error("[updatePartner]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[updatePartner]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/partners");
@@ -70,9 +72,10 @@ export async function deletePartner(id: string): Promise<PartnerFormState> {
   if (!adminDb) return { error: "Firebase Admin not configured." };
   try {
     await adminDb.collection("partners").doc(id).delete();
-  } catch (error: any) {
-    console.error("[deletePartner]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[deletePartner]", message);
+    return { error: message };
   }
   revalidatePath("/admin/partners");
   revalidatePath("/", "layout");

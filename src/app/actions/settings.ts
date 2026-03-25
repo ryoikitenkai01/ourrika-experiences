@@ -38,9 +38,10 @@ export async function updateSettings(_prevState: SettingsFormState, formData: Fo
       const nextDoc = adminDb.collection("site_settings").doc();
       await nextDoc.set({ id: nextDoc.id, ...data });
     }
-  } catch (error: any) {
-    console.error("[updateSettings]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[updateSettings]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/settings");

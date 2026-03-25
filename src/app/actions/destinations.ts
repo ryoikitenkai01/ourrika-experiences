@@ -57,9 +57,10 @@ export async function createDestination(_prevState: DestinationFormState, formDa
   try {
     const docRef = adminDb.collection("destinations").doc();
     await docRef.set({ id: docRef.id, ...data, created_at: new Date().toISOString() });
-  } catch (error: any) {
-    console.error("[createDestination]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[createDestination]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/destinations");
@@ -76,9 +77,10 @@ export async function updateDestination(id: string, _prevState: DestinationFormS
 
   try {
     await adminDb.collection("destinations").doc(id).update({ ...data, updated_at: new Date().toISOString() });
-  } catch (error: any) {
-    console.error("[updateDestination]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[updateDestination]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/destinations");
@@ -92,9 +94,10 @@ export async function deleteDestination(id: string): Promise<DestinationFormStat
 
   try {
     await adminDb.collection("destinations").doc(id).delete();
-  } catch (error: any) {
-    console.error("[deleteDestination]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[deleteDestination]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/destinations");

@@ -109,9 +109,10 @@ export async function createExperience(
       ...data,
       created_at: new Date().toISOString()
     });
-  } catch (error: any) {
-    console.error("[createExperience]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[createExperience]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/experiences");
@@ -139,9 +140,10 @@ export async function updateExperience(
       ...data,
       updated_at: new Date().toISOString()
     });
-  } catch (error: any) {
-    console.error("[updateExperience]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[updateExperience]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/experiences");
@@ -159,9 +161,10 @@ export async function deleteExperience(id: string): Promise<ExperienceFormState>
 
   try {
     await adminDb.collection("experiences").doc(id).delete();
-  } catch (error: any) {
-    console.error("[deleteExperience]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[deleteExperience]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/experiences");

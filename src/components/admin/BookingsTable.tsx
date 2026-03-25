@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { updateBookingStatus } from "@/app/actions/admin-bookings";
+import { updateBookingStatus, BookingLead } from "@/app/actions/admin-bookings";
 import { Check, X, Building, Map, ShoppingBag, Eye, User, Phone, Mail, Calendar, Users, MessageSquare } from "lucide-react";
 
 const formatDate = (dateStr: string) => {
@@ -12,23 +12,8 @@ const formatDate = (dateStr: string) => {
   });
 };
 
-type Booking = {
-  id: string;
-  full_name: string;
-  phone: string | null;
-  email: string | null;
-  preferred_date: string | null;
-  guests_count: number;
-  message: string | null;
-  service_id: string | null;
-  service_title: string | null;
-  service_type: string | null;
-  status: string;
-  created_at: string;
-};
-
 interface BookingsTableProps {
-  bookings: Booking[];
+  bookings: BookingLead[];
 }
 
 export function BookingsTable({ bookings }: BookingsTableProps) {

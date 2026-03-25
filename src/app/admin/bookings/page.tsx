@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getBookings } from "@/app/actions/admin-bookings";
+import { getBookings, BookingLead } from "@/app/actions/admin-bookings";
 import { BookingsTable } from "@/components/admin/BookingsTable";
 
 export const metadata: Metadata = {
@@ -7,7 +7,25 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminBookingsPage() {
-  const bookings = await getBookings();
+  let bookings: BookingLead[] = [];
+  let fetchError: string | null = null;
+
+  try {
+    bookings = await getBookings();
+  } catch {
+    fetchError = "Unable to load bookings. Check your Firebase configuration.";
+  }
+
+  if (fetchError) {
+    return (
+      <div className="space-y-6">
+        <h1 className="font-serif text-3xl text-white">Bookings</h1>
+        <div className="bg-red-900/20 border border-red-800 p-4 text-red-400 text-sm">
+          {fetchError}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

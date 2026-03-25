@@ -32,23 +32,24 @@ export async function submitBookingRequest(data: BookingRequest): Promise<Bookin
   try {
     // 3. Save to Firestore (bookings_leads) with a reasonable timeout implied by the environment
     await adminDb.collection("bookings_leads").add({
-      experienceSlug: data.service_slug || null,
-      experienceTitle: data.service_title || null,
-      name: data.full_name.trim(),
+      service_id: data.service_id || null,
+      service_title: data.service_title || null,
+      full_name: data.full_name.trim(),
       email: data.email.trim(),
       phone: data.phone.trim(),
-      date: data.preferred_date,
-      groupSize: Number(data.guests_count) || 1,
+      preferred_date: data.preferred_date,
+      guests_count: Number(data.guests_count) || 1,
       message: data.message?.trim() || null,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      created_at: admin.firestore.FieldValue.serverTimestamp(),
       status: "new",
       source_page: data.source_page || null,
       service_type: data.service_type || null,
     });
 
     return { success: true };
-  } catch (error: any) {
-    console.error("[submitBookingRequest] Firestore Exception:", error.message);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[submitBookingRequest] Firestore Exception:", message);
     // Never expose raw Firebase error messages to the client
     return { success: false, error: "booking_failed" };
   }

@@ -54,9 +54,10 @@ export async function createOffer(_prevState: OfferFormState, formData: FormData
   try {
     const docRef = adminDb.collection("offers").doc();
     await docRef.set({ id: docRef.id, ...data, created_at: new Date().toISOString() });
-  } catch (error: any) {
-    console.error("[createOffer]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[createOffer]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/offers");
@@ -73,9 +74,10 @@ export async function updateOffer(id: string, _prevState: OfferFormState, formDa
 
   try {
     await adminDb.collection("offers").doc(id).update({ ...data, updated_at: new Date().toISOString() });
-  } catch (error: any) {
-    console.error("[updateOffer]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[updateOffer]", message);
+    return { error: message };
   }
 
   revalidatePath("/admin/offers");
@@ -88,9 +90,10 @@ export async function deleteOffer(id: string): Promise<OfferFormState> {
   if (!adminDb) return { error: "Firebase Admin not configured." };
   try {
     await adminDb.collection("offers").doc(id).delete();
-  } catch (error: any) {
-    console.error("[deleteOffer]", error.message);
-    return { error: error.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[deleteOffer]", message);
+    return { error: message };
   }
   revalidatePath("/admin/offers");
   revalidatePath("/", "layout");
