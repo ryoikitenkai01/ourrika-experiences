@@ -38,6 +38,7 @@ const INITIAL_FORM: FormState = {
 
 export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -68,6 +69,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
         setForm(INITIAL_FORM);
         setStatus("idle");
         setErrorMsg("");
+        setErrors({});
       }, 300);
     }
   }, [isOpen]);
@@ -77,30 +79,86 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
     setForm((prev) => ({ ...prev, [name]: name === "guests_count" ? Number(value) : value }));
   }
 
+  function validate(): boolean {
+    const newErrors: Record<string, string> = {};
+
+    if (!form.full_name?.trim()) newErrors.full_name = "Full name is required";
+    
+    // Email regex check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email?.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!emailRegex.test(form.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone: numbers only, at least 8 digits
+    const phoneDigits = form.phone?.replace(/\D/g, "") || "";
+    if (!form.phone?.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (phoneDigits.length < 8) {
+      newErrors.phone = "Phone must be at least 8 digits";
+    }
+
+    // Date: not in the past
+    if (!form.preferred_date) {
+      newErrors.preferred_date = "Please select a date";
+    } else {
+      const selected = new Date(form.preferred_date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (selected < today) {
+        newErrors.preferred_date = "Date cannot be in the past";
+      }
+    }
+
+    // Guests: 1-20
+    if (!form.guests_count || form.guests_count < 1) {
+      newErrors.guests_count = "Minimum 1 guest required";
+    } else if (form.guests_count > 20) {
+      newErrors.guests_count = "Maximum 20 guests per booking";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    
+    if (!validate()) return;
+
     setStatus("loading");
     setErrorMsg("");
 
-    const result = await submitBookingRequest({
-      ...form,
-      service_id: service.id,
-      service_title: service.title,
-      service_type: service.type,
-      service_slug: service.slug,
-      source_page: service.sourcePage ?? "",
-    });
-
-    if (result.success) {
-      setStatus("success");
-      trackEvent('booking_submit', {
-        item_id: service.id,
-        item_name: service.title,
-        category: service.type,
+    try {
+      const result = await submitBookingRequest({
+        ...form,
+        service_id: service.id,
+        service_title: service.title,
+        service_type: service.type,
+        service_slug: service.slug,
+        source_page: service.sourcePage ?? "",
       });
-    } else {
+
+      if (result.success) {
+        setStatus("success");
+        trackEvent('booking_submit', {
+          item_id: service.id,
+          item_name: service.title,
+          category: service.type,
+        });
+      } else {
+        setStatus("error");
+        if (result.error === "validation_failed") {
+          setErrorMsg("Please check all fields and try again.");
+        } else {
+          setErrorMsg("Something went wrong. Please try again or contact us on WhatsApp.");
+        }
+      }
+    } catch (err) {
       setStatus("error");
-      setErrorMsg(result.error ?? "Something went wrong.");
+      setErrorMsg("Something went wrong. Please try again or contact us on WhatsApp.");
     }
   }
 
@@ -161,6 +219,17 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                 />
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                  {/* Server Error Banner */}
+                  {status === "error" && errorMsg && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-[#F5EFE4] border border-[#C0714F]/30 text-[#C0714F] text-[13px] p-4 flex gap-3"
+                    >
+                      <p>{errorMsg}</p>
+                    </motion.div>
+                  )}
+
                   {/* Full Name */}
                   <InputField
                     icon={<User size={15} />}
@@ -170,51 +239,55 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                     placeholder="Your name"
                     value={form.full_name}
                     onChange={handleChange}
-                    required
+                    error={errors.full_name}
                   />
 
                   {/* Phone */}
                   <InputField
                     icon={<Phone size={15} />}
-                    label="Phone / WhatsApp"
+                    label="Phone / WhatsApp *"
                     name="phone"
                     type="tel"
                     placeholder="+212 6xx xxx xxx"
                     value={form.phone}
                     onChange={handleChange}
+                    error={errors.phone}
                   />
 
                   {/* Email */}
                   <InputField
                     icon={<Mail size={15} />}
-                    label="Email"
+                    label="Email *"
                     name="email"
                     type="email"
                     placeholder="your@email.com"
                     value={form.email}
                     onChange={handleChange}
+                    error={errors.email}
                   />
 
                   {/* Date + Guests row */}
                   <div className="grid grid-cols-2 gap-4">
                     <InputField
                       icon={<Calendar size={15} />}
-                      label="Preferred Date"
+                      label="Preferred Date *"
                       name="preferred_date"
                       type="date"
                       value={form.preferred_date}
                       onChange={handleChange}
+                      error={errors.preferred_date}
                     />
                     <InputField
                       icon={<Users size={15} />}
-                      label="Guests"
+                      label="Guests *"
                       name="guests_count"
                       type="number"
                       min={1}
-                      max={50}
+                      max={20}
                       placeholder="1"
                       value={String(form.guests_count)}
                       onChange={handleChange}
+                      error={errors.guests_count}
                     />
                   </div>
 
@@ -235,13 +308,6 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                       />
                     </div>
                   </div>
-
-                  {/* Error */}
-                  {status === "error" && errorMsg && (
-                    <p className="font-sans text-xs text-red-500 bg-red-50 px-4 py-3 border border-red-200">
-                      {errorMsg}
-                    </p>
-                  )}
 
                   {/* Submit */}
                   <button
@@ -304,9 +370,10 @@ interface InputFieldProps {
   required?: boolean;
   min?: number;
   max?: number;
+  error?: string;
 }
 
-function InputField({ icon, label, name, type, placeholder, value, onChange, required, min, max }: InputFieldProps) {
+function InputField({ icon, label, name, type, placeholder, value, onChange, required, min, max, error }: InputFieldProps) {
   return (
     <div className="flex flex-col gap-1.5">
       <label className="font-sans text-[10px] tracking-widest uppercase text-[var(--color-charcoal-light)]">
@@ -325,9 +392,16 @@ function InputField({ icon, label, name, type, placeholder, value, onChange, req
           required={required}
           min={min}
           max={max}
-          className="w-full h-11 pl-10 pr-4 bg-white border border-gray-200 font-sans text-sm text-[var(--color-charcoal)] placeholder-gray-400 focus:outline-none focus:border-[var(--color-terracotta)] transition-colors"
+          className={`w-full h-11 pl-10 pr-4 bg-white border font-sans text-sm text-[var(--color-charcoal)] placeholder-gray-400 focus:outline-none transition-colors ${
+            error ? "border-[#C0714F]" : "border-gray-200 focus:border-[var(--color-terracotta)]"
+          }`}
         />
       </div>
+      {error && (
+        <p className="text-[11px] text-[#C0714F] tracking-wide mt-1">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -348,35 +422,35 @@ function SuccessState({
       transition={{ duration: 0.4 }}
       className="flex flex-col items-center text-center py-8 gap-6"
     >
-      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-50">
-        <CheckCircle2 size={32} className="text-green-500" />
+      <div className="flex items-center justify-center w-20 h-20 rounded-full bg-[#F5EFE4]">
+        <CheckCircle2 size={40} className="text-[#C0714F]" />
       </div>
 
       <div>
-        <h3 className="font-serif text-2xl text-[var(--color-charcoal)] mb-2">
+        <h3 className="font-serif text-3xl text-[#1A1A1A] mb-4">
           Request Received
         </h3>
-        <p className="font-sans text-sm text-gray-500 leading-relaxed max-w-xs">
-          Thank you for your interest in <strong>{title}</strong>. Our team will reach
-          out within 24 hours to confirm availability.
+        <p className="font-sans text-sm text-gray-600 leading-relaxed max-w-sm">
+          Your request for <strong>{title}</strong> has been received. 
+          We&apos;ll be in touch shortly via WhatsApp to confirm details and availability.
         </p>
       </div>
 
-      <div className="flex flex-col gap-3 w-full">
+      <div className="flex flex-col gap-3 w-full mt-4">
         {whatsappUrl && (
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 h-12 bg-[#25D366] text-white font-sans text-sm tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors"
+            className="flex items-center justify-center gap-2 h-14 bg-[#25D366] text-white font-sans text-sm tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors shadow-sm"
           >
-            <MessageCircle size={16} />
-            Continue on WhatsApp
+            <MessageCircle size={18} />
+            Immediate WhatsApp Claim
           </a>
         )}
         <button
           onClick={onClose}
-          className="h-12 border border-gray-300 text-[var(--color-charcoal)] font-sans text-sm tracking-widest uppercase hover:bg-gray-50 transition-colors"
+          className="h-14 border border-gray-200 text-[var(--color-charcoal)] font-sans text-xs tracking-widest uppercase hover:bg-white transition-colors"
         >
           Back to site
         </button>

@@ -1,7 +1,7 @@
--- Migration: booking_requests / leads table
+-- Migration: bookings_leads / leads table
 -- Captures user inquiries from experience, destination, and offer pages.
 
-CREATE TABLE IF NOT EXISTS public.booking_requests (
+CREATE TABLE IF NOT EXISTS public.bookings_leads (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
 
     -- Contact info
@@ -29,15 +29,15 @@ CREATE TABLE IF NOT EXISTS public.booking_requests (
 
 -- Row-Level Security: allow anonymous inserts (for the public booking form),
 -- but only allow service-role reads (for the future admin panel).
-ALTER TABLE public.booking_requests ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.bookings_leads ENABLE ROW LEVEL SECURITY;
 
 -- Public can insert
-CREATE POLICY "Allow public inserts" ON public.booking_requests
+CREATE POLICY "Allow public inserts" ON public.bookings_leads
     FOR INSERT WITH CHECK (true);
 
 -- Only authenticated users (admin) can select / update
-CREATE POLICY "Allow authenticated reads" ON public.booking_requests
+CREATE POLICY "Allow authenticated reads" ON public.bookings_leads
     FOR SELECT USING (auth.role() = 'authenticated');
 
-CREATE POLICY "Allow authenticated updates" ON public.booking_requests
+CREATE POLICY "Allow authenticated updates" ON public.bookings_leads
     FOR UPDATE USING (auth.role() = 'authenticated');

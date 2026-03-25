@@ -107,35 +107,34 @@ CREATE TABLE IF NOT EXISTS public.partners (
     updated_at TIMESTAMPTZ DEFAULT now() NOT NULL
 );
 
--- ── booking_requests (leads) ───────────────────────────────
-CREATE TABLE IF NOT EXISTS public.booking_requests (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    full_name   TEXT NOT NULL,
-    phone       TEXT,
-    email       TEXT,
-    preferred_date  DATE,
-    guests_count    INT DEFAULT 1,
-    message         TEXT,
-    service_id      TEXT,
-    service_title   TEXT,
-    service_type    TEXT,
-    source_page     TEXT,
-    status          TEXT DEFAULT 'new',
-    created_at TIMESTAMPTZ DEFAULT now() NOT NULL,
-    updated_at TIMESTAMPTZ DEFAULT now() NOT NULL
+-- ── bookings_leads (leads) ───────────────────────────────
+CREATE TABLE IF NOT EXISTS public.bookings_leads (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  experience_id uuid REFERENCES public.experiences(id) ON DELETE SET NULL,
+  experience_title text,
+  experience_slug text,
+  full_name text NOT NULL,
+  phone text,
+  email text,
+  preferred_date date,
+  guests_count integer,
+  message text,
+  status text DEFAULT 'new',
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now()
 );
 
--- Row-Level Security for booking_requests
-ALTER TABLE public.booking_requests ENABLE ROW LEVEL SECURITY;
+-- Row-Level Security for bookings_leads
+ALTER TABLE public.bookings_leads ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow public inserts" ON public.booking_requests
-    FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow public inserts" ON public.bookings_leads
+  FOR INSERT WITH CHECK (true);
 
-CREATE POLICY "Allow authenticated reads" ON public.booking_requests
-    FOR SELECT USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow authenticated reads" ON public.bookings_leads
+  FOR SELECT TO authenticated USING (true);
 
-CREATE POLICY "Allow authenticated updates" ON public.booking_requests
-    FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow authenticated updates" ON public.bookings_leads
+  FOR UPDATE TO authenticated USING (true) WITH CHECK (true);
 
 -- ── Initial site_settings row ──────────────────────────────
 -- Edit whatsapp_number, instagram_link etc. to your real values

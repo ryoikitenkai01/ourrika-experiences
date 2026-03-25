@@ -42,7 +42,7 @@ export async function getBookings() {
 
   try {
     const snapshot = await adminDb
-      .collection("booking_requests")
+      .collection("bookings_leads")
       .orderBy("created_at", "desc")
       .get();
       
@@ -61,7 +61,7 @@ export async function updateBookingStatus(id: string, status: string) {
   }
 
   try {
-    await adminDb.collection("booking_requests").doc(id).update({ status });
+    await adminDb.collection("bookings_leads").doc(id).update({ status });
   } catch (error: any) {
     console.error("[updateBookingStatus] error:", error.message);
     return { success: false, error: "Could not update status." };

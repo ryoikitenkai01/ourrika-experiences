@@ -6,7 +6,7 @@ export default async function AdminDashboardPage() {
   if (adminDb) {
     try {
       const [leads, exp, dest, blog] = await Promise.all([
-        adminDb.collection("booking_requests").count().get(),
+        adminDb.collection("bookings_leads").count().get(),
         adminDb.collection("experiences").count().get(),
         adminDb.collection("destinations").count().get(),
         adminDb.collection("blog_posts").count().get(),
