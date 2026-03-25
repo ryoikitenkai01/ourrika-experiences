@@ -19,14 +19,18 @@ async function testBooking() {
   
   try {
     const testLead = {
-      experienceSlug: "test-experience",
-      name: "Test User",
+      service_id: "test-experience",
+      service_title: "Test Experience",
+      service_type: "experience",
+      full_name: "Test User",
       email: "test@example.com",
       phone: "1234567890",
-      date: "2026-05-10",
-      groupSize: 2,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      preferred_date: "2026-05-10",
+      guests_count: 2,
+      message: null,
+      created_at: admin.firestore.FieldValue.serverTimestamp(),
       status: "new",
+      source_page: "/experiences/test-experience",
     };
 
     const docRef = await db.collection("bookings_leads").add(testLead);
