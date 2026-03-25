@@ -1,0 +1,50 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ----------------------------------------------------------------------
+    // Global rule: Admin SDK bypasses these rules automatically.
+    // Since you are using Passcode Auth without Firebase Auth (currently),
+    // you must rely exclusively on Admin SDK for writes from the server.
+    // 
+    // This frontend requires public read access to display the marketing 
+    // and booking content, but no write access from the client.
+    // ----------------------------------------------------------------------
+
+    // Site Settings
+    match /site_settings/{document} {
+      allow read: if true;
+      allow write: if false; // Only Admin SDK can write
+    }
+
+    // Experiences
+    match /experiences/{document} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Destinations
+    match /destinations/{document} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Offers
+    match /offers/{document} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Blog Posts
+    match /blog_posts/{document} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Partners
+    match /partners/{document} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}
