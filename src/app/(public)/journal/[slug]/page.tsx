@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.excerpt ?? undefined,
     image: post.image || undefined,
-    path: `/blog/${slug}`,
+    path: `/journal/${slug}`,
     type: "article",
   });
 }
@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: Props) {
       <HeroSectionDetail
         image={post.image}
         title={post.title}
-        backHref="/blog"
+        backHref="/journal"
         backLabel="The Journal"
         heightClass="h-[62vh] min-h-[380px]"
       >
@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: Props) {
       <ArticleContent
         excerpt={post.excerpt}
         body={post.body}
-        backHref="/blog"
+        backHref="/journal"
         backLabel="Back to Journal"
         forwardHref="/experiences"
         forwardLabel="Explore experiences"

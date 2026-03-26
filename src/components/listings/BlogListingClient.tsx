@@ -47,7 +47,7 @@ export function BlogListing({ posts }: BlogListingProps) {
           {filtered.map((post, i) => (
             <BlogCard
               key={post.id}
-              href={`/blog/${post.slug}`}
+              href={`/journal/${post.slug}`}
               image={post.image}
               title={post.title}
               excerpt={post.excerpt}

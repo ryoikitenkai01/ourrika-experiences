@@ -8,7 +8,7 @@ import { generateDynamicMetadata } from "@/lib/seo";
 export const metadata: Metadata = generateDynamicMetadata({
   title: "The Journal",
   description: "Stories, guides, and inspiration from Morocco. Explore our travel journal for insider tips, destination guides, and authentic travel stories.",
-  path: "/blog",
+  path: "/journal",
 });
 
 export default async function BlogPage() {
