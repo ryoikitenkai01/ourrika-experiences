@@ -1,23 +1,40 @@
 import * as admin from "firebase-admin";
 
-const firebaseAdminConfig = {
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-  privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-};
+const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+const privateKeyRaw = process.env.FIREBASE_PRIVATE_KEY;
 
-export const isFirebaseAdminConfigured = Boolean(
-  firebaseAdminConfig.projectId &&
-    firebaseAdminConfig.clientEmail &&
-    firebaseAdminConfig.privateKey
-);
+const missing = [
+  !projectId && "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+  !clientEmail && "FIREBASE_CLIENT_EMAIL",
+  !privateKeyRaw && "FIREBASE_PRIVATE_KEY",
+].filter(Boolean);
 
-if (!admin.apps.length && isFirebaseAdminConfigured) {
-  admin.initializeApp({
-    credential: admin.credential.cert(firebaseAdminConfig as admin.ServiceAccount),
-  });
+if (missing.length > 0) {
+  throw new Error(
+    `Firebase Admin SDK failed to initialize: missing env vars: ${missing.join(", ")}`
+  );
 }
 
-const adminDb = isFirebaseAdminConfigured ? admin.firestore() : null;
+const privateKey = privateKeyRaw!.replace(/\\n/g, "\n");
 
-export { adminDb };
+if (!privateKey.includes("BEGIN PRIVATE KEY")) {
+  throw new Error(
+    "Firebase Admin SDK failed to initialize: FIREBASE_PRIVATE_KEY is malformed (missing PEM header)"
+  );
+}
+
+if (!admin.apps.length) {
+  try {
+    admin.initializeApp({
+      credential: admin.credential.cert({ projectId, clientEmail, privateKey }),
+    });
+  } catch (err) {
+    throw new Error(
+      `Firebase Admin SDK failed to initialize: ${err instanceof Error ? err.message : String(err)}`
+    );
+  }
+}
+
+export const isFirebaseAdminConfigured = true;
+export const adminDb = admin.firestore();
