@@ -1,11 +1,12 @@
+import type { ComponentProps } from "react";
 import Link from "next/link";
 import { adminDb } from "@/lib/firebase-admin";
 import { Plus } from "lucide-react";
 import { OffersTable } from "@/components/admin/OffersTable";
 
 export default async function AdminOffersPage() {
-  let offers: any[] = [];
-  let fetchError: Error | null = null;
+  let offers: ComponentProps<typeof OffersTable>["offers"] = [];
+  let fetchError: string | null = null;
 
   try {
     if (adminDb) {
@@ -17,10 +18,10 @@ export default async function AdminOffersPage() {
       offers = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-      }));
+      })) as unknown as typeof offers;
     }
-  } catch (error: any) {
-    fetchError = error;
+  } catch (error: unknown) {
+    fetchError = error instanceof Error ? error.message : "Unknown error";
   }
 
   return (
@@ -50,7 +51,7 @@ export default async function AdminOffersPage() {
 
       {fetchError && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-sans text-sm">
-          Failed to load offers: {fetchError.message}
+          Failed to load offers: {fetchError}
         </div>
       )}
 

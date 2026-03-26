@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
 import {
   getDestinationBySlug,
-  getAllDestinations,
   getRelatedExperiences,
   getSiteSettings,
 } from "@/lib/data";

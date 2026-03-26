@@ -16,7 +16,7 @@ interface TrackingParams {
   item_name?: string;
   category?: string;
   location?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export const trackEvent = (name: EventName, params?: TrackingParams) => {

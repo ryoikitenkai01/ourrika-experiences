@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import { notFound } from "next/navigation";
 import { adminDb } from "@/lib/firebase-admin";
 import { ExperienceForm } from "@/components/admin/ExperienceForm";
@@ -20,7 +21,7 @@ export default async function AdminExperienceFormPage({ params }: Props) {
     if (!docRef.exists) {
       notFound();
     }
-    experience = { id: docRef.id, ...docRef.data() } as any;
+    experience = { id: docRef.id, ...docRef.data() } as unknown as ComponentProps<typeof ExperienceForm>["initialData"];
   }
 
   return (

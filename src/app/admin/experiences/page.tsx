@@ -1,11 +1,12 @@
+import type { ComponentProps } from "react";
 import Link from "next/link";
 import { adminDb } from "@/lib/firebase-admin";
 import { Plus } from "lucide-react";
 import { ExperiencesTable } from "@/components/admin/ExperiencesTable";
 
 export default async function AdminExperiencesPage() {
-  let experiences: any[] = [];
-  let fetchError: Error | null = null;
+  let experiences: ComponentProps<typeof ExperiencesTable>["experiences"] = [];
+  let fetchError: string | null = null;
 
   try {
     if (adminDb) {
@@ -17,10 +18,10 @@ export default async function AdminExperiencesPage() {
       experiences = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-      }));
+      })) as unknown as typeof experiences;
     }
-  } catch (error: any) {
-    fetchError = error;
+  } catch (error: unknown) {
+    fetchError = error instanceof Error ? error.message : "Unknown error";
   }
 
   return (

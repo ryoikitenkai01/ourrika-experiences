@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import { notFound } from "next/navigation";
 import { adminDb } from "@/lib/firebase-admin";
 import { OfferForm } from "@/components/admin/OfferForm";
@@ -11,14 +12,14 @@ export default async function AdminOfferFormPage({ params }: Props) {
   const isNew = id === "new";
 
   let offer = null;
-  let experiences: any[] = [];
-  let destinations: any[] = [];
+  let experiences: { id: string; name: string }[] = [];
+  let destinations: { id: string; name: string }[] = [];
 
   if (adminDb) {
     if (!isNew) {
       const docRef = await adminDb.collection("offers").doc(id).get();
       if (!docRef.exists) notFound();
-      offer = { id: docRef.id, ...docRef.data() } as any;
+      offer = { id: docRef.id, ...docRef.data() } as unknown as ComponentProps<typeof OfferForm>["initialData"];
     }
 
     try {

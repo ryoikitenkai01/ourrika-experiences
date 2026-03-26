@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Calendar, Tag } from "lucide-react";
-import { getBlogPostBySlug, getAllBlogPosts, getRelatedBlogPosts } from "@/lib/data";
+import { Calendar } from "lucide-react";
 import { HeroSectionDetail, ArticleContent } from "@/components/ui/DetailPageBlocks";
 import { RelatedBlogPosts } from "@/components/ui/RelatedSections";
-
+import { getBlogPostBySlug, getRelatedBlogPosts } from "@/lib/data";
 import { generateDynamicMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";

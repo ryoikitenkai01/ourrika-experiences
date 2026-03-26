@@ -17,7 +17,7 @@ export default async function AdminDashboardPage() {
       destCount = dest.data().count;
       blogCount = blog.data().count;
     } catch (e) {
-      console.error(e);
+      console.error(e instanceof Error ? e.message : String(e));
     }
   }
 
@@ -35,7 +35,7 @@ export default async function AdminDashboardPage() {
           Dashboard Overview
         </h1>
         <p className="font-sans text-sm text-zinc-500">
-          Welcome back to the Ourrika Operations Center. Here's what's happening today.
+          Welcome back to the Ourrika Operations Center. Here&apos;s what&apos;s happening today.
         </p>
       </header>
 

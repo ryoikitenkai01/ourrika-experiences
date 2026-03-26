@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { updateBookingStatus, BookingLead } from "@/app/actions/admin-bookings";
-import { Check, X, Building, Map, ShoppingBag, Eye, User, Phone, Mail, Calendar, Users, MessageSquare } from "lucide-react";
+import { Building, Map, ShoppingBag, Eye, User, Phone, Mail, Calendar, Users, MessageSquare } from "lucide-react";
 
 const formatDate = (dateStr: string) => {
   return new Date(dateStr).toLocaleDateString("en-US", {

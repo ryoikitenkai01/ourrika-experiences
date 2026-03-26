@@ -1,10 +1,10 @@
 "use client";
 
-import { useTransition, useRef, useState, useActionState } from "react";
+import { useTransition, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { ImageIcon, Save } from "lucide-react";
 import { createExperience, updateExperience } from "@/app/actions/experiences";
-import { ArrowLeft, Save, FileImage, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 
 interface ExperienceRow {
@@ -334,7 +334,7 @@ export function ExperienceForm({ initialData }: Props) {
             className="w-full px-4 py-3 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200 resize-y"
           />
           <p className="mt-1 text-zinc-400 text-xs font-sans">
-            Overrides the default "Hello I'd like to book [Title]" message.
+            Overrides the default &quot;Hello I&apos;d like to book [Title]&quot; message.
           </p>
         </div>
       </div>

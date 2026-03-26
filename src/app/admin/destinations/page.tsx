@@ -1,11 +1,12 @@
+import type { ComponentProps } from "react";
 import Link from "next/link";
 import { adminDb } from "@/lib/firebase-admin";
 import { Plus } from "lucide-react";
 import { DestinationsTable } from "@/components/admin/DestinationsTable";
 
 export default async function AdminDestinationsPage() {
-  let destinations: any[] = [];
-  let fetchError: Error | null = null;
+  let destinations: ComponentProps<typeof DestinationsTable>["destinations"] = [];
+  let fetchError: string | null = null;
 
   try {
     if (adminDb) {
@@ -17,10 +18,10 @@ export default async function AdminDestinationsPage() {
       destinations = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-      }));
+      })) as unknown as typeof destinations;
     }
-  } catch (error: any) {
-    fetchError = error;
+  } catch (error: unknown) {
+    fetchError = error instanceof Error ? error.message : "Unknown error";
   }
 
   return (

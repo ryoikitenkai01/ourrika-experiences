@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import { notFound } from "next/navigation";
 import { adminDb } from "@/lib/firebase-admin";
 import { PartnerForm } from "@/components/admin/PartnerForm";
@@ -20,7 +21,7 @@ export default async function AdminPartnerFormPage({ params }: Props) {
     if (!docRef.exists) {
       notFound();
     }
-    partner = { id: docRef.id, ...docRef.data() } as any;
+    partner = { id: docRef.id, ...docRef.data() } as unknown as ComponentProps<typeof PartnerForm>["initialData"];
   }
 
   return (

@@ -10,7 +10,6 @@ import {
   Search,
   MoreVertical,
   CheckCircle2,
-  XCircle,
   ExternalLink,
 } from "lucide-react";
 import { deletePartner } from "@/app/actions/partners";

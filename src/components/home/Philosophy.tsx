@@ -46,7 +46,7 @@ export function Philosophy() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-serif italic text-3xl md:text-5xl text-white mb-10 leading-tight"
           >
-            "Travel is not about the destination, but the perspective."
+            &quot;Travel is not about the destination, but the perspective.&quot;
           </motion.h2>
           
           <motion.p 

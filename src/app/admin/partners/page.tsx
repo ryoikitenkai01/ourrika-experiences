@@ -1,11 +1,12 @@
+import type { ComponentProps } from "react";
 import Link from "next/link";
 import { adminDb } from "@/lib/firebase-admin";
 import { Plus } from "lucide-react";
 import { PartnersTable } from "@/components/admin/PartnersTable";
 
 export default async function AdminPartnersPage() {
-  let partners: any[] = [];
-  let fetchError: Error | null = null;
+  let partners: ComponentProps<typeof PartnersTable>["partners"] = [];
+  let fetchError: string | null = null;
 
   try {
     if (adminDb) {
@@ -17,10 +18,10 @@ export default async function AdminPartnersPage() {
       partners = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-      }));
+      })) as unknown as typeof partners;
     }
-  } catch (error: any) {
-    fetchError = error;
+  } catch (error: unknown) {
+    fetchError = error instanceof Error ? error.message : "Unknown error";
   }
 
   return (
@@ -50,7 +51,7 @@ export default async function AdminPartnersPage() {
 
       {fetchError && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-sans text-sm">
-          Failed to load partners: {fetchError.message}
+          Failed to load partners: {fetchError}
         </div>
       )}
 

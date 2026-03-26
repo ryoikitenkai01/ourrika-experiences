@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import { notFound } from "next/navigation";
 import { adminDb } from "@/lib/firebase-admin";
 import { DestinationForm } from "@/components/admin/DestinationForm";
@@ -20,7 +21,7 @@ export default async function AdminDestinationFormPage({ params }: Props) {
     if (!docRef.exists) {
       notFound();
     }
-    destination = { id: docRef.id, ...docRef.data() } as any;
+    destination = { id: docRef.id, ...docRef.data() } as unknown as ComponentProps<typeof DestinationForm>["initialData"];
   }
 
   return (

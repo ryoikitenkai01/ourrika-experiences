@@ -1,10 +1,10 @@
 "use client";
 
-import { useTransition, useRef, useState } from "react";
+import { useTransition, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { createOffer, updateOffer } from "@/app/actions/offers";
-import { Save, Image as ImageIcon, Link as LinkIcon } from "lucide-react";
+import { Save, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 
 interface OfferRow {

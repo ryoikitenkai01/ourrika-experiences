@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { MapPin, Clock, Star } from "lucide-react";
 import {
   getExperienceBySlug,
-  getAllExperiences,
   getRelatedExperiences,
   getSiteSettings,
 } from "@/lib/data";

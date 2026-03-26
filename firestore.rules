@@ -46,5 +46,11 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+
+    // Booking leads — never readable from the client
+    match /bookings_leads/{document} {
+      allow read: if false;
+      allow write: if false; // Only Admin SDK (server actions) can write
+    }
   }
 }

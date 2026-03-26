@@ -156,7 +156,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
           setErrorMsg("Something went wrong. Please try again or contact us on WhatsApp.");
         }
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg("Something went wrong. Please try again or contact us on WhatsApp.");
     }

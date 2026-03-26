@@ -229,8 +229,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       faq_link: row.faq_link,
       contact_email: row.contact_email,
     };
-  } catch (error: any) {
-    console.error("[getSiteSettings] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getSiteSettings] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return DEFAULT_SETTINGS;
   }
 }
@@ -253,8 +253,8 @@ export async function getFeaturedExperiences(limit = 5): Promise<ExperienceCard[
     if (snapshot.empty) return FALLBACK_EXPERIENCES;
     const dbExperiences = snapshot.docs.map(doc => rowToExperienceCard({ id: doc.id, ...doc.data() } as ExperienceRow));
     return [...FALLBACK_EXPERIENCES, ...dbExperiences].slice(0, limit);
-  } catch (error: any) {
-    console.error("[getFeaturedExperiences] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getFeaturedExperiences] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_EXPERIENCES;
   }
 }
@@ -275,8 +275,8 @@ export async function getAllExperiences(): Promise<ExperienceCard[]> {
     if (snapshot.empty) return FALLBACK_EXPERIENCES;
     const dbExperiences = snapshot.docs.map(doc => rowToExperienceCard({ id: doc.id, ...doc.data() } as ExperienceRow));
     return [...FALLBACK_EXPERIENCES, ...dbExperiences];
-  } catch (error: any) {
-    console.error("[getAllExperiences] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getAllExperiences] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_EXPERIENCES;
   }
 }
@@ -310,8 +310,8 @@ export async function getExperienceBySlug(slug: string): Promise<ExperienceDetai
     if (snapshot.empty) return null;
     const doc = snapshot.docs[0];
     return rowToExperienceDetail({ id: doc.id, ...doc.data() } as ExperienceRow);
-  } catch (error: any) {
-    console.error("[getExperienceBySlug] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getExperienceBySlug] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return null;
   }
 }
@@ -335,8 +335,8 @@ export async function getFeaturedDestinations(limit = 4): Promise<DestinationCar
     if (snapshot.empty) return FALLBACK_DESTINATIONS;
     const dbDestinations = snapshot.docs.map(doc => rowToDestinationCard({ id: doc.id, ...doc.data() } as DestinationRow));
     return [...FALLBACK_DESTINATIONS, ...dbDestinations].slice(0, limit);
-  } catch (error: any) {
-    console.error("[getFeaturedDestinations] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getFeaturedDestinations] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_DESTINATIONS;
   }
 }
@@ -357,8 +357,8 @@ export async function getAllDestinations(): Promise<DestinationCard[]> {
     if (snapshot.empty) return FALLBACK_DESTINATIONS;
     const dbDestinations = snapshot.docs.map(doc => rowToDestinationCard({ id: doc.id, ...doc.data() } as DestinationRow));
     return [...FALLBACK_DESTINATIONS, ...dbDestinations];
-  } catch (error: any) {
-    console.error("[getAllDestinations] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getAllDestinations] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_DESTINATIONS;
   }
 }
@@ -390,8 +390,8 @@ export async function getDestinationBySlug(slug: string): Promise<DestinationDet
     if (snapshot.empty) return null;
     const doc = snapshot.docs[0];
     return rowToDestinationDetail({ id: doc.id, ...doc.data() } as DestinationRow);
-  } catch (error: any) {
-    console.error("[getDestinationBySlug] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getDestinationBySlug] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return null;
   }
 }
@@ -424,8 +424,8 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     });
 
     return [...FALLBACK_BLOG_POSTS, ...dbPosts];
-  } catch (error: any) {
-    console.error("[getAllBlogPosts] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getAllBlogPosts] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_BLOG_POSTS;
   }
 }
@@ -460,8 +460,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       body: row.body,
       publish_date: row.publish_date,
     };
-  } catch (error: any) {
-    console.error("[getBlogPostBySlug] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getBlogPostBySlug] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return null;
   }
 }
@@ -489,8 +489,8 @@ export async function getPartners(): Promise<PartnerLogo[]> {
         link: row.link,
       };
     });
-  } catch (error: any) {
-    console.error("[getPartners] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getPartners] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return [];
   }
 }
@@ -511,8 +511,8 @@ export async function getRelatedExperiences(excludeSlug: string, limitCount = 3)
       .get();
       
     return snapshot.docs.map(doc => rowToExperienceCard({ id: doc.id, ...doc.data() } as ExperienceRow));
-  } catch (error: any) {
-    console.error("[getRelatedExperiences] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getRelatedExperiences] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return [];
   }
 }
@@ -528,8 +528,8 @@ export async function getRelatedDestinations(excludeSlug: string, limitCount = 3
       .get();
       
     return snapshot.docs.map(doc => rowToDestinationCard({ id: doc.id, ...doc.data() } as DestinationRow));
-  } catch (error: any) {
-    console.error("[getRelatedDestinations] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getRelatedDestinations] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return [];
   }
 }
@@ -557,8 +557,8 @@ export async function getRelatedBlogPosts(excludeSlug: string, limitCount = 3): 
         publish_date: row.publish_date,
       };
     });
-  } catch (error: any) {
-    console.error("[getRelatedBlogPosts] Firebase error:", error.message);
+  } catch (error: unknown) {
+    console.error("[getRelatedBlogPosts] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return [];
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition, useRef, useState } from "react";
+import { useTransition, useState } from "react";
 import { updateSettings } from "@/app/actions/settings";
 import { Save, Image as ImageIcon, Phone, Mail, Instagram, Facebook, Globe } from "lucide-react";
 import Image from "next/image";

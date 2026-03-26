@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import type { ExperienceCard } from "@/lib/types/ui";
 import { CardSkeleton } from "@/components/ui/Skeleton";
 
