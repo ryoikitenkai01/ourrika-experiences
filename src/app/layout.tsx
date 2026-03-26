@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif, Manrope, Playfair_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -45,6 +46,7 @@ export default function RootLayout({
         className="antialiased font-sans flex flex-col min-h-screen bg-[var(--color-sand-light)] text-[var(--color-charcoal)]"
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );

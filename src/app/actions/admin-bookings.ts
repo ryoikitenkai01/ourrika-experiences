@@ -21,6 +21,7 @@ export interface BookingLead {
 
 export async function getBookings() {
   try {
+    if (!adminDb) return [];
     const snapshot = await adminDb
       .collection("bookings_leads")
       .orderBy("created_at", "desc")
@@ -43,6 +44,7 @@ export async function getBookings() {
 
 export async function updateBookingStatus(id: string, status: string) {
   try {
+    if (!adminDb) return { success: false, error: "Firebase not configured." };
     await adminDb.collection("bookings_leads").doc(id).update({ status });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";

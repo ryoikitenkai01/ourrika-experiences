@@ -28,6 +28,7 @@ export async function submitBookingRequest(data: BookingRequest): Promise<Bookin
   const validatedData = result.data;
 
   try {
+    if (!adminDb) return { success: false, error: "booking_failed" };
     // 3. Save to Firestore (bookings_leads) with a reasonable timeout implied by the environment
     await adminDb.collection("bookings_leads").add({
       service_id: validatedData.service_id || null,

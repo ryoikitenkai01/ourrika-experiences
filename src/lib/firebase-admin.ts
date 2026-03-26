@@ -4,6 +4,7 @@ const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
 const privateKeyRaw = process.env.FIREBASE_PRIVATE_KEY;
 
+// Hard fail if env vars are entirely absent — misconfigured deploy
 const missing = [
   !projectId && "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
   !clientEmail && "FIREBASE_CLIENT_EMAIL",
@@ -19,22 +20,27 @@ if (missing.length > 0) {
 const privateKey = privateKeyRaw!.replace(/\\n/g, "\n");
 
 if (!privateKey.includes("BEGIN PRIVATE KEY")) {
-  throw new Error(
+  console.error(
     "Firebase Admin SDK failed to initialize: FIREBASE_PRIVATE_KEY is malformed (missing PEM header)"
   );
 }
+
+let adminDb: admin.firestore.Firestore | null = null;
 
 if (!admin.apps.length) {
   try {
     admin.initializeApp({
       credential: admin.credential.cert({ projectId, clientEmail, privateKey }),
     });
+    adminDb = admin.firestore();
   } catch (err) {
-    throw new Error(
+    console.error(
       `Firebase Admin SDK failed to initialize: ${err instanceof Error ? err.message : String(err)}`
     );
   }
+} else {
+  adminDb = admin.firestore();
 }
 
-export const isFirebaseAdminConfigured = true;
-export const adminDb = admin.firestore();
+export const isFirebaseAdminConfigured = adminDb !== null;
+export { adminDb };
