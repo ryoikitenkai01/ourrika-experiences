@@ -249,10 +249,9 @@ export async function getFeaturedExperiences(limit = 5): Promise<ExperienceCard[
       .orderBy("homepage_order", "asc")
       .limit(limit)
       .get();
-      
+
     if (snapshot.empty) return FALLBACK_EXPERIENCES;
-    const dbExperiences = snapshot.docs.map(doc => rowToExperienceCard({ id: doc.id, ...doc.data() } as ExperienceRow));
-    return [...FALLBACK_EXPERIENCES, ...dbExperiences].slice(0, limit);
+    return snapshot.docs.map(doc => rowToExperienceCard({ id: doc.id, ...doc.data() } as ExperienceRow));
   } catch (error: unknown) {
     console.error("[getFeaturedExperiences] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_EXPERIENCES;
@@ -271,10 +270,9 @@ export async function getAllExperiences(): Promise<ExperienceCard[]> {
       .collection("experiences")
       .orderBy("homepage_order", "asc")
       .get();
-      
+
     if (snapshot.empty) return FALLBACK_EXPERIENCES;
-    const dbExperiences = snapshot.docs.map(doc => rowToExperienceCard({ id: doc.id, ...doc.data() } as ExperienceRow));
-    return [...FALLBACK_EXPERIENCES, ...dbExperiences];
+    return snapshot.docs.map(doc => rowToExperienceCard({ id: doc.id, ...doc.data() } as ExperienceRow));
   } catch (error: unknown) {
     console.error("[getAllExperiences] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_EXPERIENCES;
@@ -286,19 +284,10 @@ export async function getAllExperiences(): Promise<ExperienceCard[]> {
 // ------------------------------------------------------------------
 
 export async function getExperienceBySlug(slug: string): Promise<ExperienceDetail | null> {
-  // 1. Check fallback data first
-  const fallback = FALLBACK_EXPERIENCES.find((e) => e.slug === slug);
-  if (fallback) {
-    // Transform Card to Detail for fallback
-    return {
-      ...fallback,
-      full_description: null,
-      gallery: [],
-      highlights: [],
-    };
+  if (!isFirebaseAdminConfigured || !adminDb) {
+    const fallback = FALLBACK_EXPERIENCES.find((e) => e.slug === slug);
+    return fallback ? { ...fallback, full_description: null, gallery: [], highlights: [] } : null;
   }
-
-  if (!isFirebaseAdminConfigured || !adminDb) return null;
 
   try {
     const snapshot = await adminDb
@@ -307,12 +296,18 @@ export async function getExperienceBySlug(slug: string): Promise<ExperienceDetai
       .limit(1)
       .get();
 
-    if (snapshot.empty) return null;
-    const doc = snapshot.docs[0];
-    return rowToExperienceDetail({ id: doc.id, ...doc.data() } as ExperienceRow);
+    if (!snapshot.empty) {
+      const doc = snapshot.docs[0];
+      return rowToExperienceDetail({ id: doc.id, ...doc.data() } as ExperienceRow);
+    }
+
+    // Firestore has no record — fall back to hardcoded data
+    const fallback = FALLBACK_EXPERIENCES.find((e) => e.slug === slug);
+    return fallback ? { ...fallback, full_description: null, gallery: [], highlights: [] } : null;
   } catch (error: unknown) {
     console.error("[getExperienceBySlug] Firebase error:", (error instanceof Error ? error.message : String(error)));
-    return null;
+    const fallback = FALLBACK_EXPERIENCES.find((e) => e.slug === slug);
+    return fallback ? { ...fallback, full_description: null, gallery: [], highlights: [] } : null;
   }
 }
 
@@ -324,17 +319,15 @@ export async function getFeaturedDestinations(limit = 4): Promise<DestinationCar
   if (!isFirebaseAdminConfigured || !adminDb) return FALLBACK_DESTINATIONS;
 
   try {
-    // Note: This uses compound index for destinations: is_featured + homepage_order
     const snapshot = await adminDb
       .collection("destinations")
       .where("is_featured", "==", true)
       .orderBy("homepage_order", "asc")
       .limit(limit)
       .get();
-      
+
     if (snapshot.empty) return FALLBACK_DESTINATIONS;
-    const dbDestinations = snapshot.docs.map(doc => rowToDestinationCard({ id: doc.id, ...doc.data() } as DestinationRow));
-    return [...FALLBACK_DESTINATIONS, ...dbDestinations].slice(0, limit);
+    return snapshot.docs.map(doc => rowToDestinationCard({ id: doc.id, ...doc.data() } as DestinationRow));
   } catch (error: unknown) {
     console.error("[getFeaturedDestinations] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_DESTINATIONS;
@@ -353,10 +346,9 @@ export async function getAllDestinations(): Promise<DestinationCard[]> {
       .collection("destinations")
       .orderBy("homepage_order", "asc")
       .get();
-      
+
     if (snapshot.empty) return FALLBACK_DESTINATIONS;
-    const dbDestinations = snapshot.docs.map(doc => rowToDestinationCard({ id: doc.id, ...doc.data() } as DestinationRow));
-    return [...FALLBACK_DESTINATIONS, ...dbDestinations];
+    return snapshot.docs.map(doc => rowToDestinationCard({ id: doc.id, ...doc.data() } as DestinationRow));
   } catch (error: unknown) {
     console.error("[getAllDestinations] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_DESTINATIONS;
@@ -368,17 +360,10 @@ export async function getAllDestinations(): Promise<DestinationCard[]> {
 // ------------------------------------------------------------------
 
 export async function getDestinationBySlug(slug: string): Promise<DestinationDetail | null> {
-  // 1. Check fallback data first
-  const fallback = FALLBACK_DESTINATIONS.find((d) => d.slug === slug);
-  if (fallback) {
-    return {
-      ...fallback,
-      full_description: null,
-      gallery: [],
-    };
+  if (!isFirebaseAdminConfigured || !adminDb) {
+    const fallback = FALLBACK_DESTINATIONS.find((d) => d.slug === slug);
+    return fallback ? { ...fallback, full_description: null, gallery: [] } : null;
   }
-
-  if (!isFirebaseAdminConfigured || !adminDb) return null;
 
   try {
     const snapshot = await adminDb
@@ -387,12 +372,18 @@ export async function getDestinationBySlug(slug: string): Promise<DestinationDet
       .limit(1)
       .get();
 
-    if (snapshot.empty) return null;
-    const doc = snapshot.docs[0];
-    return rowToDestinationDetail({ id: doc.id, ...doc.data() } as DestinationRow);
+    if (!snapshot.empty) {
+      const doc = snapshot.docs[0];
+      return rowToDestinationDetail({ id: doc.id, ...doc.data() } as DestinationRow);
+    }
+
+    // Firestore has no record — fall back to hardcoded data
+    const fallback = FALLBACK_DESTINATIONS.find((d) => d.slug === slug);
+    return fallback ? { ...fallback, full_description: null, gallery: [] } : null;
   } catch (error: unknown) {
     console.error("[getDestinationBySlug] Firebase error:", (error instanceof Error ? error.message : String(error)));
-    return null;
+    const fallback = FALLBACK_DESTINATIONS.find((d) => d.slug === slug);
+    return fallback ? { ...fallback, full_description: null, gallery: [] } : null;
   }
 }
 
@@ -409,8 +400,9 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
       .collection("blog_posts")
       .orderBy("publish_date", "desc")
       .get();
-      
-    const dbPosts = snapshot.docs.map(doc => {
+
+    if (snapshot.empty) return FALLBACK_BLOG_POSTS;
+    return snapshot.docs.map(doc => {
       const row = { id: doc.id, ...doc.data() } as BlogPostRow;
       return {
         id: row.id,
@@ -422,8 +414,6 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
         publish_date: row.publish_date,
       };
     });
-
-    return [...FALLBACK_BLOG_POSTS, ...dbPosts];
   } catch (error: unknown) {
     console.error("[getAllBlogPosts] Firebase error:", (error instanceof Error ? error.message : String(error)));
     return FALLBACK_BLOG_POSTS;
@@ -435,11 +425,9 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 // ------------------------------------------------------------------
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  // 1. Check fallback data first
-  const fallback = FALLBACK_BLOG_POSTS.find((p) => p.slug === slug);
-  if (fallback) return fallback;
-
-  if (!isFirebaseAdminConfigured || !adminDb) return null;
+  if (!isFirebaseAdminConfigured || !adminDb) {
+    return FALLBACK_BLOG_POSTS.find((p) => p.slug === slug) ?? null;
+  }
 
   try {
     const snapshot = await adminDb
@@ -448,21 +436,25 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       .limit(1)
       .get();
 
-    if (snapshot.empty) return null;
-    const doc = snapshot.docs[0];
-    const row = { id: doc.id, ...doc.data() } as BlogPostRow;
-    return {
-      id: row.id,
-      title: row.title,
-      slug: row.slug,
-      image: row.image,
-      excerpt: row.excerpt,
-      body: row.body,
-      publish_date: row.publish_date,
-    };
+    if (!snapshot.empty) {
+      const doc = snapshot.docs[0];
+      const row = { id: doc.id, ...doc.data() } as BlogPostRow;
+      return {
+        id: row.id,
+        title: row.title,
+        slug: row.slug,
+        image: row.image,
+        excerpt: row.excerpt,
+        body: row.body,
+        publish_date: row.publish_date,
+      };
+    }
+
+    // Firestore has no record — fall back to hardcoded data
+    return FALLBACK_BLOG_POSTS.find((p) => p.slug === slug) ?? null;
   } catch (error: unknown) {
     console.error("[getBlogPostBySlug] Firebase error:", (error instanceof Error ? error.message : String(error)));
-    return null;
+    return FALLBACK_BLOG_POSTS.find((p) => p.slug === slug) ?? null;
   }
 }
 
