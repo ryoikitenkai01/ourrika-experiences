@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase-admin";
+import { adminDb } from "@/lib/firebase-admin";
 import type { BookingRequest, BookingResult } from "@/lib/types/booking";
 
 const bookingSchema = z.object({
@@ -26,12 +26,6 @@ export async function submitBookingRequest(data: BookingRequest): Promise<Bookin
   }
 
   const validatedData = result.data;
-
-  // 2. Check for Firebase Admin configuration
-  if (!isFirebaseAdminConfigured || !adminDb) {
-    console.error("[submitBookingRequest] Firebase Admin not configured.");
-    return { success: false, error: "booking_failed" };
-  }
 
   try {
     // 3. Save to Firestore (bookings_leads) with a reasonable timeout implied by the environment
