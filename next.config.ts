@@ -25,6 +25,15 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "chez-ali.ma",
       },
+      // Firebase Storage
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.firebasestorage.app",
+      },
     ],
   },
 };
