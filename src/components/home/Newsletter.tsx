@@ -6,20 +6,21 @@ export function Newsletter() {
   return (
     <section className="py-32 px-8 bg-[var(--color-surface)] text-center">
       <div className="max-w-xl mx-auto">
-        <motion.h2 
-          initial={{ opacity: 0, y: 10 }}
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-serif italic text-3xl text-[var(--color-on-surface)] mb-6"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="font-serif italic text-3xl text-[#1A1A1A] mb-6"
         >
           Stay Inspired
         </motion.h2>
-        <motion.p 
-          initial={{ opacity: 0, y: 10 }}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-[var(--color-outline)] text-sm mb-12 font-light"
+          transition={{ delay: 0.08, duration: 0.5, ease: "easeOut" }}
+          className="text-[#5c605d] text-sm mb-12 font-light"
         >
           Join our inner circle for exclusive experience launches and editorial travel stories.
         </motion.p>

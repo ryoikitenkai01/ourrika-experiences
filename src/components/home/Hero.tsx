@@ -31,31 +31,31 @@ export function Hero({ settings }: HeroProps) {
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center">
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="font-semibold not-italic text-2xl md:text-3xl lg:text-4xl text-white mb-16 tracking-[0.15em] uppercase"
-          style={{ fontFamily: 'var(--font-roboto)' }}
+          style={{ fontFamily: 'var(--font-roboto)', textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}
         >
           Escape, Breathe, Explore...
         </motion.h1>
 
         {/* Action Buttons */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
           className="flex flex-col sm:flex-row gap-6"
         >
-          <Link 
-            href="/experiences" 
-            className="px-12 py-5 bg-[#555555] text-white text-[11px] tracking-[0.3em] font-bold uppercase transition-all duration-500 hover:bg-zinc-800"
+          <Link
+            href="/experiences"
+            className="px-12 py-5 bg-[#1A1A1A] text-white text-[11px] tracking-[0.3em] font-sans uppercase transition-colors duration-300 hover:bg-[#C56B5C] rounded-none"
           >
             VIEW EXPERIENCES
           </Link>
-          <Link 
-            href="/destinations" 
-            className="px-12 py-5 border border-white/20 text-white text-[11px] tracking-[0.3em] font-bold uppercase transition-all duration-500 hover:bg-white/10"
+          <Link
+            href="/destinations"
+            className="px-12 py-5 border border-white/60 text-white text-[11px] tracking-[0.3em] font-sans uppercase transition-colors duration-300 hover:bg-white/10 rounded-none"
           >
             OUR DESTINATIONS
           </Link>

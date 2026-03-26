@@ -56,7 +56,7 @@ export function Navbar({ settings }: NavbarProps) {
               <Link
                 key={link.label}
                 href={link.href}
-                className="font-serif text-[14px] tracking-wide text-[#333333] transition-all hover:border-b hover:border-[#C0714F] py-1"
+                className="font-serif text-[14px] tracking-wide text-[#333333] transition-all hover:border-b hover:border-[#C56B5C] py-1"
               >
                 {link.label}
               </Link>
@@ -72,7 +72,7 @@ export function Navbar({ settings }: NavbarProps) {
               href={`https://wa.me/${settings.whatsapp_number.replace(/\s+/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:block text-[#1A1A1A] hover:text-[#C0714F] transition-colors"
+              className="hidden md:block text-[#1A1A1A] hover:text-[#C56B5C] transition-colors"
               title="Book on WhatsApp"
             >
               <MessageCircle size={22} strokeWidth={1.5} />
@@ -94,10 +94,10 @@ export function Navbar({ settings }: NavbarProps) {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 200 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="fixed inset-0 z-[1001] bg-[#F5EFE4] flex flex-col p-8"
           >
             {/* Header in overlay */}
@@ -117,14 +117,14 @@ export function Navbar({ settings }: NavbarProps) {
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.label}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1 }}
+                  transition={{ delay: i * 0.08, duration: 0.5, ease: "easeOut" }}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-serif text-3xl tracking-wide text-[#333333] hover:text-[#C0714F] transition-colors"
+                    className="font-serif text-3xl tracking-wide text-[#333333] hover:text-[#C56B5C] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -133,8 +133,8 @@ export function Navbar({ settings }: NavbarProps) {
             </nav>
 
             {/* Footer in mobile menu */}
-            <div className="text-center pt-8 border-t border-[#C0714F]/10">
-              <p className="font-serif italic text-sm text-[#C0714F]/60">Escape, Breathe, Explore Morocco</p>
+            <div className="text-center pt-8 border-t border-[#C56B5C]/10">
+              <p className="font-serif italic text-sm text-[#C56B5C]/60">Escape, Breathe, Explore Morocco</p>
             </div>
           </motion.div>
         )}

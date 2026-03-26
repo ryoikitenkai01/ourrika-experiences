@@ -32,7 +32,7 @@ export function SearchBar({ placeholder = "Search...", onSearch, className = "" 
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full h-12 pl-12 pr-12 bg-white border border-gray-200 rounded-none font-sans text-sm text-[var(--color-charcoal)] placeholder-gray-400 focus:outline-none focus:border-[var(--color-terracotta)] transition-colors"
+        className="w-full h-12 pl-12 pr-12 bg-white border border-[rgba(224,214,200,0.4)] rounded-none font-sans text-sm text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:border-[#C56B5C]/40 transition-colors"
       />
       {value && (
         <button

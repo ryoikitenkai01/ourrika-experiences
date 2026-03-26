@@ -177,21 +177,21 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[100]"
             onClick={onClose}
           />
 
           {/* Panel */}
           <motion.div
             key="panel"
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 60 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="fixed top-0 right-0 h-full w-full max-w-lg bg-[var(--color-sand-light)] z-[101] flex flex-col shadow-2xl overflow-y-auto"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed top-0 right-0 h-full w-full max-w-lg bg-[#F5EFE4]/90 backdrop-blur-md border border-[rgba(224,214,200,0.6)] z-[101] flex flex-col shadow-sm overflow-y-auto"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-8 py-6 border-b border-gray-200 bg-white">
+            <div className="flex items-center justify-between px-8 py-6 border-b border-[rgba(224,214,200,0.6)] bg-[#F5EFE4]/90">
               <div>
                 <p className="font-sans text-[10px] tracking-widest uppercase text-[var(--color-terracotta)] mb-0.5">
                   Request Availability
@@ -224,7 +224,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-[#F5EFE4] border border-[#C0714F]/30 text-[#C0714F] text-[13px] p-4 flex gap-3"
+                      className="bg-[#F5EFE4] border border-[#C56B5C]/30 text-[#C56B5C] text-[13px] p-4 flex gap-3"
                     >
                       <p>{errorMsg}</p>
                     </motion.div>
@@ -304,7 +304,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                         placeholder="Any special requests or questions..."
                         value={form.message}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 font-sans text-sm text-[var(--color-charcoal)] placeholder-gray-400 focus:outline-none focus:border-[var(--color-terracotta)] transition-colors resize-none"
+                        className="w-full pl-10 pr-4 py-3 bg-white border border-[rgba(224,214,200,0.6)] font-sans text-sm text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:border-[#C56B5C]/40 transition-colors resize-none"
                       />
                     </div>
                   </div>
@@ -313,7 +313,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-white font-sans text-sm tracking-widest uppercase hover:bg-[var(--color-terracotta-dark)] disabled:opacity-60 disabled:pointer-events-none transition-colors mt-2"
+                    className="flex items-center justify-center gap-2 h-12 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] disabled:opacity-60 disabled:pointer-events-none transition-colors duration-300 rounded-none mt-2"
                   >
                     {status === "loading" ? (
                       <><Loader2 size={16} className="animate-spin" /> Sending…</>
@@ -341,7 +341,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                       })}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 h-12 bg-[#25D366] text-white font-sans text-sm tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors"
+                      className="flex items-center justify-center gap-2 h-12 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
                     >
                       <MessageCircle size={16} />
                       Book on WhatsApp
@@ -392,13 +392,13 @@ function InputField({ icon, label, name, type, placeholder, value, onChange, req
           required={required}
           min={min}
           max={max}
-          className={`w-full h-11 pl-10 pr-4 bg-white border font-sans text-sm text-[var(--color-charcoal)] placeholder-gray-400 focus:outline-none transition-colors ${
-            error ? "border-[#C0714F]" : "border-gray-200 focus:border-[var(--color-terracotta)]"
+          className={`w-full h-11 pl-10 pr-4 bg-white border font-sans text-sm text-[#1A1A1A] placeholder-gray-400 focus:outline-none transition-colors ${
+            error ? "border-[#C56B5C]" : "border-[rgba(224,214,200,0.6)] focus:border-[#C56B5C]/40"
           }`}
         />
       </div>
       {error && (
-        <p className="text-[11px] text-[#C0714F] tracking-wide mt-1">
+        <p className="text-[11px] text-[#C56B5C] tracking-wide mt-1">
           {error}
         </p>
       )}
@@ -423,7 +423,7 @@ function SuccessState({
       className="flex flex-col items-center text-center py-8 gap-6"
     >
       <div className="flex items-center justify-center w-20 h-20 rounded-full bg-[#F5EFE4]">
-        <CheckCircle2 size={40} className="text-[#C0714F]" />
+        <CheckCircle2 size={40} className="text-[#C56B5C]" />
       </div>
 
       <div>
@@ -442,7 +442,7 @@ function SuccessState({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 h-14 bg-[#25D366] text-white font-sans text-sm tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors shadow-sm"
+            className="flex items-center justify-center gap-2 h-14 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
           >
             <MessageCircle size={18} />
             Immediate WhatsApp Claim
@@ -450,7 +450,7 @@ function SuccessState({
         )}
         <button
           onClick={onClose}
-          className="h-14 border border-gray-200 text-[var(--color-charcoal)] font-sans text-xs tracking-widest uppercase hover:bg-white transition-colors"
+          className="h-14 border border-[#1A1A1A] text-[#1A1A1A] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] hover:text-white transition-colors duration-300 rounded-none"
         >
           Back to site
         </button>

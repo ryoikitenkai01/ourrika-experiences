@@ -33,20 +33,22 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
         <div className="w-12 h-px bg-[var(--color-terracotta)] mb-6" />
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl"
+          style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}
         >
           {title}
         </motion.h1>
 
         {subtitle && (
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
-            className="font-sans text-white/70 text-sm tracking-widest uppercase mt-4 max-w-xl"
+            transition={{ delay: 0.08, duration: 0.5, ease: "easeOut" }}
+            className="font-sans text-white/70 text-sm tracking-[0.2em] uppercase mt-4 max-w-xl"
+            style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}
           >
             {subtitle}
           </motion.p>

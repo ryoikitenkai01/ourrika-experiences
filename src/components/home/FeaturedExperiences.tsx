@@ -26,10 +26,10 @@ function ExperienceCardItem({
   return (
     <motion.div
       key={exp.id}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
       className={`group relative overflow-hidden bg-zinc-200 h-[600px] cursor-pointer ${isOffset ? 'md:translate-y-12' : ''}`}
     >
       <Link href={`/experiences/${exp.slug}`} className="absolute inset-0 z-10">
@@ -76,19 +76,21 @@ export function FeaturedExperiences({ experiences, whatsappNumber }: FeaturedExp
     <section id="experiences" className="py-32 bg-[var(--color-surface)]">
       <div className="container mx-auto px-6 lg:px-12 max-w-[1920px]">
         <div className="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-4">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-serif italic text-4xl text-[var(--color-on-surface)]"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="font-serif italic text-4xl text-[#1A1A1A]"
           >
             OURRIKA Experience
           </motion.h2>
-          <motion.span 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+          <motion.span
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-sans text-[10px] tracking-[0.3em] uppercase text-[var(--color-outline)]"
+            transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
+            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#5c605d]"
           >
             Curated Journeys — {new Date().getFullYear()}
           </motion.span>

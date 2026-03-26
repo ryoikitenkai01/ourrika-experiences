@@ -29,41 +29,41 @@ export function Philosophy() {
       {/* Text Side */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-12 md:p-24 bg-[var(--color-on-surface)]">
         <div className="max-w-md text-center md:text-left">
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="font-sans text-[10px] tracking-[0.4em] uppercase text-zinc-400 mb-12"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#9d9d9b] mb-12"
           >
             Our Philosophy
           </motion.p>
-          
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
             className="font-serif italic text-3xl md:text-5xl text-white mb-10 leading-tight"
           >
             &quot;Travel is not about the destination, but the perspective.&quot;
           </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.16, ease: "easeOut" }}
             className="text-white/70 font-light leading-relaxed mb-12 text-sm"
           >
             At Ourrika, we believe in slow travel. We curate experiences that challenge your viewpoint and immerse you in the quiet luxury of genuine human connection and raw natural beauty.
           </motion.p>
-          
+
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.24, ease: "easeOut" }}
           >
             <Link 
               href="/journal" 

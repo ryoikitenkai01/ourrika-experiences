@@ -24,17 +24,17 @@ export function Partners({ partners }: PartnersProps) {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-wrap justify-center md:justify-between items-center gap-12 opacity-30 grayscale hover:opacity-60 transition-opacity duration-700"
         >
           {displayPartners.map((partner, index) => (
             <motion.span 
               key={partner.id}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 0.3, y: 0 }}
-              whileHover={{ opacity: 1, scale: 1.05 }}
+              whileHover={{ opacity: 1, scale: 1.02 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
+              transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
               className="font-sans text-[11px] tracking-[0.5em] uppercase cursor-default"
             >
               {partner.name}

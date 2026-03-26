@@ -33,7 +33,7 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
       >
         <button
           onClick={() => setIsModalOpen(true)}
-          className="group flex items-center justify-center gap-2 h-13 px-8 py-3.5 bg-[var(--color-terracotta)] text-white font-sans text-sm tracking-widest uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors"
+          className="group flex items-center justify-center gap-2 h-13 px-8 py-3.5 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
         >
           <CalendarDays size={16} />
           Request Availability
@@ -43,7 +43,7 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center justify-center gap-2 h-13 px-8 py-3.5 bg-[#25D366] text-white font-sans text-sm tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors"
+          className="group flex items-center justify-center gap-2 h-13 px-8 py-3.5 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={16} />
           Book on WhatsApp
@@ -80,10 +80,10 @@ export function MobileStickyBookingBar({ experience }: ExperienceBookingClientPr
   return (
     <>
       {/* Sticky bar visible only on mobile */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 px-4 py-3 flex gap-3 shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-[rgba(224,214,200,0.4)] px-4 py-3 flex gap-3 shadow-sm">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[var(--color-terracotta)] text-white font-sans text-xs tracking-widest uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#1A1A1A] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
         >
           <CalendarDays size={14} />
           Request
@@ -92,7 +92,7 @@ export function MobileStickyBookingBar({ experience }: ExperienceBookingClientPr
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#25D366] text-white font-sans text-xs tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#C56B5C] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={14} />
           WhatsApp

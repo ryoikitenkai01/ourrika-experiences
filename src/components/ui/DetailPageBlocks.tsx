@@ -97,11 +97,11 @@ export function HeroSectionDetail({
       {/* Text block */}
       <div className="absolute bottom-0 left-0 right-0 px-6 lg:px-12 pb-10 lg:pb-14 z-10 max-w-5xl">
         <div className="w-10 h-px bg-[var(--color-terracotta)] mb-5" />
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight mb-4">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight mb-4" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
           {title}
         </h1>
         {subtitle && (
-          <p className="font-sans text-white/70 text-sm tracking-widest uppercase mb-4">
+          <p className="font-sans text-white/70 text-sm tracking-[0.2em] uppercase mb-4" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
             {subtitle}
           </p>
         )}
@@ -176,7 +176,7 @@ export function HighlightsBlock({
         {highlights.map((item, i) => (
           <li
             key={i}
-            className="flex items-start gap-3 font-sans text-sm text-gray-600"
+            className="flex items-start gap-3 font-sans text-sm text-[#5c605d]"
           >
             <CheckCircle2
               size={16}
@@ -221,14 +221,14 @@ export function CTASection({
       {onPrimary ? (
         <button
           onClick={onPrimary}
-          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-white font-sans text-sm tracking-widest uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors"
+          className="flex items-center justify-center gap-2 h-12 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
         >
           {primaryLabel}
         </button>
       ) : primaryHref ? (
         <Link
           href={primaryHref}
-          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-white font-sans text-sm tracking-widest uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors"
+          className="flex items-center justify-center gap-2 h-12 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
         >
           {primaryLabel}
         </Link>
@@ -239,7 +239,7 @@ export function CTASection({
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 h-12 bg-[#25D366] text-white font-sans text-sm tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors"
+          className="flex items-center justify-center gap-2 h-12 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={15} />
           {whatsappLabel}
@@ -323,7 +323,7 @@ export function RichContentSection({
         </p>
       )}
       {fullDescription && (
-        <div className="font-sans text-base text-gray-600 leading-[1.85] whitespace-pre-line">
+        <div className="font-sans text-base text-[#5c605d] leading-[1.85] whitespace-pre-line">
           {fullDescription}
         </div>
       )}
@@ -369,8 +369,8 @@ export function ArticleContent({
             </p>
           )}
           {body ? (
-            <div 
-              className="prose prose-stone prose-sm md:prose-base !max-w-none text-gray-700 font-sans leading-relaxed transition-all"
+            <div
+              className="prose prose-stone prose-sm md:prose-base !max-w-none text-[#5c605d] font-sans leading-relaxed transition-all"
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(body) }}
             />
           ) : (

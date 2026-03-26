@@ -13,22 +13,23 @@ interface DestinationsProps {
 export function Destinations({ destinations }: DestinationsProps) {
   return (
     <section id="destinations" className="py-32 bg-[var(--color-surface-container-low)]">
-      <div className="container mx-auto px-6 lg:px-12 max-w-[1400px]">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <div className="mb-16">
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-sans text-[10px] tracking-[0.3em] uppercase text-[var(--color-outline)] mb-2"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#5c605d] mb-2"
           >
             Featured Collection
           </motion.p>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="font-serif italic text-4xl text-[var(--color-on-surface)]"
+            transition={{ delay: 0.08, duration: 0.5, ease: "easeOut" }}
+            className="font-serif italic text-4xl text-[#1A1A1A]"
           >
             Most Booked Destinations
           </motion.h2>
@@ -45,10 +46,10 @@ export function Destinations({ destinations }: DestinationsProps) {
             {destinations.slice(0, 4).map((dest, index) => (
               <motion.div
                 key={dest.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.8 }}
+                transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
                 className="group"
               >
                 <Link href={`/destinations/${dest.slug}`} className="block">
@@ -71,7 +72,7 @@ export function Destinations({ destinations }: DestinationsProps) {
                       </p>
                     </div>
                     {dest.starting_price != null && (
-                      <p className="font-sans text-sm text-[var(--color-on-surface)]">
+                      <p className="font-serif italic text-sm text-[#1A1A1A]">
                         from {dest.currency} {dest.starting_price.toLocaleString()}
                       </p>
                     )}

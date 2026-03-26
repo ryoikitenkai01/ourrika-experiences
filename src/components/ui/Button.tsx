@@ -23,19 +23,19 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', children, href, ...props }, ref) => {
     
-    const baseStyles = "inline-flex items-center justify-center font-sans tracking-wide transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none";
-    
+    const baseStyles = "inline-flex items-center justify-center font-sans tracking-wide transition-colors duration-300 rounded-none focus:outline-none disabled:opacity-50 disabled:pointer-events-none";
+
     const variants = {
-      primary: "bg-[var(--color-terracotta)] text-white hover:bg-[var(--color-terracotta-dark)]",
-      secondary: "bg-[var(--color-charcoal)] text-white hover:bg-[var(--color-charcoal-light)]",
-      outline: "border border-[var(--color-charcoal)] text-[var(--color-charcoal)] hover:bg-[var(--color-charcoal)] hover:text-white",
-      ghost: "text-[var(--color-charcoal)] hover:text-[var(--color-terracotta)]"
+      primary: "bg-[#1A1A1A] text-white hover:bg-[#C56B5C]",
+      secondary: "bg-[#1A1A1A] text-white hover:bg-[#333333]",
+      outline: "border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white",
+      ghost: "text-[#1A1A1A] hover:text-[#C56B5C]"
     };
 
     const sizes = {
-      sm: "h-9 px-4 text-xs uppercase",
-      md: "h-12 px-6 text-sm uppercase",
-      lg: "h-14 px-8 text-base uppercase"
+      sm: "h-9 px-4 text-[11px] tracking-[0.15em] uppercase",
+      md: "h-12 px-6 text-[13px] tracking-[0.15em] uppercase",
+      lg: "h-14 px-8 text-[13px] tracking-[0.15em] uppercase"
     };
 
     const combinedClassName = cn(baseStyles, variants[variant], sizes[size], className);
