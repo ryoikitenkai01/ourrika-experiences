@@ -26,8 +26,6 @@ export function Navbar({ settings }: NavbarProps) {
     { label: "Destinations", href: "/destinations" },
     { label: "Ourrika Experience", href: "/experiences" },
     { label: "Journal", href: "/journal" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact", href: "/contact" },
   ];
 
   return (

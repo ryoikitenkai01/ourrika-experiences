@@ -1,26 +1,31 @@
 "use server";
 
+import { z } from "zod";
 import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase-admin";
 import type { BookingRequest, BookingResult } from "@/lib/types/booking";
 
+const bookingSchema = z.object({
+  full_name: z.string().trim().min(1),
+  email: z.string().email(),
+  phone: z.string().transform(val => val.replace(/\D/g, '')).refine(val => val.length >= 7),
+  preferred_date: z.string().min(1),
+  guests_count: z.preprocess((val) => Number(val), z.number().int().min(1).max(20)),
+  message: z.string().optional().nullable(),
+  service_id: z.string().optional().nullable(),
+  service_title: z.string().optional().nullable(),
+  service_type: z.string().optional().nullable(),
+  source_page: z.string().optional().nullable(),
+});
+
 export async function submitBookingRequest(data: BookingRequest): Promise<BookingResult> {
-  // 1. Server-side Validation Layer
-  const requiredFields: (keyof BookingRequest)[] = [
-    "full_name",
-    "email",
-    "phone",
-    "preferred_date",
-    "guests_count",
-  ];
-
-  const hasMissingFields = requiredFields.some((field) => {
-    const value = data[field];
-    return value === undefined || value === null || (typeof value === "string" && !value.trim());
-  });
-
-  if (hasMissingFields) {
+  // 1. Zod Validation
+  const result = bookingSchema.safeParse(data);
+  
+  if (!result.success) {
     return { success: false, error: "validation_failed" };
   }
+
+  const validatedData = result.data;
 
   // 2. Check for Firebase Admin configuration
   if (!isFirebaseAdminConfigured || !adminDb) {
@@ -31,18 +36,18 @@ export async function submitBookingRequest(data: BookingRequest): Promise<Bookin
   try {
     // 3. Save to Firestore (bookings_leads) with a reasonable timeout implied by the environment
     await adminDb.collection("bookings_leads").add({
-      service_id: data.service_id || null,
-      service_title: data.service_title || null,
-      full_name: data.full_name.trim(),
-      email: data.email.trim(),
-      phone: data.phone.trim(),
-      preferred_date: data.preferred_date,
-      guests_count: Number(data.guests_count) || 1,
-      message: data.message?.trim() || null,
+      service_id: validatedData.service_id || null,
+      service_title: validatedData.service_title || null,
+      full_name: validatedData.full_name,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      preferred_date: validatedData.preferred_date,
+      guests_count: validatedData.guests_count,
+      message: validatedData.message || null,
       created_at: new Date().toISOString(),
       status: "new",
-      source_page: data.source_page || null,
-      service_type: data.service_type || null,
+      source_page: validatedData.source_page || null,
+      service_type: validatedData.service_type || null,
     });
 
     return { success: true };
