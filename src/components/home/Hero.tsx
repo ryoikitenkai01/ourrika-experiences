@@ -37,7 +37,7 @@ export function Hero({ settings }: HeroProps) {
           className="font-semibold not-italic text-2xl md:text-3xl lg:text-4xl text-white mb-16 tracking-[0.15em] uppercase"
           style={{ fontFamily: 'var(--font-roboto)' }}
         >
-          Escape, Breathe, Explore...
+          {settings.hero_title || "Escape, Breathe, Explore..."}
         </motion.h1>
 
         {/* Action Buttons */}
