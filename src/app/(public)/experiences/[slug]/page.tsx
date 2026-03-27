@@ -55,7 +55,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
   const whatsappNumber = settings.whatsapp_number;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-sand-light)]">
+    <div className="flex flex-col min-h-screen bg-[var(--color-obsidian)]">
 
       {/* ── HERO ── reusable HeroSectionDetail + ExperienceMeta chips */}
       <HeroSectionDetail
@@ -97,68 +97,70 @@ export default async function ExperienceDetailPage({ params }: Props) {
             {/* Right: Sticky booking sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-28">
-                <div className="bg-white border border-gray-100 shadow-sm p-6 mb-6">
-                  <div className="w-8 h-px bg-[var(--color-terracotta)] mb-4" />
-                  <p className="font-sans text-[10px] uppercase tracking-widest text-gray-400 mb-1">
-                    Starting from
-                  </p>
-                  {exp.price != null ? (
-                    <p className="font-serif text-3xl text-[var(--color-charcoal)] mb-1">
-                      {exp.price.toLocaleString()}
-                      <span className="text-sm ml-1 font-sans text-gray-500">
-                        {exp.currency}
-                      </span>
+                <div className="bg-[var(--color-surface)] border border-[var(--color-gold)]/20 mb-6 overflow-hidden">
+                  {/* Urgency bar */}
+                  <div className="bg-[var(--color-terracotta)] px-5 py-2.5 text-center">
+                    <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-white font-semibold">
+                      High demand — reply within 2hrs
                     </p>
-                  ) : (
-                    <p className="font-serif text-2xl text-[var(--color-charcoal)] mb-1">
-                      Contact for pricing
-                    </p>
-                  )}
-
-                  {/* Quick meta list */}
-                  <div className="border-t border-gray-100 mt-4 pt-4 flex flex-col gap-3">
-                    {exp.location && (
-                      <div className="flex items-center gap-2.5 text-sm text-gray-600 font-sans">
-                        <MapPin
-                          size={14}
-                          className="text-[var(--color-terracotta)] shrink-0"
-                        />
-                        {exp.location}
-                      </div>
-                    )}
-                    {exp.duration && (
-                      <div className="flex items-center gap-2.5 text-sm text-gray-600 font-sans">
-                        <Clock
-                          size={14}
-                          className="text-[var(--color-terracotta)] shrink-0"
-                        />
-                        {exp.duration}
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2.5 text-sm text-gray-600 font-sans">
-                      <Star
-                        size={14}
-                        className="text-[var(--color-terracotta)] shrink-0"
-                      />
-                      Premium curated experience
-                    </div>
                   </div>
 
-                  {/* Desktop CTA */}
-                  <div className="mt-6 hidden md:block">
-                    <ExperienceBookingClient
-                      experience={{
-                        id: exp.id,
-                        title: exp.title,
-                        slug: exp.slug,
-                        whatsappMessage: exp.whatsappMessage,
-                        whatsappNumber: whatsappNumber,
-                      }}
-                    />
+                  {/* Divider */}
+                  <div className="mx-5 h-px bg-[var(--color-gold)]/20 mt-4" />
+
+                  <div className="p-5">
+                    <p className="font-sans text-[10px] uppercase tracking-widest text-[var(--color-charcoal-light)] mb-1 mt-2">
+                      Starting from
+                    </p>
+                    {exp.price != null ? (
+                      <p className="font-serif text-3xl text-[var(--color-gold)] mb-1">
+                        {exp.price.toLocaleString()}
+                        <span className="text-sm ml-1 font-sans text-[var(--color-charcoal-light)]">
+                          {exp.currency}
+                        </span>
+                      </p>
+                    ) : (
+                      <p className="font-serif text-2xl text-[var(--color-gold)] mb-1">
+                        Contact for pricing
+                      </p>
+                    )}
+
+                    {/* Meta list */}
+                    <div className="border-t border-white/[0.06] mt-4 pt-4 flex flex-col gap-3">
+                      {exp.location && (
+                        <div className="flex items-center gap-2.5 text-sm text-[var(--color-sand-light)]/60 font-sans">
+                          <MapPin size={14} className="text-[var(--color-terracotta)] shrink-0" />
+                          {exp.location}
+                        </div>
+                      )}
+                      {exp.duration && (
+                        <div className="flex items-center gap-2.5 text-sm text-[var(--color-sand-light)]/60 font-sans">
+                          <Clock size={14} className="text-[var(--color-terracotta)] shrink-0" />
+                          {exp.duration}
+                        </div>
+                      )}
+                      <div className="flex items-center gap-2.5 text-sm text-[var(--color-sand-light)]/60 font-sans">
+                        <Star size={14} className="text-[var(--color-terracotta)] shrink-0" />
+                        Premium curated experience
+                      </div>
+                    </div>
+
+                    {/* Desktop CTA */}
+                    <div className="mt-6 hidden md:block">
+                      <ExperienceBookingClient
+                        experience={{
+                          id: exp.id,
+                          title: exp.title,
+                          slug: exp.slug,
+                          whatsappMessage: exp.whatsappMessage,
+                          whatsappNumber: whatsappNumber,
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <p className="font-sans text-[11px] text-gray-400 text-center leading-relaxed">
+                <p className="font-sans text-[11px] text-[var(--color-charcoal-light)] text-center leading-relaxed">
                   No payment required now. We&apos;ll confirm availability and
                   share details before any commitment.
                 </p>

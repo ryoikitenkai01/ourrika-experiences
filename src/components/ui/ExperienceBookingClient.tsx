@@ -29,25 +29,27 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="flex flex-col sm:flex-row gap-4"
+        className="flex flex-col gap-3"
       >
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="group flex items-center justify-center gap-2 h-13 px-8 py-3.5 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
-        >
-          <CalendarDays size={16} />
-          Request Availability
-        </button>
-
+        {/* Primary: WhatsApp */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center justify-center gap-2 h-13 px-8 py-3.5 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
+          className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 bg-[var(--color-terracotta)] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={16} />
           Book on WhatsApp
         </a>
+
+        {/* Secondary: Request Availability */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 border border-white/[0.15] text-[var(--color-sand-light)]/70 font-sans text-[13px] tracking-[0.15em] uppercase hover:border-white/[0.3] hover:text-[var(--color-sand-light)] transition-colors duration-300 rounded-none"
+        >
+          <CalendarDays size={16} />
+          Request Availability
+        </button>
       </motion.div>
 
       {/* Modal */}
@@ -80,23 +82,23 @@ export function MobileStickyBookingBar({ experience }: ExperienceBookingClientPr
   return (
     <>
       {/* Sticky bar visible only on mobile */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-[rgba(224,214,200,0.4)] px-4 py-3 flex gap-3 shadow-sm">
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#1A1A1A] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
-        >
-          <CalendarDays size={14} />
-          Request
-        </button>
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[var(--color-surface)] border-t border-[var(--color-gold)]/20 px-4 py-3 flex gap-3">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#C56B5C] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
+          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[var(--color-terracotta)] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={14} />
           WhatsApp
         </a>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex-1 flex items-center justify-center gap-2 h-11 border border-white/[0.15] text-[var(--color-sand-light)]/70 font-sans text-[11px] tracking-[0.15em] uppercase hover:border-white/[0.3] transition-colors duration-300 rounded-none"
+        >
+          <CalendarDays size={14} />
+          Request
+        </button>
       </div>
 
       <BookingModal
