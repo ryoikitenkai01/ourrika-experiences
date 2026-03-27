@@ -4,6 +4,7 @@
 @theme inline {
   --color-obsidian: #0A0A0A;
   --color-surface: #1A1A1A;
+  --color-on-surface: #F5EFE4;
   --color-sand: #F4F1ED;
   --color-sand-light: #F5EFE4;
   --color-sand-dark: #EBE5DF;
@@ -14,9 +15,6 @@
   --color-olive-dark: #666E51;
   --color-charcoal: #333333;
   --color-charcoal-light: #9d9d9b;
-
-  /* Premium Palette from Design */
-  --color-on-surface: #F5EFE4;
   --color-outline: #777c79;
   --color-primary-fixed: #e5e2e1;
 
