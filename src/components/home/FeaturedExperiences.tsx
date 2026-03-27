@@ -8,7 +8,6 @@ import { CardSkeleton } from "@/components/ui/Skeleton";
 
 interface FeaturedExperiencesProps {
   experiences: ExperienceCard[];
-  whatsappNumber: string;
 }
 
 function ExperienceCardItem({
@@ -102,7 +101,7 @@ function ExperienceCardItem({
   );
 }
 
-export function FeaturedExperiences({ experiences, whatsappNumber }: FeaturedExperiencesProps) {
+export function FeaturedExperiences({ experiences }: FeaturedExperiencesProps) {
   return (
     <section id="experiences" className="py-24 bg-[var(--color-obsidian)]">
       <div className="container mx-auto px-6 lg:px-12 max-w-[1920px]">
