@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, User, Phone, Mail, Calendar, Users, MessageSquare, MessageCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { submitBookingRequest } from "@/app/actions/booking";
@@ -43,7 +43,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
   const [errorMsg, setErrorMsg] = useState("");
 
   // Stable ref so the keydown handler never recreates on every render
-  const onCloseRef = React.useRef(onClose);
+  const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
   // Lock body scroll when open

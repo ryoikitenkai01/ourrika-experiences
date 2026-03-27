@@ -41,15 +41,15 @@ export function Navbar({ settings }: NavbarProps) {
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-md border-b border-[#E0D6C8]/40 py-4"
-            : "bg-white/10 backdrop-blur-md py-6"
+            ? "bg-[var(--color-obsidian)]/95 backdrop-blur-md border-b border-[rgba(201,169,110,0.15)] py-4"
+            : "bg-[var(--color-obsidian)]/70 backdrop-blur-md border-b border-[rgba(201,169,110,0.10)] py-6"
         }`}
       >
         <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between">
 
           {/* LOGO - Left */}
           <Link href="/" className="flex items-center group transition-opacity hover:opacity-70">
-            <span className="font-serif text-[15px] tracking-[0.25em] text-[#1A1A1A] uppercase">
+            <span className="font-serif text-[15px] tracking-[0.25em] text-[var(--color-sand-light)] uppercase">
               Ourrika
             </span>
           </Link>
@@ -60,10 +60,10 @@ export function Navbar({ settings }: NavbarProps) {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`font-serif text-[14px] tracking-wide text-[#333333] transition-all py-1 border-b ${
+                className={`font-serif text-[14px] tracking-wide transition-all py-1 border-b ${
                   isActive(link.href)
-                    ? "border-[#C56B5C] text-[#C56B5C]"
-                    : "border-transparent hover:border-[#C56B5C] hover:text-[#333333]"
+                    ? "border-[var(--color-terracotta)] text-[var(--color-terracotta)]"
+                    : "border-transparent text-[var(--color-sand-light)] hover:border-[var(--color-terracotta)] hover:text-[var(--color-sand-light)]"
                 }`}
               >
                 {link.label}
@@ -77,14 +77,14 @@ export function Navbar({ settings }: NavbarProps) {
               href={`https://wa.me/${(settings.whatsapp_number || "").replace(/\D/g, '') || "212600000000"}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:block text-[#1A1A1A] hover:text-[#C56B5C] transition-colors"
+              className="hidden md:block text-[var(--color-sand-light)] hover:text-[var(--color-terracotta)] transition-colors"
               title="Book on WhatsApp"
             >
               <MessageCircle size={22} strokeWidth={1.5} />
             </a>
 
             <button
-              className="md:hidden text-[#1A1A1A] p-2"
+              className="md:hidden text-[var(--color-sand-light)] p-2"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -102,13 +102,13 @@ export function Navbar({ settings }: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed inset-0 z-[1001] bg-[#F5EFE4] flex flex-col p-8"
+            className="fixed inset-0 z-[1001] bg-[var(--color-obsidian)] flex flex-col p-8"
           >
             <div className="flex justify-between items-center mb-12">
-              <span className="font-serif text-[15px] tracking-[0.25em] text-[#1A1A1A] uppercase">Ourrika</span>
+              <span className="font-serif text-[15px] tracking-[0.25em] text-[var(--color-sand-light)] uppercase">Ourrika</span>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-[#1A1A1A] p-2"
+                className="text-[var(--color-sand-light)] p-2"
                 aria-label="Close menu"
               >
                 <X size={32} strokeWidth={1.5} />
@@ -127,7 +127,7 @@ export function Navbar({ settings }: NavbarProps) {
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`font-serif text-3xl tracking-wide transition-colors ${
-                      isActive(link.href) ? "text-[#C56B5C]" : "text-[#333333] hover:text-[#C56B5C]"
+                      isActive(link.href) ? "text-[var(--color-terracotta)]" : "text-[var(--color-sand-light)] hover:text-[var(--color-terracotta)]"
                     }`}
                   >
                     {link.label}
@@ -136,8 +136,8 @@ export function Navbar({ settings }: NavbarProps) {
               ))}
             </nav>
 
-            <div className="text-center pt-8 border-t border-[#C56B5C]/10">
-              <p className="font-serif italic text-sm text-[#C56B5C]/60">Escape, Breathe, Explore Morocco</p>
+            <div className="text-center pt-8 border-t border-[rgba(201,169,110,0.15)]">
+              <p className="font-serif italic text-sm text-[var(--color-gold)]/60">Escape, Breathe, Explore Morocco</p>
             </div>
           </motion.div>
         )}
