@@ -169,7 +169,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
       </section>
 
       {/* Mobile CTA (below content, md+ hidden by sidebar) */}
-      <div className="md:hidden px-6 pb-16 -mt-4">
+      <div className="md:hidden px-6 pb-16">
         <ExperienceBookingClient
           experience={{
             id: exp.id,

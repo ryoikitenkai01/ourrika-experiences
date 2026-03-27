@@ -42,6 +42,10 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
+  // Stable ref so the keydown handler never recreates on every render
+  const onCloseRef = React.useRef(onClose);
+  onCloseRef.current = onClose;
+
   // Lock body scroll when open
   useEffect(() => {
     if (isOpen) {
@@ -52,10 +56,10 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  // Close on Escape
+  // Close on Escape — stable handler, never re-registers
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === "Escape") onClose();
-  }, [onClose]);
+    if (e.key === "Escape") onCloseRef.current();
+  }, []);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -77,6 +81,9 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: name === "guests_count" ? Number(value) : value }));
+    if (errors[name]) {
+      setErrors((prev) => { const next = { ...prev }; delete next[name]; return next; });
+    }
   }
 
   function validate(): boolean {
@@ -202,7 +209,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
               </div>
               <button
                 onClick={onClose}
-                className="flex items-center justify-center w-9 h-9 text-gray-400 hover:text-[var(--color-charcoal)] transition-colors"
+                className="flex items-center justify-center w-9 h-9 border border-[rgba(224,214,200,0.8)] text-gray-400 hover:text-[var(--color-charcoal)] hover:border-[var(--color-charcoal)] transition-colors"
                 aria-label="Close"
               >
                 <X size={20} />
