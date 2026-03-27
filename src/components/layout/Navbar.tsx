@@ -26,7 +26,7 @@ export function Navbar({ settings }: NavbarProps) {
 
   const navLinks = [
     { label: "Destinations", href: "/destinations" },
-    { label: "Activities", href: "/experiences" },
+    { label: "Ourrika Experience", href: "/experiences" },
     { label: "Journal", href: "/journal" },
   ];
 

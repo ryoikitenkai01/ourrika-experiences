@@ -5,8 +5,8 @@ import { getAllExperiences } from "@/lib/data";
 import { generateDynamicMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = generateDynamicMetadata({
-  title: "Moroccan Activities",
-  description: "Explore our curated collection of authentic Moroccan activities — from desert dinners to mountain escapes.",
+  title: "Ourrika Experience",
+  description: "Explore our curated collection of authentic Moroccan journeys — from desert dinner to mountain escapes.",
   path: "/experiences",
 });
 

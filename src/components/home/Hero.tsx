@@ -97,7 +97,7 @@ export function Hero({ settings }: HeroProps) {
             href="/experiences"
             className="px-10 py-4 bg-[var(--color-terracotta)] text-white text-[11px] tracking-[0.25em] font-sans uppercase transition-colors duration-300 hover:bg-[var(--color-terracotta-dark)] rounded-none"
           >
-            Explore Experiences
+            Ourrika Experience
           </Link>
           <a
             href={`https://wa.me/${whatsappNumber}`}

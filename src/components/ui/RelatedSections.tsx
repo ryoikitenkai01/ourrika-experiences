@@ -16,7 +16,7 @@ interface RelatedExperiencesProps {
 
 export function RelatedExperiences({
   experiences,
-  title = "Related Activities",
+  title = "Ourrika Experience",
   viewAllHref = "/experiences",
 }: RelatedExperiencesProps) {
   if (!experiences.length) return null;
