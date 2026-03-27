@@ -25,7 +25,7 @@ function ExperienceCardItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
-      className={`relative flex flex-col bg-[var(--color-surface)] overflow-hidden ${
+      className={`relative flex flex-col bg-[var(--color-surface)] overflow-hidden shadow-premium ${
         isFeatured
           ? "border border-[var(--color-gold)]/35"
           : "border border-white/[0.06]"

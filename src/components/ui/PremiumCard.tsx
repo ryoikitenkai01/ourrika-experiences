@@ -39,7 +39,7 @@ export function PremiumCard({
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
       whileHover={{ scale: 1.02 }}
-      className="group bg-[#111111] border border-white/5 shadow-sm"
+      className="group bg-[#111111] border border-white/5 shadow-premium"
     >
       <Link href={href} className="flex flex-col h-full">
         {/* Image Block */}
@@ -131,7 +131,7 @@ export function BlogCard({ href, image, title, excerpt, date, index = 0 }: BlogC
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
       whileHover={{ scale: 1.02 }}
-      className="group bg-[#111111] border border-white/5 shadow-sm"
+      className="group bg-[#111111] border border-white/5 shadow-premium"
     >
       <Link href={href} className="flex flex-col h-full">
         {/* Image */}

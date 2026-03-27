@@ -44,7 +44,7 @@ export function Destinations({ destinations }: DestinationsProps) {
                 className="group"
               >
                 <Link href={`/destinations/${dest.slug}`} className="block">
-                  <div className="aspect-[4/5] overflow-hidden mb-6 rounded-sm bg-zinc-200">
+                  <div className="aspect-[4/5] overflow-hidden mb-6 rounded-sm bg-zinc-900 shadow-premium">
                     <Image
                       src={dest.image}
                       alt={dest.name}

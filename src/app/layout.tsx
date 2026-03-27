@@ -49,7 +49,7 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="antialiased font-sans flex flex-col min-h-screen bg-[var(--color-sand-light)] text-[var(--color-charcoal)]"
+        className="antialiased font-sans flex flex-col min-h-screen bg-[var(--color-obsidian)] text-[var(--color-sand-light)]"
       >
         {children}
         <Analytics />

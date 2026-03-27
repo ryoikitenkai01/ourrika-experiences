@@ -70,8 +70,7 @@ export function Hero({ settings }: HeroProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-          className="font-serif italic text-4xl md:text-5xl lg:text-6xl text-[var(--color-sand-light)] mb-4 max-w-3xl leading-tight"
-          style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
+          className="font-serif italic text-4xl md:text-5xl lg:text-6xl text-[var(--color-sand-light)] mb-4 max-w-3xl leading-tight text-glow"
         >
           Feel Morocco. Don&apos;t just visit it.
         </motion.h1>
