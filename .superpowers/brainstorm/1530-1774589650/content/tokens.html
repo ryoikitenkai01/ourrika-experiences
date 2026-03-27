@@ -1,0 +1,59 @@
+<h2>Section 1 — Design Tokens</h2>
+<p class="subtitle">The current palette flips. Sand becomes text, near-black becomes background. One file change, instant site-wide effect.</p>
+
+<div class="split" style="gap: 24px; margin-top: 24px;">
+
+  <div class="mockup">
+    <div class="mockup-header">Current (Light)</div>
+    <div class="mockup-body" style="background:#F5EFE4; padding: 24px; display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#F5EFE4;border:1px solid #ccc;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#1A1A1A;"><strong>--color-sand-light</strong><br/>#F5EFE4 — page background</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#1A1A1A;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#1A1A1A;"><strong>--color-charcoal</strong><br/>#1A1A1A — text</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#C56B5C;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#1A1A1A;"><strong>--color-terracotta</strong><br/>#C56B5C — accent</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#fff;border:1px solid #eee;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#1A1A1A;"><strong>white</strong><br/>#FFFFFF — cards</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">New (Dark Luxury)</div>
+    <div class="mockup-body" style="background:#0A0A0A; padding: 24px; display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#0A0A0A;border:1px solid #333;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#F5EFE4;"><strong>--color-obsidian</strong><br/>#0A0A0A — page background</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#F5EFE4;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#F5EFE4;"><strong>--color-sand-light</strong><br/>#F5EFE4 — primary text (flipped)</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#C56B5C;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#F5EFE4;"><strong>--color-terracotta</strong><br/>#C56B5C — stays, more dominant</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#C9A96E;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#F5EFE4;"><strong>--color-gold</strong><br/>#C9A96E — new, premium details</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;background:#1A1A1A;border:1px solid #333;border-radius:4px;"></div>
+        <div style="font-family:sans-serif;font-size:11px;color:#F5EFE4;"><strong>--color-surface</strong><br/>#1A1A1A — cards, panels</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:28px; background:#1A1A1A; padding:20px; border-left: 3px solid #C56B5C;">
+  <p style="font-family:sans-serif;font-size:12px;color:#F5EFE4;margin:0 0 8px;"><strong style="color:#C9A96E;">One change, site-wide impact</strong></p>
+  <p style="font-family:sans-serif;font-size:11px;color:#9d9d9b;margin:0;">All tokens live in <code style="color:#C56B5C;">globals.css</code>. Updating them propagates across every component automatically — no component-level changes needed for the base palette shift.</p>
+</div>

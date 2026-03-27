@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Serif, Manrope, Playfair_Display } from "next/font/google";
+import { Inter, Noto_Serif, Manrope, Playfair_Display, Caveat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -24,6 +24,12 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Ourrika Experiences | Luxury Travel Morocco",
   description:
@@ -39,7 +45,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`scroll-smooth ${inter.variable} ${playfair.variable} ${notoSerif.variable} ${manrope.variable}`}
+      className={`scroll-smooth ${inter.variable} ${playfair.variable} ${notoSerif.variable} ${manrope.variable} ${caveat.variable}`}
     >
       <body
         suppressHydrationWarning

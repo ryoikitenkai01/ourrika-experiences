@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next:*)",
+      "Bash(curl -s -X POST http://localhost:3000 -H \"Content-Type: application/json\" -d '{\"\"\"\"0\"\"\"\":\"\"\"\"$@1\"\"\"\",\"\"\"\"1\"\"\"\":[{\"\"\"\"full_name\"\"\"\":\"\"\"\"Test\"\"\"\",\"\"\"\"email\"\"\"\":\"\"\"\"t@t.com\"\"\"\",\"\"\"\"phone\"\"\"\":\"\"\"\"0600000000\"\"\"\",\"\"\"\"preferred_date\"\"\"\":\"\"\"\"2026-06-01\"\"\"\",\"\"\"\"guests_count\"\"\"\":2,\"\"\"\"message\"\"\"\":\"\"\"\"\"\"\"\",\"\"\"\"service_id\"\"\"\":\"\"\"\"abc\"\"\"\",\"\"\"\"service_title\"\"\"\":\"\"\"\"Test\"\"\"\",\"\"\"\"service_type\"\"\"\":\"\"\"\"experience\"\"\"\",\"\"\"\"service_slug\"\"\"\":\"\"\"\"test\"\"\"\",\"\"\"\"source_page\"\"\"\":\"\"\"\"/test\"\"\"\"}]}')",
+      "Bash(npx eslint:*)",
+      "Bash(sed -n '335,340p' src/components/admin/ExperienceForm.tsx)",
+      "Bash(sed -n '47,52p' src/components/home/Philosophy.tsx)",
+      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py \"responsive layout typography\" --stack nextjs)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(sudo *:*)",
+      "Bash(chmod 777:*)",
+      "Bash(ssh *@*:*)",
+      "Bash(> /dev/*:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/pre-tool-use.cjs"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/stop.cjs"
+          }
+        ]
+      }
+    ]
+  }
+}

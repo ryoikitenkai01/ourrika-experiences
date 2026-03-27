@@ -6,6 +6,7 @@ import { Destinations } from "@/components/home/Destinations";
 import { Philosophy } from "@/components/home/Philosophy";
 import { Newsletter } from "@/components/home/Newsletter";
 import { Partners } from "@/components/home/Partners";
+import { TrustBand } from "@/components/home/TrustBand";
 import {
   getSiteSettings,
   getFeaturedExperiences,
@@ -32,6 +33,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero settings={settings} />
+      <TrustBand />
       <FeaturedExperiences 
         experiences={experiences} 
         whatsappNumber={settings.whatsapp_number} 
