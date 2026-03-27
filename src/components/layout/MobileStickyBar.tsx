@@ -36,10 +36,11 @@ export function MobileStickyBar({ whatsappNumber }: { whatsappNumber: string }) 
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center gap-1 group"
+                className="flex flex-col items-center gap-1 group focus:outline-none"
+                aria-label={item.label}
               >
                 <Icon size={20} className="text-[var(--color-sand-light)]/60 group-hover:text-[var(--color-terracotta)] transition-colors" />
-                <span className="text-[8px] uppercase tracking-widest text-[var(--color-sand-light)]/40 group-hover:text-[var(--color-terracotta)] transition-colors">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-[var(--color-sand-light)]/40 group-hover:text-[var(--color-terracotta)] transition-colors">
                   {item.label}
                 </span>
               </a>
@@ -50,15 +51,16 @@ export function MobileStickyBar({ whatsappNumber }: { whatsappNumber: string }) 
             <Link
               key={item.label}
               href={item.href}
-              className="flex flex-col items-center gap-1 group"
+              className="flex flex-col items-center gap-1 group focus:outline-none"
+              aria-label={item.label}
             >
               <Icon 
                 size={20} 
                 className={Active ? "text-[var(--color-terracotta)]" : "text-[var(--color-sand-light)]/60 group-hover:text-[var(--color-terracotta)] transition-colors"} 
               />
               <span className={Active 
-                ? "text-[8px] uppercase tracking-widest text-[var(--color-terracotta)]" 
-                : "text-[8px] uppercase tracking-widest text-[var(--color-sand-light)]/40 group-hover:text-[var(--color-terracotta)] transition-colors"
+                ? "text-[9px] sm:text-[10px] uppercase tracking-widest text-[var(--color-terracotta)]" 
+                : "text-[9px] sm:text-[10px] uppercase tracking-widest text-[var(--color-sand-light)]/40 group-hover:text-[var(--color-terracotta)] transition-colors"
               }>
                 {item.label}
               </span>

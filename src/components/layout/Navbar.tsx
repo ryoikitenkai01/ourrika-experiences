@@ -77,8 +77,9 @@ export function Navbar({ settings }: NavbarProps) {
               href={`https://wa.me/${(settings.whatsapp_number || "").replace(/\D/g, '') || "212600000000"}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:block text-[var(--color-sand-light)] hover:text-[var(--color-terracotta)] transition-colors"
+              className="hidden md:block text-[var(--color-sand-light)] hover:text-[var(--color-terracotta)] transition-colors focus:outline-none"
               title="Book on WhatsApp"
+              aria-label="Contact us on WhatsApp"
             >
               <MessageCircle size={22} strokeWidth={1.5} />
             </a>

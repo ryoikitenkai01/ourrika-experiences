@@ -28,6 +28,7 @@ export function Newsletter() {
           <input 
             className="w-full bg-transparent border-b border-[var(--color-outline)]/30 py-4 px-2 focus:outline-none focus:border-[var(--color-on-surface)] transition-colors placeholder:text-[var(--color-outline)]/50 text-sm font-light" 
             placeholder="Your Email Address" 
+            aria-label="Your Email Address"
             type="email" 
             required
           />

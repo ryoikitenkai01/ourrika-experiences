@@ -49,6 +49,10 @@
   h6 {
     @apply font-serif italic;
   }
+
+  *:focus-visible {
+    @apply outline-2 outline-[var(--color-terracotta)] outline-offset-4;
+  }
 }
 
 @layer utilities {
