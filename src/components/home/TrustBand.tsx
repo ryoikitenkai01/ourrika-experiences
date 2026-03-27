@@ -10,9 +10,9 @@ const stats = [
 
 export function TrustBand() {
   return (
-    <section className="bg-[var(--color-surface)] border-y border-[rgba(201,169,110,0.2)]">
+    <section className="bg-[var(--color-surface)] border-y border-[var(--color-gold)]/20">
       <div className="container mx-auto px-6 lg:px-12 py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 sm:divide-x sm:divide-[rgba(201,169,110,0.15)]">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 sm:divide-x sm:divide-[var(--color-gold)]/15">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}

@@ -93,19 +93,21 @@ export function Hero({ settings }: HeroProps) {
           transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
           className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-[var(--color-sand-light)]/40 font-sans text-[10px] tracking-wide"
         >
-          <span>⭐ 4.9 · 120+ guests</span>
-          <span>💬 Reply in 2hrs</span>
+          <span>4.9 · 120+ guests</span>
+          <span>Reply in 2hrs</span>
         </motion.div>
       </div>
 
       {/* Scroll hint */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-4">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: 48 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="h-[1px] bg-[var(--color-gold)]"
-        />
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-4 items-center">
+        <div className="relative w-12 h-[1px] overflow-hidden">
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
+            className="absolute inset-0 bg-[var(--color-gold)] origin-left"
+          />
+        </div>
         <div className="w-12 h-[1px] bg-[var(--color-sand-light)]/20" />
         <div className="w-12 h-[1px] bg-[var(--color-sand-light)]/20" />
       </div>
