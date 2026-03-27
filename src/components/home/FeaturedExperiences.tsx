@@ -83,7 +83,7 @@ export function FeaturedExperiences({ experiences, whatsappNumber }: FeaturedExp
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="font-serif italic text-4xl text-[#1A1A1A]"
           >
-            OURRIKA Experience
+            Ourrika Activities
           </motion.h2>
           <motion.span
             initial={{ opacity: 0, y: 16 }}
@@ -120,7 +120,7 @@ export function FeaturedExperiences({ experiences, whatsappNumber }: FeaturedExp
             href="/experiences"
             className="group flex items-center space-x-4 text-[var(--color-on-surface)] font-sans text-[10px] tracking-[0.4em] uppercase hover:opacity-60 transition-all"
           >
-            <span>Explore all experiences</span>
+            <span>Explore all activities</span>
             <div className="w-8 h-px bg-[var(--color-on-surface)] transition-all group-hover:w-12" />
           </Link>
         </div>

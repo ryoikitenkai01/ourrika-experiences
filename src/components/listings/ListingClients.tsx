@@ -52,7 +52,7 @@ export function DestinationsListing({ destinations }: DestinationsListingProps) 
               title={dest.name}
               subtitle={
                 dest.starting_price != null
-                  ? `From ${dest.starting_price.toLocaleString()} ${dest.currency}`
+                  ? `from ${dest.currency}${dest.starting_price.toLocaleString()}`
                   : undefined
               }
               description={dest.short_description}
@@ -92,16 +92,16 @@ export function ExperiencesListing({ experiences }: ExperiencesListingProps) {
     <div>
       <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
         <SearchBar
-          placeholder="Search experiences..."
+          placeholder="Search activities..."
           onSearch={setQuery}
         />
         <p className="font-sans text-sm text-gray-400 tracking-wide">
-          {filtered.length} experience{filtered.length !== 1 ? "s" : ""}
+          {filtered.length} {filtered.length !== 1 ? "activities" : "activity"}
         </p>
       </div>
 
       {filtered.length === 0 ? (
-        <EmptyState message={query ? `No experiences found for "${query}"` : "No experiences yet."} />
+        <EmptyState message={query ? `No activities found for "${query}"` : "No activities yet."} />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((exp, i) => (
@@ -114,7 +114,7 @@ export function ExperiencesListing({ experiences }: ExperiencesListingProps) {
               subtitle={[
                 exp.location,
                 exp.duration,
-                exp.price != null ? `From ${exp.price.toLocaleString()} ${exp.currency}` : null,
+                exp.price != null ? `from ${exp.currency}${exp.price.toLocaleString()}` : null,
               ]
                 .filter(Boolean)
                 .join(" · ")}

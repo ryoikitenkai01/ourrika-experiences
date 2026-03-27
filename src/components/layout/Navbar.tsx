@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { SiteSettings } from "@/lib/types/ui";
 
 interface NavbarProps {
@@ -13,6 +14,7 @@ interface NavbarProps {
 export function Navbar({ settings }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +26,12 @@ export function Navbar({ settings }: NavbarProps) {
 
   const navLinks = [
     { label: "Destinations", href: "/destinations" },
-    { label: "Ourrika Experience", href: "/experiences" },
+    { label: "Activities", href: "/experiences" },
     { label: "Journal", href: "/journal" },
   ];
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
@@ -41,13 +46,12 @@ export function Navbar({ settings }: NavbarProps) {
         }`}
       >
         <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between">
-          
+
           {/* LOGO - Left */}
           <Link href="/" className="flex items-center group transition-opacity hover:opacity-70">
-             {/* Temporary Wordmark Placeholder (No circle, no icon) */}
-             <span className="font-serif text-[15px] tracking-[0.25em] text-[#1A1A1A] uppercase">
-               Ourrika
-             </span>
+            <span className="font-serif text-[15px] tracking-[0.25em] text-[#1A1A1A] uppercase">
+              Ourrika
+            </span>
           </Link>
 
           {/* NAV LINKS - Centered Desktop */}
@@ -56,7 +60,11 @@ export function Navbar({ settings }: NavbarProps) {
               <Link
                 key={link.label}
                 href={link.href}
-                className="font-serif text-[14px] tracking-wide text-[#333333] transition-all hover:border-b hover:border-[#C56B5C] py-1"
+                className={`font-serif text-[14px] tracking-wide text-[#333333] transition-all py-1 border-b ${
+                  isActive(link.href)
+                    ? "border-[#C56B5C] text-[#C56B5C]"
+                    : "border-transparent hover:border-[#C56B5C] hover:text-[#333333]"
+                }`}
               >
                 {link.label}
               </Link>
@@ -65,11 +73,8 @@ export function Navbar({ settings }: NavbarProps) {
 
           {/* RIGHT SIDE - Actions */}
           <div className="flex items-center gap-6">
-            {/* WhatsApp Icon Link (Desktop Only per request, but usually good on both) 
-               User said: "Desktop: WhatsApp icon ... Mobile: hamburger menu icon only"
-            */}
             <a
-              href={`https://wa.me/${settings.whatsapp_number.replace(/\s+/g, '')}`}
+              href={`https://wa.me/${(settings.whatsapp_number || "").replace(/\D/g, '') || "212600000000"}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:block text-[#1A1A1A] hover:text-[#C56B5C] transition-colors"
@@ -78,7 +83,6 @@ export function Navbar({ settings }: NavbarProps) {
               <MessageCircle size={22} strokeWidth={1.5} />
             </a>
 
-            {/* Mobile Toggle - Hamburger icon only on mobile */}
             <button
               className="md:hidden text-[#1A1A1A] p-2"
               onClick={() => setIsMobileMenuOpen(true)}
@@ -90,7 +94,7 @@ export function Navbar({ settings }: NavbarProps) {
         </div>
       </motion.header>
 
-      {/* MOBILE MENU OVERLAY - Restyled based on beige background from DESIGN.md */}
+      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -100,19 +104,17 @@ export function Navbar({ settings }: NavbarProps) {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="fixed inset-0 z-[1001] bg-[#F5EFE4] flex flex-col p-8"
           >
-            {/* Header in overlay */}
             <div className="flex justify-between items-center mb-12">
-               <span className="font-serif text-[15px] tracking-[0.25em] text-[#1A1A1A] uppercase">Ourrika</span>
-               <button
-                 onClick={() => setIsMobileMenuOpen(false)}
-                 className="text-[#1A1A1A] p-2"
-                 aria-label="Close menu"
-               >
-                 <X size={32} strokeWidth={1.5} />
-               </button>
+              <span className="font-serif text-[15px] tracking-[0.25em] text-[#1A1A1A] uppercase">Ourrika</span>
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-[#1A1A1A] p-2"
+                aria-label="Close menu"
+              >
+                <X size={32} strokeWidth={1.5} />
+              </button>
             </div>
 
-            {/* Links */}
             <nav className="flex flex-col items-center justify-center flex-1 gap-12">
               {navLinks.map((link, i) => (
                 <motion.div
@@ -124,7 +126,9 @@ export function Navbar({ settings }: NavbarProps) {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-serif text-3xl tracking-wide text-[#333333] hover:text-[#C56B5C] transition-colors"
+                    className={`font-serif text-3xl tracking-wide transition-colors ${
+                      isActive(link.href) ? "text-[#C56B5C]" : "text-[#333333] hover:text-[#C56B5C]"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -132,7 +136,6 @@ export function Navbar({ settings }: NavbarProps) {
               ))}
             </nav>
 
-            {/* Footer in mobile menu */}
             <div className="text-center pt-8 border-t border-[#C56B5C]/10">
               <p className="font-serif italic text-sm text-[#C56B5C]/60">Escape, Breathe, Explore Morocco</p>
             </div>

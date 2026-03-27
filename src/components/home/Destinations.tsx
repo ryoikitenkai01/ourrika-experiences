@@ -15,15 +15,6 @@ export function Destinations({ destinations }: DestinationsProps) {
     <section id="destinations" className="py-32 bg-[var(--color-surface-container-low)]">
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <div className="mb-16">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#5c605d] mb-2"
-          >
-            Featured Collection
-          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +64,7 @@ export function Destinations({ destinations }: DestinationsProps) {
                     </div>
                     {dest.starting_price != null && (
                       <p className="font-serif italic text-sm text-[#1A1A1A]">
-                        from {dest.currency} {dest.starting_price.toLocaleString()}
+                        from {dest.currency}{dest.starting_price.toLocaleString()}
                       </p>
                     )}
                   </div>

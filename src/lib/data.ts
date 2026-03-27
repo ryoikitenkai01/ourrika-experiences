@@ -77,11 +77,16 @@ interface PartnerRow {
   display_order?: number;
 }
 
+// IMPORTANT: Set the real WhatsApp number in Firebase admin → site_settings → whatsapp_number
+// This constant is the fallback used when Firebase is unavailable or the field is empty.
+// Format: international digits only e.g. "212600000000"
+export const WHATSAPP_FALLBACK = "212600000000";
+
 // Default SiteSettings returned when Firebase is not yet configured
 const DEFAULT_SETTINGS: SiteSettings = {
   hero_title: "Escape. Breathe. Explore. Discover premium, authentic Moroccan experiences.",
   hero_media_url: null,
-  whatsapp_number: "+212 600 000 000",
+  whatsapp_number: WHATSAPP_FALLBACK,
   instagram_link: "https://instagram.com/ourrika",
   facebook_link: null,
   tiktok_link: null,

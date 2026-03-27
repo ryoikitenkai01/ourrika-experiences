@@ -18,7 +18,7 @@ interface ExperienceBookingClientProps {
 export function ExperienceBookingClient({ experience }: ExperienceBookingClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const whatsappUrl = `https://wa.me/${experience.whatsappNumber ?? ""}?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${(experience.whatsappNumber || "").replace(/\D/g, '') || "212600000000"}?text=${encodeURIComponent(
     experience.whatsappMessage
   )}`;
 
@@ -73,7 +73,7 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
 export function MobileStickyBookingBar({ experience }: ExperienceBookingClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const whatsappUrl = `https://wa.me/${experience.whatsappNumber ?? ""}?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${(experience.whatsappNumber || "").replace(/\D/g, '') || "212600000000"}?text=${encodeURIComponent(
     experience.whatsappMessage
   )}`;
 

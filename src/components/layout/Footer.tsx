@@ -11,18 +11,18 @@ export function Footer({ settings }: FooterProps) {
       <div className="flex flex-col md:flex-row justify-between items-center space-y-12 md:space-y-0 w-full max-w-7xl mx-auto">
         {/* Logo */}
         <div className="text-lg font-serif italic tracking-[0.3em] text-[#1A1A1A] uppercase">
-          OURRIKA
+          Ourrika
         </div>
 
         {/* Links */}
         <div className="flex flex-wrap justify-center gap-8">
-          <Link href="/journal" className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
+          <Link href="/privacy" className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
             Privacy Policy
           </Link>
-          <Link href="/journal" className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
+          <Link href="/terms" className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
             Terms of Service
           </Link>
-          <Link href={settings.contact_email ? `mailto:${settings.contact_email}` : "/journal"} className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
+          <Link href={settings.contact_email ? `mailto:${settings.contact_email}` : "mailto:hello@ourrika.com"} className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
             Contact Us
           </Link>
           {settings.instagram_link && (

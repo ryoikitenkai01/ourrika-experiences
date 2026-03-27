@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { ExperiencesListing } from "@/components/listings/ListingClients";
 import { getAllExperiences } from "@/lib/data";
-
 import { generateDynamicMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = generateDynamicMetadata({
-  title: "Premium Moroccan Experiences",
-  description: "Explore our curated collection of authentic Moroccan experiences — from desert treks to mountain escapes.",
+  title: "Moroccan Activities",
+  description: "Explore our curated collection of authentic Moroccan activities — from desert dinners to mountain escapes.",
   path: "/experiences",
 });
 
@@ -17,7 +16,7 @@ export default async function ExperiencesPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <PageHero
-        title="Ourrika Experiences"
+        title="Ourrika Activities"
         subtitle="Crafted journeys for discerning travellers"
       />
 

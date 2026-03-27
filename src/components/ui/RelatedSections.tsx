@@ -16,7 +16,7 @@ interface RelatedExperiencesProps {
 
 export function RelatedExperiences({
   experiences,
-  title = "Related Experiences",
+  title = "Related Activities",
   viewAllHref = "/experiences",
 }: RelatedExperiencesProps) {
   if (!experiences.length) return null;
@@ -33,7 +33,7 @@ export function RelatedExperiences({
           subtitle={[
             exp.location,
             exp.duration,
-            exp.price != null ? `From ${exp.price.toLocaleString()} ${exp.currency}` : null,
+            exp.price != null ? `from ${exp.currency}${exp.price.toLocaleString()}` : null,
           ]
             .filter(Boolean)
             .join(" · ")}
@@ -70,7 +70,7 @@ export function RelatedDestinations({
           title={dest.name}
           subtitle={
             dest.starting_price != null
-              ? `From ${dest.starting_price.toLocaleString()} ${dest.currency}`
+              ? `from ${dest.currency}${dest.starting_price.toLocaleString()}`
               : undefined
           }
           description={dest.short_description}

@@ -16,9 +16,9 @@ export function Philosophy() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <Image 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB91JkKDcLdPYNw6jXPEekUv0KF0tocd4RDZJ7bwNH1JW1Vo2OxeN1vu_IapPdjwnqlQPSRFsKvUCZJD-YZc3oSmSUjlSu15P7K-a2CRN1rB7D9eRmxnqR0xVpNjqxcnDllREXnTm9LVgSLCxt_4ljKdhdn5xKalTh0DmNLPLcDVXNPZdoSfRVeZBiUbTC9KOBiwkc4x8bB9KB0iJganOJ8M1tUERQCl11RQX3gEBnD20K8UUtlud26B2UQ40JD5nS9h-ua3LmxMiBF" 
-            alt="Our philosophy"
+          <Image
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80"
+            alt="A traveller looking out over a Moroccan landscape at dusk"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
@@ -65,8 +65,8 @@ export function Philosophy() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.24, ease: "easeOut" }}
           >
-            <Link 
-              href="/journal" 
+            <Link
+              href="/about"
               className="inline-flex items-center text-white font-sans text-[10px] tracking-widest uppercase group"
             >
               <span>Explore Our Story</span>

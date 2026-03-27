@@ -62,7 +62,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
         image={exp.image}
         title={exp.title}
         backHref="/experiences"
-        backLabel="All Experiences"
+        backLabel="All Activities"
         heightClass="h-[78vh] min-h-[480px]"
       >
         <ExperienceMeta
@@ -185,7 +185,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
       {relatedExperiences.length > 0 && (
         <RelatedExperiences
           experiences={relatedExperiences}
-          title="More Experiences"
+          title="More Activities"
         />
       )}
 
