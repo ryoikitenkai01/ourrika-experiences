@@ -2,32 +2,34 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
+  --color-obsidian: #0A0A0A;
+  --color-surface: #1A1A1A;
   --color-sand: #F4F1ED;
-  --color-sand-light: #FAFAFA;
+  --color-sand-light: #F5EFE4;
   --color-sand-dark: #EBE5DF;
-  --color-terracotta: #C86A53;
+  --color-terracotta: #C56B5C;
   --color-terracotta-dark: #B55B45;
+  --color-gold: #C9A96E;
   --color-olive: #7A8263;
   --color-olive-dark: #666E51;
   --color-charcoal: #333333;
-  --color-charcoal-light: #555555;
-  
+  --color-charcoal-light: #9d9d9b;
+
   /* Premium Palette from Design */
-  --color-surface: #faf9f7;
-  --color-on-surface: #2f3331;
+  --color-on-surface: #F5EFE4;
   --color-outline: #777c79;
   --color-primary-fixed: #e5e2e1;
-  
+
   --font-serif: var(--font-noto-serif);
   --font-sans: var(--font-manrope);
-  
-  --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+
+  --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 :root {
-  --background: var(--color-surface);
-  --foreground: var(--color-on-surface);
+  --background: var(--color-obsidian);
+  --foreground: var(--color-sand-light);
 }
 
 @layer base {
@@ -41,7 +43,12 @@
     @apply antialiased font-sans;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif italic;
   }
 }
@@ -51,7 +58,7 @@
     @apply bg-white/70 backdrop-blur-xl border border-white/20;
     box-shadow: var(--shadow-glass);
   }
-  
+
   .glass-dark {
     @apply bg-black/20 backdrop-blur-xl border border-white/10;
   }
@@ -64,8 +71,14 @@
     perspective: 1000px;
   }
 
-  .hide-scrollbar::-webkit-scrollbar { display: none; }
-  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 /* Custom Animations */
@@ -74,6 +87,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
