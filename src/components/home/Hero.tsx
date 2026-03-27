@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from 'next/link';
 import type { SiteSettings } from "@/lib/types/ui";
 
@@ -11,24 +13,45 @@ interface HeroProps {
 export function Hero({ settings }: HeroProps) {
   const whatsappNumber = (settings.whatsapp_number || "212600000000").replace(/\D/g, "");
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    "/hero-agafay.jpg",
+    "https://images.unsplash.com/photo-1549412641-f4d1e2e1e90d?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1597212618440-806262de4f6b?auto=format&fit=crop&w=1920&q=80",
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <section className="relative h-screen w-full overflow-hidden bg-[var(--color-obsidian)]">
-      {/* Background image with scale-in */}
-      <motion.div
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 10, ease: "easeOut" }}
-        className="absolute inset-0 z-0"
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
-          style={{
-            backgroundImage: `url('${settings.hero_media_url || "/hero-bg.jpg"}')`,
-          }}
-        />
+      {/* Background carousel with cross-fade and scale */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={slides[currentSlide]}
+              alt="Moroccan Landscape"
+              fill
+              priority
+              className="object-cover opacity-70"
+            />
+          </motion.div>
+        </AnimatePresence>
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70 z-10" />
-      </motion.div>
+      </div>
 
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center">
@@ -98,18 +121,21 @@ export function Hero({ settings }: HeroProps) {
         </motion.div>
       </div>
 
-      {/* Scroll hint */}
+      {/* Slide indicators / Scroll hint */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-4 items-center">
-        <div className="relative w-12 h-[1px] overflow-hidden">
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
-            className="absolute inset-0 bg-[var(--color-gold)] origin-left"
-          />
-        </div>
-        <div className="w-12 h-[1px] bg-[var(--color-sand-light)]/20" />
-        <div className="w-12 h-[1px] bg-[var(--color-sand-light)]/20" />
+        {slides.map((_, i) => (
+          <div key={i} className="relative w-12 h-[1px] bg-[var(--color-sand-light)]/20 overflow-hidden">
+            {currentSlide === i && (
+              <motion.div
+                layoutId="activeIndicator"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 6, ease: "linear" }}
+                className="absolute inset-0 bg-[var(--color-gold)] origin-left"
+              />
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );
