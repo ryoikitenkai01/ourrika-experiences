@@ -200,7 +200,7 @@ export function ExperienceForm({ initialData }: Props) {
             </label>
             <div className="flex gap-4">
               <div className="w-24 h-24 bg-zinc-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden relative border border-zinc-200">
-                {coverPreview.startsWith("http") || coverPreview.startsWith("/") ? (
+                {(coverPreview.startsWith("http://") || coverPreview.startsWith("https://") || coverPreview.startsWith("/")) && coverPreview.length > 8 ? (
                   <Image src={coverPreview} alt="Cover preview" fill className="object-cover" />
                 ) : (
                   <ImageIcon className="text-zinc-400" size={24} />
