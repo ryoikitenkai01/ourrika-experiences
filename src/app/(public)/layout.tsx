@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { getSiteSettings } from "@/lib/data";
+import { getSiteSettings, WHATSAPP_FALLBACK } from "@/lib/data";
 
 export default async function PublicLayout({
   children,
@@ -15,7 +15,7 @@ export default async function PublicLayout({
       <Navbar settings={settings} />
       <main className="flex-grow">{children}</main>
       <Footer settings={settings} />
-      <WhatsAppButton phoneNumber={settings.whatsapp_number} />
+      <WhatsAppButton phoneNumber={settings.whatsapp_number || WHATSAPP_FALLBACK} />
     </>
   );
 }
