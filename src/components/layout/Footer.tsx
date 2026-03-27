@@ -16,6 +16,9 @@ export function Footer({ settings }: FooterProps) {
 
         {/* Links */}
         <div className="flex flex-wrap justify-center gap-8">
+          <Link href="/about" className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
+            About
+          </Link>
           <Link href="/privacy" className="text-[#5c605d] hover:text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase transition-colors duration-300">
             Privacy Policy
           </Link>
