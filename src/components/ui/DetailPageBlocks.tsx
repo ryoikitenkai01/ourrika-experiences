@@ -44,6 +44,8 @@ function ImageWithFallback({ src, alt, className }: { src: string; alt: string; 
 
 export interface HeroSectionDetailProps {
   image: string | null;
+  /** Optional video URL (Firebase Storage or direct). Plays muted/looped behind the image. */
+  video?: string | null;
   title: string;
   subtitle?: string | null;
   backHref: string;
@@ -56,6 +58,7 @@ export interface HeroSectionDetailProps {
 
 export function HeroSectionDetail({
   image,
+  video,
   title,
   subtitle,
   backHref,
@@ -67,7 +70,19 @@ export function HeroSectionDetail({
 
   return (
     <section className={`relative ${heightClass} bg-[var(--color-charcoal)]`}>
-      {image && !error && (
+      {/* Video background — image acts as poster frame while video loads */}
+      {video ? (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={image ?? undefined}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={video} />
+        </video>
+      ) : image && !error && (
         <Image
           src={image}
           alt={title}
