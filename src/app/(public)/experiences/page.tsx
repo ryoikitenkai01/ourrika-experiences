@@ -14,13 +14,13 @@ export default async function ExperiencesPage() {
   const experiences = await getAllExperiences();
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[var(--color-obsidian)]">
       <PageHero
-        title="Ourrika Activities"
+        title="Ourrika Experience"
         subtitle="Crafted journeys for discerning travellers"
       />
 
-      <section className="py-20 bg-[var(--color-sand-light)]">
+      <section className="py-20 bg-[var(--color-obsidian)]">
         <div className="container mx-auto px-6 lg:px-12">
           <ExperiencesListing experiences={experiences} />
         </div>

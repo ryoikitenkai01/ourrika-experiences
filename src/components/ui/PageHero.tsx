@@ -24,13 +24,13 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
         className={`absolute inset-0 ${
           backgroundImage
             ? "bg-gradient-to-t from-black/70 via-black/30 to-black/40"
-            : "bg-gradient-to-b from-[var(--color-charcoal)] to-[var(--color-charcoal-light)]"
+            : "bg-[var(--color-obsidian)]"
         }`}
       />
 
       <div className="relative z-10 container mx-auto px-6 lg:px-12">
         {/* Eyebrow line */}
-        <div className="w-12 h-px bg-[var(--color-terracotta)] mb-6" />
+        <div className="w-12 h-px bg-[var(--color-gold)] mb-6" />
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
