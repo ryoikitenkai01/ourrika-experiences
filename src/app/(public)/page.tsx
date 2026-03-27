@@ -25,7 +25,7 @@ export const metadata: Metadata = generateDynamicMetadata({
 export default async function Home() {
   const [settings, experiences, destinations, partners] = await Promise.all([
     getSiteSettings(),
-    getFeaturedExperiences(5),
+    getFeaturedExperiences(3),
     getFeaturedDestinations(4),
     getPartners(),
   ]);
@@ -34,10 +34,7 @@ export default async function Home() {
     <div className="flex flex-col min-h-screen">
       <Hero settings={settings} />
       <TrustBand />
-      <FeaturedExperiences 
-        experiences={experiences} 
-        whatsappNumber={settings.whatsapp_number} 
-      />
+      <FeaturedExperiences experiences={experiences} />
       <Destinations destinations={destinations} />
       <Philosophy />
       <Newsletter />
