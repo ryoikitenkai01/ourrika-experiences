@@ -14,58 +14,89 @@ interface FeaturedExperiencesProps {
 function ExperienceCardItem({
   exp,
   index,
-  whatsappNumber,
 }: {
   exp: ExperienceCard;
   index: number;
-  whatsappNumber: string;
 }) {
-  const isOffset = index === 1 || index === 3;
-  const number = whatsappNumber.replace(/\D/g, "");
-  
+  const isFeatured = index === 0;
+
   return (
     <motion.div
-      key={exp.id}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
-      className={`group relative overflow-hidden bg-zinc-200 h-[600px] cursor-pointer ${isOffset ? 'md:translate-y-12' : ''}`}
+      className={`relative flex flex-col bg-[var(--color-surface)] overflow-hidden ${
+        isFeatured
+          ? "border border-[var(--color-gold)]/35"
+          : "border border-white/[0.06]"
+      }`}
     >
-      <Link href={`/experiences/${exp.slug}`} className="absolute inset-0 z-10">
-        <Image
-          src={exp.image}
-          alt={exp.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 20vw"
-          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-        />
-        {/* Subtle Overlay */}
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700" />
-      </Link>
+      {/* Image */}
+      <div className="relative h-52 overflow-hidden">
+        {exp.image && (
+          <Image
+            src={exp.image}
+            alt={exp.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover transition-transform duration-700 hover:scale-105"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-      {/* Content Reveal - Lower Z-Index but visible because Link above is transparent */}
-      <div className="absolute bottom-8 left-6 right-6 text-white overflow-hidden pointer-events-none z-20">
-        <motion.div
-          initial={{ y: "100%", opacity: 0 }}
-          whileHover={{ y: 0, opacity: 1 }}
-          className="transition-all duration-700 ease-[0.22, 1, 0.36, 1] group-hover:translate-y-0 group-hover:opacity-100 translate-y-8 opacity-0"
-        >
-          <p className="font-serif italic text-xl mb-1">{exp.title}</p>
-          <p className="text-[9px] uppercase tracking-[0.2em] opacity-80 mb-3">
-            {exp.location || "Curated Experience"}
-          </p>
-          
-          <a
-            href={`https://wa.me/${number}?text=${encodeURIComponent(exp.whatsappMessage)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-block text-[8px] uppercase tracking-[0.3em] font-sans border-b border-white/40 pb-1 hover:border-white transition-colors pointer-events-auto"
+        {/* Featured badge */}
+        {isFeatured && (
+          <div className="absolute top-3 left-3 bg-[var(--color-gold)] text-[var(--color-obsidian)] font-sans text-[7px] font-bold tracking-[0.15em] uppercase px-2 py-1">
+            Featured
+          </div>
+        )}
+
+        {/* Urgency badge — only on featured */}
+        {isFeatured && (
+          <div className="absolute top-3 right-3 bg-[var(--color-terracotta)] text-white font-sans text-[7px] font-semibold tracking-[0.1em] uppercase px-2 py-1">
+            High demand
+          </div>
+        )}
+
+        {/* Location + duration */}
+        {(exp.location || exp.duration) && (
+          <span className="absolute bottom-3 left-3 font-sans text-[8px] uppercase tracking-[0.15em] text-[var(--color-sand-light)]/60">
+            {[exp.location, exp.duration].filter(Boolean).join(" · ")}
+          </span>
+        )}
+      </div>
+
+      {/* Body */}
+      <div className="p-4 flex flex-col flex-1 justify-between">
+        <div>
+          <p className="font-serif italic text-[15px] text-[var(--color-sand-light)] mb-2">{exp.title}</p>
+          {exp.short_description && (
+            <p className="font-sans text-[9px] text-[var(--color-sand-light)]/40 leading-relaxed mb-3 line-clamp-2">
+              {exp.short_description}
+            </p>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between mt-2">
+          {exp.price != null ? (
+            <span className="font-serif text-[16px] text-[var(--color-gold)]">
+              {exp.price.toLocaleString()}
+              <span className="font-sans text-[10px] opacity-70 ml-1">{exp.currency}</span>
+            </span>
+          ) : (
+            <span className="font-sans text-[10px] text-[var(--color-charcoal-light)] uppercase tracking-wide">
+              On request
+            </span>
+          )}
+
+          <Link
+            href={`/experiences/${exp.slug}`}
+            className="bg-[var(--color-terracotta)] text-white font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-4 py-2 hover:bg-[var(--color-terracotta-dark)] transition-colors"
           >
-            Inquire via WhatsApp
-          </a>
-        </motion.div>
+            Book Now
+          </Link>
+        </div>
       </div>
     </motion.div>
   );
@@ -73,57 +104,47 @@ function ExperienceCardItem({
 
 export function FeaturedExperiences({ experiences, whatsappNumber }: FeaturedExperiencesProps) {
   return (
-    <section id="experiences" className="py-32 bg-[var(--color-surface)]">
+    <section id="experiences" className="py-24 bg-[var(--color-obsidian)]">
       <div className="container mx-auto px-6 lg:px-12 max-w-[1920px]">
-        <div className="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="font-serif italic text-4xl text-[#1A1A1A]"
+        {/* Section header */}
+        <div className="flex flex-col md:flex-row justify-between items-baseline mb-12 gap-4">
+          <div>
+            <div className="w-7 h-px bg-[var(--color-gold)] mb-4" />
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="font-serif italic text-4xl text-[var(--color-sand-light)]"
+            >
+              Featured Experiences
+            </motion.h2>
+          </div>
+          <Link
+            href="/experiences"
+            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[var(--color-terracotta)] hover:opacity-70 transition-opacity"
           >
-            Ourrika Activities
-          </motion.h2>
-          <motion.span
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#5c605d]"
-          >
-            Curated Journeys — {new Date().getFullYear()}
-          </motion.span>
+            View all →
+          </Link>
         </div>
 
         {experiences.length === 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 h-[600px]">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <CardSkeleton key={i} className={`h-full ${i === 1 || i === 3 ? 'md:translate-y-12' : ''}`} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <CardSkeleton key={i} className="h-80" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:h-[700px] mb-12">
-            {experiences.slice(0, 5).map((exp, index) => (
-              <ExperienceCardItem 
-                key={exp.id} 
-                exp={exp} 
-                index={index} 
-                whatsappNumber={whatsappNumber}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {experiences.slice(0, 3).map((exp, index) => (
+              <ExperienceCardItem
+                key={exp.id}
+                exp={exp}
+                index={index}
               />
             ))}
           </div>
         )}
-
-        <div className="mt-24 flex justify-center">
-          <Link
-            href="/experiences"
-            className="group flex items-center space-x-4 text-[var(--color-on-surface)] font-sans text-[10px] tracking-[0.4em] uppercase hover:opacity-60 transition-all"
-          >
-            <span>Explore all activities</span>
-            <div className="w-8 h-px bg-[var(--color-on-surface)] transition-all group-hover:w-12" />
-          </Link>
-        </div>
       </div>
     </section>
   );
