@@ -12,7 +12,7 @@ interface DestinationsProps {
 
 export function Destinations({ destinations }: DestinationsProps) {
   return (
-    <section id="destinations" className="py-32 bg-[var(--color-surface-container-low)]">
+    <section id="destinations" className="py-32 bg-[#0A0A0A]">
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <div className="mb-16">
           <motion.h2
@@ -20,7 +20,7 @@ export function Destinations({ destinations }: DestinationsProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.5, ease: "easeOut" }}
-            className="font-serif italic text-4xl text-[#1A1A1A]"
+            className="font-serif italic text-4xl text-white"
           >
             Most Booked Destinations
           </motion.h2>
@@ -55,15 +55,15 @@ export function Destinations({ destinations }: DestinationsProps) {
                   </div>
                   <div className="flex justify-between items-end">
                     <div>
-                      <h3 className="font-serif text-xl mb-1 group-hover:text-[var(--color-terracotta)] transition-colors">
+                      <h3 className="font-serif text-xl mb-1 text-white group-hover:text-[var(--color-terracotta)] transition-colors">
                         {dest.name}
                       </h3>
-                      <p className="text-[10px] tracking-widest uppercase text-[var(--color-outline)]">
+                      <p className="text-[10px] tracking-widest uppercase text-white/50">
                         {dest.short_description || "Discovery"}
                       </p>
                     </div>
                     {dest.starting_price != null && (
-                      <p className="font-serif italic text-sm text-[#1A1A1A]">
+                      <p className="font-serif italic text-sm text-white/70">
                         from {dest.currency}{dest.starting_price.toLocaleString()}
                       </p>
                     )}

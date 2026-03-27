@@ -38,7 +38,7 @@ export function RelatedExperiences({
             .filter(Boolean)
             .join(" · ")}
           description={exp.short_description}
-          ctaLabel="Explore"
+          ctaLabel="Book Now"
           index={i}
         />
       ))}
@@ -124,7 +124,7 @@ function RelatedSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="py-24 bg-[var(--color-sand)]">
+    <section className="py-24 bg-[#0A0A0A]">
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -135,11 +135,11 @@ function RelatedSection({
         >
           <div>
             <div className="w-10 h-px bg-[#C56B5C] mb-4" />
-            <h2 className="font-serif text-3xl text-[#1A1A1A]">{title}</h2>
+            <h2 className="font-serif text-3xl text-white">{title}</h2>
           </div>
           <Link
             href={viewAllHref}
-            className="group hidden sm:flex items-center gap-2 font-sans text-[11px] tracking-[0.2em] uppercase text-[#5c605d] hover:text-[#C56B5C] transition-colors duration-300"
+            className="group hidden sm:flex items-center gap-2 font-sans text-[11px] tracking-[0.2em] uppercase text-white/50 hover:text-[#C56B5C] transition-colors duration-300"
           >
             View all
             <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />

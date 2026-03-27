@@ -99,7 +99,7 @@ const FALLBACK_EXPERIENCES: ExperienceCard[] = [
     id: "1",
     title: "Table in the Desert",
     slug: "table-in-the-desert",
-    image: "https://images.unsplash.com/photo-1504198266315-b77da2928503",
+    image: "https://images.unsplash.com/photo-1547234935-80c7145ec969?auto=format&fit=crop&w=1200&q=80",
     short_description: "Dinner under the stars in the Agafay stone desert.",
     price: 130,
     currency: "€",
@@ -111,7 +111,7 @@ const FALLBACK_EXPERIENCES: ExperienceCard[] = [
     id: "2",
     title: "Friday Rooftop",
     slug: "friday-rooftop",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+    image: "https://images.unsplash.com/photo-1510214344557-41a4f00bb130?auto=format&fit=crop&w=1200&q=80",
     short_description: "DJ set, tapas, and the Marrakech skyline every Friday evening.",
     price: 45,
     currency: "€",
@@ -126,7 +126,7 @@ const FALLBACK_DESTINATIONS: DestinationCard[] = [
     id: "1",
     name: "Marrakech",
     slug: "marrakech",
-    image: "https://images.unsplash.com/photo-1539020290-7389a19c67ee",
+    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?auto=format&fit=crop&w=1200&q=80",
     short_description: "The medina, the souks, and the rooftops — all of it.",
     starting_price: 30,
     currency: "€",
@@ -135,7 +135,7 @@ const FALLBACK_DESTINATIONS: DestinationCard[] = [
     id: "2",
     name: "Ourika Valley",
     slug: "ourika-valley",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
     short_description: "The Atlas foothills, an hour from the city.",
     starting_price: 65,
     currency: "€",
@@ -144,7 +144,7 @@ const FALLBACK_DESTINATIONS: DestinationCard[] = [
     id: "3",
     name: "Fez",
     slug: "fez",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada",
+    image: "https://images.unsplash.com/photo-1549944850-84e00be4203b?auto=format&fit=crop&w=1200&q=80",
     short_description: "The oldest medina in the world. Unchanged for centuries.",
     starting_price: 180,
     currency: "€",
@@ -497,7 +497,9 @@ export async function getPartners(): Promise<PartnerLogo[]> {
 // ------------------------------------------------------------------
 
 export async function getRelatedExperiences(excludeSlug: string, limitCount = 3): Promise<ExperienceCard[]> {
-  if (!isFirebaseAdminConfigured || !adminDb) return [];
+  if (!isFirebaseAdminConfigured || !adminDb) {
+    return FALLBACK_EXPERIENCES.filter(e => e.slug !== excludeSlug).slice(0, limitCount);
+  }
 
   try {
     // Simple similar logic: same category or just everything else if category not set
@@ -515,7 +517,9 @@ export async function getRelatedExperiences(excludeSlug: string, limitCount = 3)
 }
 
 export async function getRelatedDestinations(excludeSlug: string, limitCount = 3): Promise<DestinationCard[]> {
-  if (!isFirebaseAdminConfigured || !adminDb) return [];
+  if (!isFirebaseAdminConfigured || !adminDb) {
+    return FALLBACK_DESTINATIONS.filter(d => d.slug !== excludeSlug).slice(0, limitCount);
+  }
 
   try {
     const snapshot = await adminDb

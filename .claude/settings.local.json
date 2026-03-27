@@ -9,7 +9,9 @@
       "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py \"responsive layout typography\" --stack nextjs)",
       "Bash(npm run:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(grep -r \"High demand\" src/app/\\\\\\(public\\\\\\)/experiences/[slug]/page.tsx)",
+      "Bash(git push:*)"
     ],
     "deny": [
       "Bash(rm -rf /:*)",

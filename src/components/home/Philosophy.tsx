@@ -27,7 +27,7 @@ export function Philosophy() {
       </div>
 
       {/* Text Side */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-12 md:p-24 bg-[var(--color-on-surface)]">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-12 md:p-24 bg-[#0A0A0A]">
         <div className="max-w-md text-center md:text-left">
           <motion.p
             initial={{ opacity: 0, y: 16 }}

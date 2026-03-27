@@ -39,11 +39,11 @@ export function PremiumCard({
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
       whileHover={{ scale: 1.02 }}
-      className="group bg-white border border-[rgba(224,214,200,0.4)] shadow-sm"
+      className="group bg-[#111111] border border-white/5 shadow-sm"
     >
       <Link href={href} className="flex flex-col h-full">
         {/* Image Block */}
-        <div className="relative overflow-hidden aspect-[4/3] bg-[var(--color-sand)]">
+        <div className="relative overflow-hidden aspect-[4/3] bg-zinc-900">
           {image && !error ? (
             <Image
               src={image}
@@ -55,7 +55,7 @@ export function PremiumCard({
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-sand)] to-[var(--color-sand-dark)] flex items-center justify-center">
-              <span className="text-[#5c605d] font-serif text-lg opacity-30">Ourrika</span>
+              <span className="text-white/20 font-serif text-lg">Ourrika</span>
             </div>
           )}
 
@@ -74,20 +74,20 @@ export function PremiumCard({
         {/* Content Block */}
         <div className="flex flex-col flex-1 p-6">
           {/* Title */}
-          <h3 className="font-serif text-xl text-[#1A1A1A] leading-snug mb-1 group-hover:text-[#C56B5C] transition-colors duration-300">
+          <h3 className="font-serif text-xl text-white leading-snug mb-1 group-hover:text-[#C56B5C] transition-colors duration-300">
             {title}
           </h3>
 
           {/* Subtitle (price / location / date) */}
           {subtitle && (
-            <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-[#5c605d] mb-3">
+            <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-white/50 mb-3">
               {subtitle}
             </p>
           )}
 
           {/* Description */}
           {description && (
-            <p className="font-sans text-sm text-[#5c605d] leading-relaxed line-clamp-2 mb-4 flex-1">
+            <p className="font-sans text-sm text-white/60 leading-relaxed line-clamp-2 mb-4 flex-1">
               {description}
             </p>
           )}
@@ -96,7 +96,7 @@ export function PremiumCard({
           {!description && <div className="flex-1" />}
 
           {/* CTA Visual */}
-          <div className="group/cta inline-flex items-center gap-2 mt-3 text-[#1A1A1A] font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[#C56B5C] transition-colors duration-300 border-b border-transparent group-hover:border-[#C56B5C] pb-0.5 self-start">
+          <div className="group/cta inline-flex items-center gap-2 mt-3 text-white/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[#C56B5C] transition-colors duration-300 border-b border-transparent group-hover:border-[#C56B5C] pb-0.5 self-start">
             {ctaLabel}
             <ArrowRight size={12} className="transition-transform group-hover/cta:translate-x-1" />
           </div>
@@ -131,11 +131,11 @@ export function BlogCard({ href, image, title, excerpt, date, index = 0 }: BlogC
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
       whileHover={{ scale: 1.02 }}
-      className="group bg-white border border-[rgba(224,214,200,0.4)] shadow-sm"
+      className="group bg-[#111111] border border-white/5 shadow-sm"
     >
       <Link href={href} className="flex flex-col h-full">
         {/* Image */}
-        <div className="relative overflow-hidden aspect-[16/9] bg-[var(--color-sand)]">
+        <div className="relative overflow-hidden aspect-[16/9] bg-zinc-900">
           {image && !error ? (
             <Image
               src={image}
@@ -159,7 +159,7 @@ export function BlogCard({ href, image, title, excerpt, date, index = 0 }: BlogC
               {formattedDate}
             </p>
           )}
-          <h3 className="font-serif text-xl text-[#1A1A1A] leading-snug mb-2 group-hover:text-[#C56B5C] transition-colors duration-300">
+          <h3 className="font-serif text-xl text-white leading-snug mb-2 group-hover:text-[#C56B5C] transition-colors duration-300">
             {title}
           </h3>
           {excerpt && (
@@ -167,7 +167,7 @@ export function BlogCard({ href, image, title, excerpt, date, index = 0 }: BlogC
               {excerpt}
             </p>
           )}
-          <div className="group/cta inline-flex items-center gap-2 mt-auto text-[#1A1A1A] font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[#C56B5C] transition-colors duration-300 border-b border-transparent group-hover:border-[#C56B5C] pb-0.5 self-start">
+          <div className="group/cta inline-flex items-center gap-2 mt-auto text-white/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[#C56B5C] transition-colors duration-300 border-b border-transparent group-hover:border-[#C56B5C] pb-0.5 self-start">
             Read more
             <ArrowRight size={12} className="transition-transform group-hover/cta:translate-x-1" />
           </div>
