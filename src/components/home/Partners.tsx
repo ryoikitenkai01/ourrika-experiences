@@ -35,7 +35,7 @@ export function Partners({ partners }: PartnersProps) {
               whileHover={{ opacity: 1, scale: 1.02 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
-              className="font-sans text-[11px] tracking-[0.5em] uppercase cursor-default"
+              className="font-sans text-[11px] tracking-[0.5em] uppercase cursor-default text-[var(--color-sand-light)]"
             >
               {partner.name}
             </motion.span>

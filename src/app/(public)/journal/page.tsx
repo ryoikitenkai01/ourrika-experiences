@@ -15,13 +15,13 @@ export default async function BlogPage() {
   const posts = await getAllBlogPosts();
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[var(--color-obsidian)]">
       <PageHero
         title="The Journal"
         subtitle="Stories and guides from the heart of Morocco"
       />
 
-      <section className="py-20 bg-[var(--color-sand-light)]">
+      <section className="py-20 bg-[var(--color-obsidian)]">
         <div className="container mx-auto px-6 lg:px-12">
           <BlogListing posts={posts} />
         </div>

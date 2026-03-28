@@ -28,10 +28,12 @@ function DarkDestinationCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
-      className={`relative overflow-hidden bg-[var(--color-surface)] border border-white/[0.06] flex flex-col ${
+      className={`relative overflow-hidden bg-[var(--color-surface)] border border-white/[0.06] flex flex-col group ${
         isHero ? "col-span-full" : ""
       }`}
     >
+      <Link href={`/destinations/${dest.slug}`} className="absolute inset-0 z-20" aria-label={`Explore ${dest.name}`} />
+      
       <div className={`relative overflow-hidden ${isHero ? "h-64 md:h-80" : "h-44"}`}>
         {dest.image && (
           <Image
@@ -39,7 +41,7 @@ function DarkDestinationCard({
             alt={dest.name}
             fill
             sizes={isHero ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
-            className="object-cover transition-transform duration-700 hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
@@ -55,12 +57,9 @@ function DarkDestinationCard({
 
         {isHero && (
           <div className="absolute bottom-6 right-6 z-10">
-            <Link
-              href={`/destinations/${dest.slug}`}
-              className="border border-[var(--color-gold)]/50 text-[var(--color-gold)] font-sans text-[9px] tracking-[0.15em] uppercase px-5 py-2.5 hover:bg-[var(--color-gold)]/10 transition-colors"
-            >
+            <span className="inline-block border border-[var(--color-gold)]/50 text-[var(--color-gold)] font-sans text-[9px] tracking-[0.15em] uppercase px-5 py-2.5 hover:bg-[var(--color-gold)]/10 transition-colors">
               Explore →
-            </Link>
+            </span>
           </div>
         )}
       </div>
@@ -75,12 +74,9 @@ function DarkDestinationCard({
               </p>
             )}
           </div>
-          <Link
-            href={`/destinations/${dest.slug}`}
-            className="ml-4 shrink-0 border border-[var(--color-gold)]/40 text-[var(--color-gold)] font-sans text-[8px] tracking-[0.12em] uppercase px-3.5 py-2 hover:bg-[var(--color-gold)]/10 transition-colors"
-          >
+          <span className="ml-4 shrink-0 border border-[var(--color-gold)]/40 text-[var(--color-gold)] font-sans text-[8px] tracking-[0.12em] uppercase px-3.5 py-2 hover:bg-[var(--color-gold)]/10 transition-colors">
             Explore →
-          </Link>
+          </span>
         </div>
       )}
     </motion.div>
@@ -134,12 +130,14 @@ function DarkExperienceCard({ exp, index }: { exp: ExperienceCard; index: number
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: (index % 6) * 0.06, duration: 0.5, ease: "easeOut" }}
-      className={`flex flex-col bg-[var(--color-surface)] overflow-hidden ${
+      className={`relative flex flex-col bg-[var(--color-surface)] overflow-hidden group ${
         isFeatured
           ? "border border-[var(--color-gold)]/35"
           : "border border-white/[0.06]"
       }`}
     >
+      <Link href={`/experiences/${exp.slug}`} className="absolute inset-0 z-20" aria-label={`Book ${exp.title}`} />
+      
       <div className="relative h-40 overflow-hidden">
         {exp.image && (
           <Image
@@ -147,7 +145,7 @@ function DarkExperienceCard({ exp, index }: { exp: ExperienceCard; index: number
             alt={exp.title}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-700 hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -192,12 +190,9 @@ function DarkExperienceCard({ exp, index }: { exp: ExperienceCard; index: number
             </span>
           )}
 
-          <Link
-            href={`/experiences/${exp.slug}`}
-            className="bg-[var(--color-terracotta)] text-white font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-3.5 py-2 hover:bg-[var(--color-terracotta-dark)] transition-colors"
-          >
+          <span className="bg-[var(--color-terracotta)] text-white font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-3.5 py-2 group-hover:bg-[var(--color-terracotta-dark)] transition-colors">
             Book Now
-          </Link>
+          </span>
         </div>
       </div>
     </motion.div>

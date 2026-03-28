@@ -145,7 +145,7 @@ export function GalleryBlock({
     <div className="mt-12">
       <div className="flex items-center gap-4 mb-6">
         <div className="w-8 h-px bg-[var(--color-terracotta)]" />
-        <h2 className="font-serif text-2xl text-[var(--color-charcoal)]">
+        <h2 className="font-serif text-2xl text-[var(--color-sand-light)]">
           {title}
         </h2>
       </div>
@@ -185,13 +185,13 @@ export function HighlightsBlock({
     <div className="mt-12">
       <div className="flex items-center gap-4 mb-6">
         <div className="w-8 h-px bg-[var(--color-terracotta)]" />
-        <h2 className="font-serif text-2xl text-[var(--color-charcoal)]">{title}</h2>
+        <h2 className="font-serif text-2xl text-[var(--color-sand-light)]">{title}</h2>
       </div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {highlights.map((item, i) => (
           <li
             key={i}
-            className="flex items-start gap-3 font-sans text-sm text-[#5c605d]"
+            className="flex items-start gap-3 font-sans text-sm text-[var(--color-sand-light)]/70"
           >
             <CheckCircle2
               size={16}
@@ -262,7 +262,7 @@ export function CTASection({
       )}
 
       {note && (
-        <p className="font-sans text-[11px] text-gray-400 text-center leading-relaxed">
+        <p className="font-sans text-[11px] text-[var(--color-charcoal-light)] text-center leading-relaxed">
           {note}
         </p>
       )}
@@ -333,12 +333,12 @@ export function RichContentSection({
   return (
     <>
       {shortDescription && (
-        <p className="font-serif text-xl md:text-2xl text-[var(--color-charcoal)] leading-relaxed mb-10 border-l-2 border-[var(--color-terracotta)] pl-6 py-1">
+        <p className="font-serif text-xl md:text-2xl text-[var(--color-sand-light)] leading-relaxed mb-10 border-l-2 border-[var(--color-terracotta)] pl-6 py-1">
           {shortDescription}
         </p>
       )}
       {fullDescription && (
-        <div className="font-sans text-base text-[#5c605d] leading-[1.85] whitespace-pre-line">
+        <div className="font-sans text-base text-[var(--color-sand-light)]/70 leading-[1.85] whitespace-pre-line">
           {fullDescription}
         </div>
       )}
@@ -379,13 +379,13 @@ export function ArticleContent({
       <div className="container mx-auto px-6 lg:px-12">
         <div className="max-w-[680px] mx-auto">
           {excerpt && (
-            <p className="font-serif text-xl md:text-2xl text-[var(--color-charcoal)] leading-relaxed mb-10 border-l-2 border-[var(--color-terracotta)] pl-6 py-1">
+            <p className="font-serif text-xl md:text-2xl text-[var(--color-sand-light)] leading-relaxed mb-10 border-l-2 border-[var(--color-terracotta)] pl-6 py-1">
               {excerpt}
             </p>
           )}
           {body ? (
             <div
-              className="prose prose-stone prose-sm md:prose-base !max-w-none text-[#5c605d] font-sans leading-relaxed transition-all"
+              className="prose prose-invert prose-sm md:prose-base !max-w-none text-[var(--color-sand-light)]/70 font-sans leading-relaxed transition-all"
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(body) }}
             />
           ) : (
@@ -393,11 +393,11 @@ export function ArticleContent({
           )}
 
           {(backHref || forwardHref) && (
-            <div className="mt-16 pt-10 border-t border-gray-200 flex items-center justify-between">
+            <div className="mt-16 pt-10 border-t border-white/10 flex items-center justify-between">
               {backHref && backLabel && (
                 <Link
                   href={backHref}
-                  className="group inline-flex items-center gap-2 text-[var(--color-charcoal)] font-sans text-xs tracking-widest uppercase hover:text-[var(--color-terracotta)] transition-colors"
+                  className="group inline-flex items-center gap-2 text-[var(--color-sand-light)] font-sans text-xs tracking-widest uppercase hover:text-[var(--color-terracotta)] transition-colors"
                 >
                   <ArrowLeft size={12} className="transition-transform group-hover:-translate-x-1" />
                   {backLabel}
@@ -406,7 +406,7 @@ export function ArticleContent({
               {forwardHref && forwardLabel && (
                 <Link
                   href={forwardHref}
-                  className="group inline-flex items-center gap-2 text-[var(--color-charcoal)] font-sans text-xs tracking-widest uppercase hover:text-[var(--color-terracotta)] transition-colors ml-auto"
+                  className="group inline-flex items-center gap-2 text-[var(--color-sand-light)] font-sans text-xs tracking-widest uppercase hover:text-[var(--color-terracotta)] transition-colors ml-auto"
                 >
                   {forwardLabel}
                   <span className="transition-transform group-hover:translate-x-1">→</span>

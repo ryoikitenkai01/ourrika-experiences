@@ -24,7 +24,7 @@ export function MobileStickyBar({ whatsappNumber }: { whatsappNumber: string }) 
       animate={{ y: 0 }}
       className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-sm"
     >
-      <nav className="glass-dark border border-white/10 rounded-full px-6 py-4 flex items-center justify-between shadow-premium">
+      <nav className="glass-dark border border-white/5 rounded-full px-6 py-4 flex items-center justify-between shadow-premium">
         {navItems.map((item) => {
           const Active = isActive(item.href);
           const Icon = item.icon;

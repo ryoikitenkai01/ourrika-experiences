@@ -29,7 +29,7 @@ export function BlogListing({ posts }: BlogListingProps) {
           placeholder="Search articles..."
           onSearch={setQuery}
         />
-        <p className="font-sans text-sm text-gray-400 tracking-wide">
+        <p className="font-sans text-sm text-[var(--color-charcoal-light)] tracking-wide">
           {filtered.length} article{filtered.length !== 1 ? "s" : ""}
         </p>
       </div>
@@ -38,7 +38,7 @@ export function BlogListing({ posts }: BlogListingProps) {
         <div className="py-24 flex flex-col items-center justify-center text-center">
           <div className="w-12 h-px bg-[var(--color-terracotta)] mx-auto mb-6" />
           <p className="font-serif text-2xl text-[var(--color-charcoal)] mb-2">Nothing here yet</p>
-          <p className="font-sans text-sm text-gray-400">
+          <p className="font-sans text-sm text-[var(--color-charcoal-light)]">
             {query ? `No articles found for "${query}"` : "No blog posts yet."}
           </p>
         </div>

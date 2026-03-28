@@ -195,7 +195,10 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed top-0 right-0 h-full w-full max-w-lg bg-[#F5EFE4]/90 backdrop-blur-md border border-[rgba(224,214,200,0.6)] z-[101] flex flex-col shadow-sm overflow-y-auto"
+            className="fixed top-0 right-0 h-full w-full max-w-lg bg-[var(--color-surface)]/95 backdrop-blur-md border-l border-white/5 z-[101] flex flex-col shadow-2xl overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-8 py-6 border-b border-[rgba(224,214,200,0.6)] bg-[#F5EFE4]/90">
@@ -203,13 +206,13 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                 <p className="font-sans text-[10px] tracking-widest uppercase text-[var(--color-terracotta)] mb-0.5">
                   Request Availability
                 </p>
-                <h2 className="font-serif text-xl text-[var(--color-charcoal)] leading-snug max-w-xs">
+                <h2 id="modal-title" className="font-serif text-xl text-[var(--color-sand-light)] leading-snug max-w-xs">
                   {service.title}
                 </h2>
               </div>
               <button
                 onClick={onClose}
-                className="flex items-center justify-center w-9 h-9 border border-[rgba(224,214,200,0.8)] text-gray-400 hover:text-[var(--color-charcoal)] hover:border-[var(--color-charcoal)] transition-colors"
+                className="flex items-center justify-center w-9 h-9 border border-white/10 text-[var(--color-sand-light)]/40 hover:text-[var(--color-sand-light)] hover:border-white/20 transition-colors"
                 aria-label="Close"
               >
                 <X size={20} />
@@ -311,7 +314,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                         placeholder="Any special requests or questions..."
                         value={form.message}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-3 bg-white border border-[rgba(224,214,200,0.6)] font-sans text-sm text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:border-[#C56B5C]/40 transition-colors resize-none"
+                        className="w-full pl-10 pr-4 py-3 bg-[var(--color-obsidian)] border border-white/10 font-sans text-sm text-[var(--color-sand-light)] placeholder-[var(--color-charcoal-light)]/40 focus:outline-none focus:border-[var(--color-terracotta)]/40 transition-colors resize-none"
                       />
                     </div>
                   </div>
@@ -399,8 +402,8 @@ function InputField({ icon, label, name, type, placeholder, value, onChange, req
           required={required}
           min={min}
           max={max}
-          className={`w-full h-11 pl-10 pr-4 bg-white border font-sans text-sm text-[#1A1A1A] placeholder-gray-400 focus:outline-none transition-colors ${
-            error ? "border-[#C56B5C]" : "border-[rgba(224,214,200,0.6)] focus:border-[#C56B5C]/40"
+          className={`w-full h-11 pl-10 pr-4 bg-[var(--color-obsidian)] border font-sans text-sm text-[var(--color-sand-light)] placeholder-[var(--color-charcoal-light)]/40 focus:outline-none transition-colors ${
+            error ? "border-[var(--color-terracotta)]" : "border-white/10 focus:border-[var(--color-terracotta)]/40"
           }`}
         />
       </div>
@@ -429,15 +432,15 @@ function SuccessState({
       transition={{ duration: 0.4 }}
       className="flex flex-col items-center text-center py-8 gap-6"
     >
-      <div className="flex items-center justify-center w-20 h-20 rounded-full bg-[#F5EFE4]">
-        <CheckCircle2 size={40} className="text-[#C56B5C]" />
+      <div className="flex items-center justify-center w-20 h-20 rounded-full bg-white/5">
+        <CheckCircle2 size={40} className="text-[var(--color-gold)]" />
       </div>
 
       <div>
-        <h3 className="font-serif text-3xl text-[#1A1A1A] mb-4">
+        <h3 className="font-serif text-3xl text-[var(--color-sand-light)] mb-4">
           Request Received
         </h3>
-        <p className="font-sans text-sm text-gray-600 leading-relaxed max-w-sm">
+        <p className="font-sans text-sm text-[var(--color-sand-light)]/60 leading-relaxed max-w-sm">
           Your request for <strong>{title}</strong> has been received. 
           We&apos;ll be in touch shortly via WhatsApp to confirm details and availability.
         </p>
@@ -457,7 +460,7 @@ function SuccessState({
         )}
         <button
           onClick={onClose}
-          className="h-14 border border-[#1A1A1A] text-[#1A1A1A] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] hover:text-white transition-colors duration-300 rounded-none"
+          className="h-14 border border-white/10 text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-white/5 transition-colors duration-300 rounded-none"
         >
           Back to site
         </button>

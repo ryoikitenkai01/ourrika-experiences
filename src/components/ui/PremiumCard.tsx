@@ -39,7 +39,7 @@ export function PremiumCard({
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
       whileHover={{ scale: 1.02 }}
-      className="group bg-[#111111] border border-white/5 shadow-premium focus-within:outline-2 focus-within:outline-[var(--color-terracotta)] focus-within:outline-offset-4"
+      className="group bg-[var(--color-surface)] border border-white/5 shadow-premium focus-within:outline-2 focus-within:outline-[var(--color-terracotta)] focus-within:outline-offset-4"
     >
       <Link href={href} className="flex flex-col h-full">
         {/* Image Block */}
@@ -61,7 +61,7 @@ export function PremiumCard({
 
           {/* Badge */}
           {badge && (
-            <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-[#C56B5C] text-white px-3 py-1 text-[10px] tracking-widest uppercase font-sans font-semibold">
+            <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-[var(--color-terracotta)] text-white px-3 py-1 text-[10px] tracking-widest uppercase font-sans font-semibold">
               <Tag size={10} />
               {badge}
             </div>
@@ -74,7 +74,7 @@ export function PremiumCard({
         {/* Content Block */}
         <div className="flex flex-col flex-1 p-6">
           {/* Title */}
-          <h3 className="font-serif text-xl text-white leading-snug mb-1 group-hover:text-[#C56B5C] transition-colors duration-300">
+          <h3 className="font-serif text-xl text-[var(--color-sand-light)] leading-snug mb-1 group-hover:text-[var(--color-terracotta)] transition-colors duration-300">
             {title}
           </h3>
 
@@ -96,7 +96,7 @@ export function PremiumCard({
           {!description && <div className="flex-1" />}
 
           {/* CTA Visual */}
-          <div className="group/cta inline-flex items-center gap-2 mt-3 text-white/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[#C56B5C] transition-colors duration-300 border-b border-transparent group-hover:border-[#C56B5C] pb-0.5 self-start">
+          <div className="group/cta inline-flex items-center gap-2 mt-3 text-white/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[var(--color-terracotta)] transition-colors duration-300 border-b border-transparent group-hover:border-[var(--color-terracotta)] pb-0.5 self-start">
             {ctaLabel}
             <ArrowRight size={12} className="transition-transform group-hover/cta:translate-x-1" />
           </div>
@@ -131,7 +131,7 @@ export function BlogCard({ href, image, title, excerpt, date, index = 0 }: BlogC
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
       whileHover={{ scale: 1.02 }}
-      className="group bg-[#111111] border border-white/5 shadow-premium focus-within:outline-2 focus-within:outline-[var(--color-terracotta)] focus-within:outline-offset-4"
+      className="group bg-[var(--color-surface)] border border-white/5 shadow-premium focus-within:outline-2 focus-within:outline-[var(--color-terracotta)] focus-within:outline-offset-4"
     >
       <Link href={href} className="flex flex-col h-full">
         {/* Image */}
@@ -146,8 +146,8 @@ export function BlogCard({ href, image, title, excerpt, date, index = 0 }: BlogC
               onError={() => setError(true)}
             />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-sand)] to-[var(--color-sand-dark)] flex items-center justify-center">
-               <span className="text-[#5c605d] font-serif text-xs opacity-30">Ourrika</span>
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-obsidian)] to-[var(--color-surface)] flex items-center justify-center">
+               <span className="text-[var(--color-charcoal-light)] font-serif text-xs opacity-30">Ourrika</span>
             </div>
           )}
         </div>
@@ -155,19 +155,19 @@ export function BlogCard({ href, image, title, excerpt, date, index = 0 }: BlogC
         {/* Content */}
         <div className="flex flex-col flex-1 p-6">
           {formattedDate && (
-            <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-[#5c605d] mb-2">
+            <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-[var(--color-charcoal-light)] mb-2">
               {formattedDate}
             </p>
           )}
-          <h3 className="font-serif text-xl text-white leading-snug mb-2 group-hover:text-[#C56B5C] transition-colors duration-300">
+          <h3 className="font-serif text-xl text-[var(--color-sand-light)] leading-snug mb-2 group-hover:text-[var(--color-terracotta)] transition-colors duration-300">
             {title}
           </h3>
           {excerpt && (
-            <p className="font-sans text-sm text-[#5c605d] leading-relaxed line-clamp-3 mb-4 flex-1">
+            <p className="font-sans text-sm text-[var(--color-sand-light)]/60 leading-relaxed line-clamp-3 mb-4 flex-1">
               {excerpt}
             </p>
           )}
-          <div className="group/cta inline-flex items-center gap-2 mt-auto text-white/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[#C56B5C] transition-colors duration-300 border-b border-transparent group-hover:border-[#C56B5C] pb-0.5 self-start">
+          <div className="group/cta inline-flex items-center gap-2 mt-auto text-[var(--color-sand-light)]/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[var(--color-terracotta)] transition-colors duration-300 border-b border-transparent group-hover:border-[var(--color-terracotta)] pb-0.5 self-start">
             Read more
             <ArrowRight size={12} className="transition-transform group-hover/cta:translate-x-1" />
           </div>

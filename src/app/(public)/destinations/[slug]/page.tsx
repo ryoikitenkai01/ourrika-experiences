@@ -50,7 +50,7 @@ export default async function DestinationDetailPage({ params }: Props) {
   const whatsappUrl = `https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(whatsappText)}`;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-sand-light)]">
+    <div className="flex flex-col min-h-screen bg-[var(--color-obsidian)]">
 
       {/* ── HERO ── */}
       <HeroSectionDetail
@@ -92,9 +92,9 @@ export default async function DestinationDetailPage({ params }: Props) {
             {/* Sidebar — 4 cols */}
             <aside className="lg:col-span-4">
               <div className="sticky top-28">
-                <div className="bg-white border border-gray-100 shadow-sm p-6">
+                <div className="bg-[var(--color-surface)] border border-white/5 shadow-premium p-6">
                   <div className="w-8 h-px bg-[var(--color-terracotta)] mb-4" />
-                  <h3 className="font-serif text-xl text-[var(--color-charcoal)] mb-5">
+                  <h3 className="font-serif text-xl text-[var(--color-sand-light)] mb-5">
                     Plan Your Visit
                   </h3>
 
@@ -103,7 +103,7 @@ export default async function DestinationDetailPage({ params }: Props) {
                       <p className="font-sans text-[10px] uppercase tracking-widest text-gray-400 mb-1">
                         Experiences from
                       </p>
-                      <p className="font-serif text-2xl text-[var(--color-charcoal)]">
+                      <p className="font-serif text-2xl text-[var(--color-gold)]">
                         {dest.starting_price.toLocaleString()}{" "}
                         <span className="text-sm font-sans text-gray-400">
                           {dest.currency}
@@ -121,7 +121,7 @@ export default async function DestinationDetailPage({ params }: Props) {
                   <div className="flex flex-col gap-3 mt-3">
                     <Link
                       href="/experiences"
-                      className="flex items-center justify-center h-12 border border-[var(--color-charcoal)] text-[var(--color-charcoal)] font-sans text-sm tracking-widest uppercase hover:bg-[var(--color-charcoal)] hover:text-white transition-colors"
+                      className="flex items-center justify-center h-12 border border-white/10 text-[var(--color-sand-light)] font-sans text-sm tracking-widest uppercase hover:bg-white/5 transition-colors"
                     >
                       Browse Experiences
                     </Link>

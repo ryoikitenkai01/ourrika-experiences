@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function Philosophy() {
   return (
-    <section className="flex flex-col md:flex-row min-h-[800px] bg-zinc-950 overflow-hidden">
+    <section className="flex flex-col md:flex-row min-h-[800px] bg-[var(--color-obsidian)] overflow-hidden">
       {/* Image Side */}
       <div className="w-full md:w-1/2 relative min-h-[500px] md:min-h-auto">
         <motion.div
@@ -27,14 +27,14 @@ export function Philosophy() {
       </div>
 
       {/* Text Side */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-12 md:p-24 bg-[#0A0A0A]">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-12 md:p-24 bg-[var(--color-surface)]">
         <div className="max-w-md text-center md:text-left">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#9d9d9b] mb-12"
+            className="font-sans text-[11px] tracking-[0.2em] uppercase text-[var(--color-charcoal-light)] mb-12"
           >
             Our Philosophy
           </motion.p>

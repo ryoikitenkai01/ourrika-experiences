@@ -25,13 +25,14 @@ function ExperienceCardItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
-      className={`relative flex flex-col bg-[var(--color-surface)] overflow-hidden shadow-premium ${
+      className={`relative flex flex-col bg-[var(--color-surface)] overflow-hidden group shadow-premium ${
         isFeatured
           ? "border border-[var(--color-gold)]/35"
-          : "border border-white/[0.06]"
+          : "border border-white/[0.04]"
       }`}
     >
-      {/* Image */}
+      <Link href={`/experiences/${exp.slug}`} className="absolute inset-0 z-20" aria-label={`Book ${exp.title}`} />
+      
       <div className="relative h-52 overflow-hidden">
         {exp.image && (
           <Image
@@ -39,26 +40,23 @@ function ExperienceCardItem({
             alt={exp.title}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-700 hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-        {/* Featured badge */}
         {isFeatured && (
           <div className="absolute top-3 left-3 bg-[var(--color-gold)] text-[var(--color-obsidian)] font-sans text-[7px] font-bold tracking-[0.15em] uppercase px-2 py-1">
             Featured
           </div>
         )}
 
-        {/* Urgency badge — only on featured */}
         {isFeatured && (
           <div className="absolute top-3 right-3 bg-[var(--color-terracotta)] text-white font-sans text-[7px] font-semibold tracking-[0.1em] uppercase px-2 py-1">
             High demand
           </div>
         )}
 
-        {/* Location + duration */}
         {(exp.location || exp.duration) && (
           <span className="absolute bottom-3 left-3 font-sans text-[8px] uppercase tracking-[0.15em] text-[var(--color-sand-light)]/60">
             {[exp.location, exp.duration].filter(Boolean).join(" · ")}
@@ -66,7 +64,6 @@ function ExperienceCardItem({
         )}
       </div>
 
-      {/* Body */}
       <div className="p-4 flex flex-col flex-1 justify-between">
         <div>
           <p className="font-serif italic text-[15px] text-[var(--color-sand-light)] mb-2">{exp.title}</p>
@@ -89,12 +86,9 @@ function ExperienceCardItem({
             </span>
           )}
 
-          <Link
-            href={`/experiences/${exp.slug}`}
-            className="bg-[var(--color-terracotta)] text-white font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-4 py-2 hover:bg-[var(--color-terracotta-dark)] transition-colors"
-          >
+          <span className="bg-[var(--color-terracotta)] text-white font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-4 py-2 group-hover:bg-[var(--color-terracotta-dark)] transition-colors">
             Book Now
-          </Link>
+          </span>
         </div>
       </div>
     </motion.div>

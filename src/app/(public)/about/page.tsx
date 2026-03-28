@@ -11,7 +11,7 @@ export const metadata: Metadata = generateDynamicMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#F5EFE4]">
+    <div className="flex flex-col min-h-screen bg-[var(--color-obsidian)]">
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
         <Image
@@ -37,8 +37,8 @@ export default function AboutPage() {
       {/* Content */}
       <section className="py-24 px-6">
         <div className="max-w-2xl mx-auto">
-          <div className="font-sans text-sm text-[#5c605d] leading-relaxed space-y-8">
-            <p className="font-serif italic text-2xl text-[#1A1A1A] leading-snug">
+          <div className="font-sans text-sm text-[var(--color-sand-light)]/60 leading-relaxed space-y-8">
+            <p className="font-serif italic text-2xl text-[var(--color-sand-light)] leading-snug">
               Ourrika was born from a belief that Morocco deserves to be felt, not just visited.
             </p>
             <p>
@@ -58,13 +58,13 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-16 pt-12 border-t border-[#C56B5C]/20">
+          <div className="mt-16 pt-12 border-t border-[var(--color-terracotta)]/20">
             <Link
               href="/experiences"
-              className="inline-flex items-center text-[#1A1A1A] font-sans text-[10px] tracking-widest uppercase group"
+              className="inline-flex items-center text-[var(--color-sand-light)] font-sans text-[10px] tracking-widest uppercase group"
             >
               <span>Explore our activities</span>
-              <div className="ml-4 w-8 h-px bg-[#1A1A1A]/40 transition-all group-hover:w-12 group-hover:bg-[#C56B5C]" />
+              <div className="ml-4 w-8 h-px bg-[var(--color-sand-light)]/40 transition-all group-hover:w-12 group-hover:bg-[var(--color-terracotta)]" />
             </Link>
           </div>
         </div>

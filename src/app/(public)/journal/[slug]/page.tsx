@@ -45,7 +45,7 @@ export default async function BlogPostPage({ params }: Props) {
     : null;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-sand-light)]">
+    <div className="flex flex-col min-h-screen bg-[var(--color-obsidian)]">
 
       {/* ── HERO ── */}
       <HeroSectionDetail

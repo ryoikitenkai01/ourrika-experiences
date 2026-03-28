@@ -11,7 +11,7 @@ export function Newsletter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-serif italic text-3xl text-[#1A1A1A] mb-6"
+          className="font-serif italic text-3xl text-[var(--color-sand-light)] mb-6"
         >
           Stay Inspired
         </motion.h2>
@@ -20,7 +20,7 @@ export function Newsletter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.08, duration: 0.5, ease: "easeOut" }}
-          className="text-[#5c605d] text-sm mb-12 font-light"
+          className="text-[var(--color-sand-light)]/60 text-sm mb-12 font-light"
         >
           Join our inner circle for exclusive experience launches and editorial travel stories.
         </motion.p>

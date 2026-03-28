@@ -32,12 +32,12 @@ export function SearchBar({ placeholder = "Search...", onSearch, className = "" 
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full h-12 pl-12 pr-12 bg-white border border-[rgba(224,214,200,0.4)] rounded-none font-sans text-sm text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:border-[#C56B5C]/40 transition-colors"
+        className="w-full h-12 pl-12 pr-12 bg-[var(--color-surface)] border border-white/10 rounded-none font-sans text-sm text-[var(--color-sand-light)] placeholder-[var(--color-charcoal-light)]/40 focus:outline-none focus:border-[var(--color-terracotta)]/40 transition-colors"
       />
       {value && (
         <button
           onClick={handleClear}
-          className="absolute inset-y-0 right-4 flex items-center text-gray-400 hover:text-[var(--color-charcoal)] transition-colors"
+          className="absolute inset-y-0 right-4 flex items-center text-[var(--color-charcoal-light)]/60 hover:text-[var(--color-sand-light)] transition-colors"
           aria-label="Clear search"
         >
           <X size={16} />

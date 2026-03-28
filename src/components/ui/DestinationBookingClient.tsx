@@ -66,7 +66,7 @@ export function MobileStickyDestinationBar({
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-[rgba(224,214,200,0.4)] px-4 py-3 flex gap-3 shadow-sm">
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[var(--color-surface)] border-t border-white/5 px-4 py-3 flex gap-3 shadow-premium">
         <button
           onClick={() => setIsModalOpen(true)}
           className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#1A1A1A] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
