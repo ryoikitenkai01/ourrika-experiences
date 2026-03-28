@@ -349,6 +349,102 @@ export function RichContentSection({
   );
 }
 
+// ── ServiceSidebarCard ────────────────────────────────────────────────────────
+
+export interface ServiceSidebarCardProps {
+  /** Optional heading — shows terracotta divider + italic serif h3 if provided */
+  title?: string;
+  /** Trust note rendered below the outer card */
+  trustNote?: string;
+  children: React.ReactNode;
+}
+
+/**
+ * Unified sidebar card shell for all service detail pages.
+ * Provides: urgency bar, gold divider, optional title block, and a trust note.
+ * Pass price display + meta items + CTA slot as children.
+ */
+export function ServiceSidebarCard({ title, trustNote, children }: ServiceSidebarCardProps) {
+  return (
+    <>
+      <div className="bg-[var(--color-surface)] border border-[var(--color-gold)]/20 mb-6 overflow-hidden">
+        {/* Urgency bar */}
+        <div className="bg-[var(--color-terracotta)] px-5 py-2.5 text-center">
+          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-[var(--color-sand-light)] font-semibold">
+            High demand — reply within 2hrs
+          </p>
+        </div>
+
+        {/* Gold separator */}
+        <div className="mx-5 h-px bg-[var(--color-gold)]/20 mt-4" />
+
+        <div className="p-5">
+          {title && (
+            <>
+              <div className="w-8 h-px bg-[var(--color-terracotta)] mb-4" />
+              <h3 className="font-serif italic text-xl text-[var(--color-sand-light)] mb-5">{title}</h3>
+            </>
+          )}
+          {children}
+        </div>
+      </div>
+
+      {trustNote && (
+        <p className="font-sans text-[11px] text-[var(--color-charcoal-light)] text-center leading-relaxed">
+          {trustNote}
+        </p>
+      )}
+    </>
+  );
+}
+
+// ── ServiceDetailLayout ───────────────────────────────────────────────────────
+
+export interface ServiceDetailLayoutProps {
+  /** Main article content — rendered in the left 2/3 columns */
+  contentSlot: React.ReactNode;
+  /** Sticky sidebar content — rendered in the right 1/3 column */
+  sidebarSlot: React.ReactNode;
+  /** CTA buttons shown in a mobile-only section below the grid, clearing the Liquid Glass Bar */
+  mobileCTASlot: React.ReactNode;
+  /** Tailwind padding override, default "py-16 lg:py-20" */
+  pyClass?: string;
+}
+
+/**
+ * Unified two-column layout for all service detail pages (Experiences, Destinations, Offers).
+ * Renders a `lg:grid-cols-3` grid with a sticky sidebar and a mobile CTA band at the bottom.
+ */
+export function ServiceDetailLayout({
+  contentSlot,
+  sidebarSlot,
+  mobileCTASlot,
+  pyClass = "py-16 lg:py-20",
+}: ServiceDetailLayoutProps) {
+  return (
+    <>
+      <section className={pyClass}>
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+            {/* Content column */}
+            <div className="lg:col-span-2">{contentSlot}</div>
+
+            {/* Sticky sidebar — visible on desktop only */}
+            <div className="hidden lg:block lg:col-span-1">
+              <div className="sticky top-28">{sidebarSlot}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile CTA — shown below content, pb-32 clears the Liquid Glass Bar */}
+      <div className="lg:hidden px-6 pb-32 border-t border-white/[0.06] pt-12">
+        {mobileCTASlot}
+      </div>
+    </>
+  );
+}
+
 // ── ArticleContent ────────────────────────────────────────────────────────────
 
 export interface ArticleContentProps {
