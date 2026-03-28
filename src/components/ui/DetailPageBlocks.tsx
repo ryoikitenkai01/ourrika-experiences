@@ -228,7 +228,7 @@ export function CTASection({
   onPrimary,
   primaryHref,
   whatsappUrl,
-  whatsappLabel = "Book on WhatsApp",
+  whatsappLabel = "Book now on WhatsApp",
   note,
 }: CTASectionProps) {
   return (

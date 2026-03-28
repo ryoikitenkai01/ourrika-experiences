@@ -74,7 +74,7 @@ export function RelatedDestinations({
               : undefined
           }
           description={dest.short_description}
-          ctaLabel="Discover"
+          ctaLabel="Book Now"
           index={i}
         />
       ))}
