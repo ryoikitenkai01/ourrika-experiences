@@ -23,6 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     image: post.image || undefined,
     path: `/journal/${slug}`,
     type: "article",
+    publishedTime: post.publish_date ?? undefined,
+    authors: ["Ourrika Experiences"],
   });
 }
 
@@ -56,7 +58,7 @@ export default async function BlogPostPage({ params }: Props) {
         heightClass="h-[62vh] min-h-[380px]"
       >
         {formattedDate && (
-          <p className="flex items-center gap-1.5 font-sans text-white/60 text-xs tracking-widest uppercase mt-1">
+          <p className="flex items-center gap-1.5 font-sans text-[var(--color-sand-light)]/60 text-xs tracking-widest uppercase mt-1">
             <Calendar size={11} /> {formattedDate}
           </p>
         )}

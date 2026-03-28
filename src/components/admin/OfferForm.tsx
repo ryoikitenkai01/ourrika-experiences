@@ -70,26 +70,26 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
   return (
     <form
       action={handleSubmit}
-      className="space-y-8 bg-white p-8 border border-zinc-200 shadow-sm"
+      className="space-y-8 bg-[var(--color-admin-surface)] p-8 border border-[var(--color-admin-border)]"
     >
       {/* Messages */}
       {error && (
-        <div className="bg-red-50 text-red-700 p-4 rounded-lg font-sans text-sm border border-red-200">
+        <div className="bg-red-500/10 text-red-400 p-4 rounded-lg font-sans text-sm border border-red-500/20">
           {error}
         </div>
       )}
 
       {/* Grid wrapper */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+
         {/* Left Side: Basic Info */}
         <div className="space-y-6">
-          <h2 className="font-serif text-xl border-b border-zinc-100 pb-2 text-[var(--color-charcoal)]">
+          <h2 className="font-serif text-xl border-b border-[var(--color-admin-border)] pb-2 text-[var(--color-charcoal)]">
             Offer Details
           </h2>
 
           <div>
-            <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+            <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
               Title *
             </label>
             <input
@@ -98,15 +98,15 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
               defaultValue={initialData?.title}
               required
               placeholder="e.g. Winter Desert Special"
-              className="w-full px-4 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200"
+              className="w-full px-4 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
             />
             {fieldErrors.title && (
-              <p className="mt-1 text-red-600 text-xs font-sans">{fieldErrors.title}</p>
+              <p className="mt-1 text-red-400 text-xs font-sans">{fieldErrors.title}</p>
             )}
           </div>
 
           <div>
-            <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+            <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
               Slug
             </label>
             <input
@@ -114,13 +114,13 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
               type="text"
               defaultValue={initialData?.slug || ""}
               placeholder="winter-desert-special"
-              className="w-full px-4 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200 font-mono text-zinc-600"
+              className="w-full px-4 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)] font-mono"
             />
           </div>
 
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+              <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
                 Original Price
               </label>
               <input
@@ -128,11 +128,11 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
                 type="number"
                 defaultValue={initialData?.original_price ?? ""}
                 placeholder="2000"
-                className="w-full px-4 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200"
+                className="w-full px-4 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
               />
             </div>
             <div className="flex-1">
-              <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+              <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
                 Promo Price *
               </label>
               <input
@@ -140,32 +140,32 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
                 type="number"
                 defaultValue={initialData?.promo_price ?? ""}
                 placeholder="1500"
-                className="w-full px-4 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200"
+                className="w-full px-4 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
               />
             </div>
           </div>
 
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+              <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
                 Valid From
               </label>
               <input
                 name="valid_from"
                 type="date"
                 defaultValue={initialData?.valid_from || ""}
-                className="w-full px-4 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200"
+                className="w-full px-4 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
               />
             </div>
             <div className="flex-1">
-              <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+              <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
                 Valid Until
               </label>
               <input
                 name="valid_until"
                 type="date"
                 defaultValue={initialData?.valid_until || ""}
-                className="w-full px-4 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200"
+                className="w-full px-4 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
               />
             </div>
           </div>
@@ -173,20 +173,20 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
 
         {/* Right Side: Media & Connections */}
         <div className="space-y-6">
-          <h2 className="font-serif text-xl border-b border-zinc-100 pb-2 text-[var(--color-charcoal)]">
+          <h2 className="font-serif text-xl border-b border-[var(--color-admin-border)] pb-2 text-[var(--color-charcoal)]">
             Media & Connections
           </h2>
 
           <div>
-            <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+            <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
               Cover Image URL
             </label>
             <div className="flex gap-4">
-              <div className="w-24 h-24 bg-zinc-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden relative border border-zinc-200">
+              <div className="w-24 h-24 bg-[var(--color-admin-surface-raised)] rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden relative border border-[var(--color-admin-border)]">
                 {coverPreview ? (
                   <Image src={coverPreview} alt="Cover preview" fill className="object-cover" />
                 ) : (
-                  <ImageIcon className="text-zinc-400" size={24} />
+                  <ImageIcon className="text-[var(--color-admin-text-muted)]" size={24} />
                 )}
               </div>
               <div className="flex-1">
@@ -196,21 +196,21 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
                   defaultValue={initialData?.cover_image || ""}
                   onChange={(e) => setCoverPreview(e.target.value)}
                   placeholder="https://example.com/promo.jpg"
-                  className="w-full px-4 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200"
+                  className="w-full px-4 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
                 />
               </div>
             </div>
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-sans text-sm font-medium text-zinc-700">Link to Service (Optional)</h3>
-            <div className="space-y-3 p-4 bg-zinc-50 border border-zinc-100 rounded-lg">
+            <h3 className="font-sans text-sm font-medium text-[var(--color-admin-text)]">Link to Service (Optional)</h3>
+            <div className="space-y-3 p-4 bg-[var(--color-admin-surface-raised)] border border-[var(--color-admin-border)] rounded-lg">
               <div>
-                <label className="block font-sans text-xs font-medium text-zinc-500 mb-1">Linked Experience</label>
+                <label className="block font-sans text-xs font-medium text-[var(--color-admin-text-muted)] mb-1">Linked Experience</label>
                 <select
                   name="linked_experience_id"
                   defaultValue={initialData?.linked_experience_id || "none"}
-                  className="w-full px-3 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200 bg-white"
+                  className="w-full px-3 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
                 >
                   <option value="none">No specific experience</option>
                   {experiences.map(exp => (
@@ -220,11 +220,11 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
               </div>
 
               <div>
-                <label className="block font-sans text-xs font-medium text-zinc-500 mb-1">Linked Destination</label>
+                <label className="block font-sans text-xs font-medium text-[var(--color-admin-text-muted)] mb-1">Linked Destination</label>
                 <select
                   name="linked_destination_id"
                   defaultValue={initialData?.linked_destination_id || "none"}
-                  className="w-full px-3 py-2 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200 bg-white"
+                  className="w-full px-3 py-2 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)]"
                 >
                   <option value="none">No specific destination</option>
                   {destinations.map(dest => (
@@ -233,7 +233,7 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
                 </select>
               </div>
             </div>
-            
+
             <label className="flex items-center gap-3 cursor-pointer pt-2">
               <input
                 name="is_featured"
@@ -241,7 +241,7 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
                 defaultChecked={initialData?.is_featured ?? false}
                 className="w-5 h-5 accent-[var(--color-terracotta)] border-zinc-300 rounded cursor-pointer"
               />
-              <span className="font-sans text-sm font-medium text-zinc-700 select-none">
+              <span className="font-sans text-sm font-medium text-[var(--color-admin-text)] select-none">
                 Featured on Homepage
               </span>
             </label>
@@ -250,7 +250,7 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
       </div>
 
       <div>
-        <label className="block font-sans text-sm font-medium text-zinc-700 mb-1">
+        <label className="block font-sans text-sm font-medium text-[var(--color-admin-text)] mb-1">
           Description / Details
         </label>
         <textarea
@@ -258,21 +258,21 @@ export function OfferForm({ initialData, experiences, destinations }: Props) {
           rows={4}
           defaultValue={initialData?.description || ""}
           placeholder="Specific details about what's included in this offer..."
-          className="w-full px-4 py-3 border rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-zinc-200 resize-y"
+          className="w-full px-4 py-3 border rounded-lg font-sans text-sm text-[var(--color-admin-text)] bg-[var(--color-admin-input-bg)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] border-[var(--color-admin-border)] resize-y"
         />
       </div>
 
-      <div className="flex items-center justify-end gap-4 pt-4 border-t border-zinc-100">
+      <div className="flex items-center justify-end gap-4 pt-4 border-t border-[var(--color-admin-border)]">
         <Link
           href="/admin/offers"
-          className="px-5 py-2.5 rounded-lg font-sans text-sm font-medium text-zinc-600 hover:bg-zinc-100 transition-colors"
+          className="px-5 py-2.5 rounded-lg font-sans text-sm font-medium text-[var(--color-admin-text-muted)] hover:bg-[var(--color-admin-hover)] transition-colors"
         >
           Cancel
         </Link>
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--color-charcoal)] hover:bg-black text-white font-sans text-sm font-medium tracking-wide rounded-lg transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--color-charcoal)] hover:bg-black text-white font-sans text-sm font-medium tracking-wide rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {isPending ? "Saving..." : <><Save size={16} /> {isEditing ? "Save Offer" : "Create Offer"}</>}
         </button>

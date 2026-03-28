@@ -57,7 +57,7 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20;
+    @apply bg-black/40 backdrop-blur-xl border border-white/10;
     box-shadow: var(--shadow-glass);
   }
 
@@ -66,7 +66,7 @@
   }
 
   .text-glow {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 20px rgba(245, 239, 228, 0.25);
   }
 
   .perspective-1000 {
@@ -98,4 +98,18 @@
 
 .animate-fade-in-up {
   animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Admin dark-luxury tokens ── */
+:root {
+  --color-admin-bg: #0F0F0F;
+  --color-admin-surface: #1C1C1C;
+  --color-admin-surface-raised: #242424;
+  --color-admin-border: rgba(255, 255, 255, 0.08);
+  --color-admin-border-strong: rgba(255, 255, 255, 0.14);
+  --color-admin-text: #F5EFE4;
+  --color-admin-text-muted: rgba(245, 239, 228, 0.5);
+  --color-admin-accent: #C9A96E;
+  --color-admin-hover: rgba(255, 255, 255, 0.05);
+  --color-admin-input-bg: rgba(255, 255, 255, 0.04);
 }

@@ -58,14 +58,14 @@ export function PartnersTable({ partners }: Props) {
 
   if (partners.length === 0) {
     return (
-      <div className="bg-white border border-zinc-200 rounded-lg p-16 flex flex-col items-center justify-center text-center">
-        <div className="w-16 h-16 rounded-full bg-zinc-100 flex items-center justify-center mb-4">
-          <CheckCircle2 size={24} className="text-zinc-400" />
+      <div className="bg-[var(--color-admin-surface)] border border-[var(--color-admin-border)] rounded-lg p-16 flex flex-col items-center justify-center text-center">
+        <div className="w-16 h-16 rounded-full bg-[var(--color-admin-surface-raised)] flex items-center justify-center mb-4">
+          <CheckCircle2 size={24} className="text-[var(--color-admin-text-muted)]" />
         </div>
-        <p className="font-sans text-zinc-500 text-sm mb-1">
+        <p className="font-sans text-[var(--color-admin-text-muted)] text-sm mb-1">
           No partners found.
         </p>
-        <p className="font-sans text-zinc-400 text-xs">
+        <p className="font-sans text-[var(--color-admin-text-muted)] text-xs">
           Add your first brand partner to showcase them on the public site.
         </p>
       </div>
@@ -78,50 +78,50 @@ export function PartnersTable({ partners }: Props) {
       <div className="relative max-w-sm">
         <Search
           size={16}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-admin-text-muted)]"
         />
         <input
           type="text"
           placeholder="Search by name…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 bg-white border border-zinc-200 rounded-lg font-sans text-sm text-zinc-700 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] transition-all"
+          className="w-full pl-9 pr-4 py-2.5 bg-[var(--color-admin-input-bg)] border border-[var(--color-admin-border)] rounded-lg font-sans text-sm text-[var(--color-admin-text)] placeholder:text-[var(--color-admin-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-terracotta)]/30 focus:border-[var(--color-terracotta)] transition-all"
         />
       </div>
 
-      <div className="bg-white border border-zinc-200 rounded-lg overflow-hidden shadow-sm">
+      <div className="bg-[var(--color-admin-surface)] border border-[var(--color-admin-border)] rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-zinc-100">
-                <th className="text-left px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-zinc-500">
+              <tr className="border-b border-[var(--color-admin-border)]">
+                <th className="text-left px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-[var(--color-admin-text-muted)]">
                   Partner
                 </th>
-                <th className="text-left px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-zinc-500 hidden sm:table-cell">
+                <th className="text-left px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-[var(--color-admin-text-muted)] hidden sm:table-cell">
                   Link
                 </th>
-                <th className="text-center px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-zinc-500 hidden lg:table-cell">
+                <th className="text-center px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-[var(--color-admin-text-muted)] hidden lg:table-cell">
                   Status
                 </th>
-                <th className="text-center px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-zinc-500 hidden lg:table-cell">
+                <th className="text-center px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-[var(--color-admin-text-muted)] hidden lg:table-cell">
                    Order
                 </th>
-                <th className="text-right px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-zinc-500">
+                <th className="text-right px-5 py-3.5 font-sans text-xs font-medium tracking-wider uppercase text-[var(--color-admin-text-muted)]">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-50">
+            <tbody className="divide-y divide-[var(--color-admin-border)]">
               {filtered.map((partner) => (
                 <tr
                   key={partner.id}
-                  className={`hover:bg-zinc-50/80 transition-colors ${
+                  className={`hover:bg-[var(--color-admin-hover)] transition-colors ${
                     deletingId === partner.id ? "opacity-50" : ""
                   }`}
                 >
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-16 h-10 rounded bg-zinc-50 flex items-center justify-center p-2 relative overflow-hidden border border-zinc-100 group">
+                      <div className="w-16 h-10 rounded bg-[var(--color-admin-surface-raised)] flex items-center justify-center p-2 relative overflow-hidden border border-[var(--color-admin-border)] group">
                         {partner.logo ? (
                           <Image
                             src={partner.logo}
@@ -130,10 +130,10 @@ export function PartnersTable({ partners }: Props) {
                             className="object-contain p-1"
                           />
                         ) : (
-                          <div className="w-full h-full bg-zinc-200" />
+                          <div className="w-full h-full bg-[var(--color-admin-border)]" />
                         )}
                       </div>
-                      <span className="font-sans text-sm font-medium text-zinc-800">
+                      <span className="font-sans text-sm font-medium text-[var(--color-admin-text)]">
                         {partner.name}
                       </span>
                     </div>
@@ -145,7 +145,7 @@ export function PartnersTable({ partners }: Props) {
                         href={partner.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-[var(--color-terracotta)] transition-colors"
+                        className="inline-flex items-center gap-1.5 text-[var(--color-admin-text-muted)] hover:text-[var(--color-terracotta)] transition-colors"
                       >
                          <ExternalLink size={14} />
                          <span className="font-sans text-xs max-w-[150px] truncate">
@@ -153,7 +153,7 @@ export function PartnersTable({ partners }: Props) {
                          </span>
                       </a>
                     ) : (
-                      <span className="text-zinc-300 font-sans text-xs">—</span>
+                      <span className="text-[var(--color-admin-text-muted)] font-sans text-xs">—</span>
                     )}
                   </td>
 
@@ -164,13 +164,13 @@ export function PartnersTable({ partners }: Props) {
                         Active
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-zinc-100 text-zinc-400 rounded-full font-sans text-[10px] font-bold uppercase tracking-wider">
+                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[var(--color-admin-surface-raised)] text-[var(--color-admin-text-muted)] rounded-full font-sans text-[10px] font-bold uppercase tracking-wider">
                         Hidden
                       </span>
                     )}
                   </td>
 
-                  <td className="px-5 py-4 hidden lg:table-cell text-center font-sans text-sm text-zinc-500">
+                  <td className="px-5 py-4 hidden lg:table-cell text-center font-sans text-sm text-[var(--color-admin-text-muted)]">
                     {partner.display_order ?? "—"}
                   </td>
 
@@ -182,7 +182,7 @@ export function PartnersTable({ partners }: Props) {
                             openMenuId === partner.id ? null : partner.id
                           )
                         }
-                        className="p-1.5 rounded-md hover:bg-zinc-100 text-zinc-400 hover:text-zinc-600 transition-colors"
+                        className="p-1.5 rounded-md hover:bg-[var(--color-admin-hover)] text-[var(--color-admin-text-muted)] hover:text-[var(--color-admin-text)] transition-colors"
                       >
                         <MoreVertical size={16} />
                       </button>
@@ -192,10 +192,10 @@ export function PartnersTable({ partners }: Props) {
                             className="fixed inset-0 z-10"
                             onClick={() => setOpenMenuId(null)}
                           />
-                          <div className="absolute right-0 mt-1 w-40 bg-white rounded-lg border border-zinc-200 shadow-lg z-20 py-1 animate-in fade-in slide-in-from-top-1 duration-150">
+                          <div className="absolute right-0 mt-1 w-40 bg-[var(--color-admin-surface)] rounded-lg border border-[var(--color-admin-border)] shadow-lg z-20 py-1 animate-in fade-in slide-in-from-top-1 duration-150">
                             <Link
                               href={`/admin/partners/${partner.id}`}
-                              className="flex items-center gap-2 px-3 py-2 font-sans text-sm text-zinc-700 hover:bg-zinc-50 transition-colors"
+                              className="flex items-center gap-2 px-3 py-2 font-sans text-sm text-[var(--color-admin-text)] hover:bg-[var(--color-admin-hover)] transition-colors"
                               onClick={() => setOpenMenuId(null)}
                             >
                               <Pencil size={14} />
@@ -204,7 +204,7 @@ export function PartnersTable({ partners }: Props) {
                             <button
                               onClick={() => handleDelete(partner.id)}
                               disabled={isPending}
-                              className="flex items-center gap-2 px-3 py-2 font-sans text-sm text-red-600 hover:bg-red-50 transition-colors w-full text-left disabled:opacity-50"
+                              className="flex items-center gap-2 px-3 py-2 font-sans text-sm text-red-400 hover:bg-red-500/10 transition-colors w-full text-left disabled:opacity-50"
                             >
                               <Trash2 size={14} />
                               Delete

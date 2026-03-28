@@ -6,6 +6,8 @@ interface SEOProps {
   image?: string;
   path: string;
   type?: "website" | "article";
+  publishedTime?: string;
+  authors?: string[];
 }
 
 export function generateDynamicMetadata({
@@ -14,6 +16,8 @@ export function generateDynamicMetadata({
   image,
   path,
   type = "website",
+  publishedTime,
+  authors,
 }: SEOProps): Metadata {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://ourrika-experiences.com";
   const siteName = "Ourrika Experiences";
@@ -21,8 +25,32 @@ export function generateDynamicMetadata({
   const url = `${baseUrl}${path}`;
   const defaultDescription = "Escape. Breathe. Explore. Discover premium, authentic Moroccan experiences.";
   const finalDescription = description || defaultDescription;
-  
-  const images = image ? [{ url: image }] : [{ url: `${baseUrl}/og-image.jpg` }];
+
+  const fallbackImage = { url: `${baseUrl}/hero-agafay.jpg`, width: 1200, height: 800 };
+  const images = image ? [{ url: image, width: 1200, height: 630 }] : [fallbackImage];
+
+  const openGraph =
+    type === "article"
+      ? {
+          title: fullTitle,
+          description: finalDescription,
+          url,
+          siteName,
+          images,
+          locale: "en_US",
+          type: "article" as const,
+          ...(publishedTime ? { publishedTime } : {}),
+          ...(authors?.length ? { authors } : {}),
+        }
+      : {
+          title: fullTitle,
+          description: finalDescription,
+          url,
+          siteName,
+          images,
+          locale: "en_US",
+          type: "website" as const,
+        };
 
   return {
     title: fullTitle,
@@ -30,20 +58,12 @@ export function generateDynamicMetadata({
     alternates: {
       canonical: url,
     },
-    openGraph: {
-      title: fullTitle,
-      description: finalDescription,
-      url: url,
-      siteName: siteName,
-      images: images,
-      locale: "en_US",
-      type: type,
-    },
+    openGraph,
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description: finalDescription,
-      images: images,
+      images,
     },
     robots: {
       index: true,

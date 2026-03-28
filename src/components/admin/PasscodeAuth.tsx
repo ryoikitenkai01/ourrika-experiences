@@ -23,7 +23,7 @@ export function PasscodeAuth() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-[#F9F9F9] p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-[var(--color-admin-bg)] p-6">
       <div className="w-full max-w-[400px] flex items-center justify-center mb-10">
         <svg
           viewBox="0 0 40 40"
@@ -38,12 +38,12 @@ export function PasscodeAuth() {
         </svg>
       </div>
 
-      <div className="w-full max-w-[400px] border border-gray-100 bg-white shadow-xl shadow-black/[0.03] p-8 md:p-12">
+      <div className="w-full max-w-[400px] border border-[var(--color-admin-border)] bg-[var(--color-admin-surface)] shadow-xl shadow-black/[0.03] p-8 md:p-12">
         <div className="mb-10 text-center">
           <h1 className="font-serif text-3xl text-[var(--color-charcoal)] mb-3">
             Admin Access
           </h1>
-          <p className="font-sans text-sm tracking-widest uppercase text-gray-400">
+          <p className="font-sans text-sm tracking-widest uppercase text-[var(--color-admin-text-muted)]">
             Internal Operations
           </p>
           <div className="w-10 h-px bg-[var(--color-terracotta)] mt-6 mx-auto" />
@@ -53,7 +53,7 @@ export function PasscodeAuth() {
           <div className="flex flex-col gap-2">
             <label
               htmlFor="username"
-              className="font-sans text-[11px] tracking-widest uppercase text-gray-500"
+              className="font-sans text-[11px] tracking-widest uppercase text-[var(--color-admin-text-muted)]"
             >
               Username
             </label>
@@ -63,7 +63,7 @@ export function PasscodeAuth() {
               type="text"
               required
               defaultValue="Sadox"
-              className="h-12 border-b border-gray-200 bg-transparent px-0 font-sans text-sm focus:border-[var(--color-terracotta)] focus:outline-none focus:ring-0 transition-colors"
+              className="h-12 border-b border-[var(--color-admin-border)] bg-transparent px-0 font-sans text-sm text-[var(--color-admin-text)] focus:border-[var(--color-terracotta)] focus:outline-none focus:ring-0 transition-colors"
               placeholder="e.g. Sadox"
               disabled={isPending}
             />
@@ -72,7 +72,7 @@ export function PasscodeAuth() {
           <div className="flex flex-col gap-2">
             <label
               htmlFor="passcode"
-              className="font-sans text-[11px] tracking-widest uppercase text-gray-500"
+              className="font-sans text-[11px] tracking-widest uppercase text-[var(--color-admin-text-muted)]"
             >
               Passcode
             </label>
@@ -81,14 +81,14 @@ export function PasscodeAuth() {
               name="passcode"
               type="password"
               required
-              className="h-12 border-b border-gray-200 bg-transparent px-0 font-sans text-sm focus:border-[var(--color-terracotta)] focus:outline-none focus:ring-0 transition-colors"
+              className="h-12 border-b border-[var(--color-admin-border)] bg-transparent px-0 font-sans text-sm text-[var(--color-admin-text)] focus:border-[var(--color-terracotta)] focus:outline-none focus:ring-0 transition-colors"
               placeholder="••••••••"
               disabled={isPending}
             />
           </div>
 
           {error && (
-            <p className="font-sans text-xs text-red-500 bg-red-50 p-3 mt-2 border border-red-100">
+            <p className="font-sans text-xs text-red-400 bg-red-500/10 p-3 mt-2 border border-red-500/20">
               {error}
             </p>
           )}
