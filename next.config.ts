@@ -35,6 +35,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "ourrika-experiences-*.firebasestorage.app",
       },
+      {
+        protocol: "https",
+        hostname: "www.barcelo.com",
+      },
     ],
   },
 };

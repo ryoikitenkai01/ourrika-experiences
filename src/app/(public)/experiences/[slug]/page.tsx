@@ -170,6 +170,19 @@ export default async function ExperienceDetailPage({ params }: Props) {
       </section>
 
 
+      {/* Mobile CTA (shown at the bottom of content, above nav bar) */}
+      <div className="md:hidden px-6 pb-24 border-t border-white/[0.06] pt-12">
+        <ExperienceBookingClient
+          experience={{
+            id: exp.id,
+            title: exp.title,
+            slug: exp.slug,
+            whatsappMessage: exp.whatsappMessage,
+            whatsappNumber: whatsappNumber,
+          }}
+        />
+      </div>
+
       {/* Related experiences */}
       {relatedExperiences.length > 0 && (
         <RelatedExperiences
