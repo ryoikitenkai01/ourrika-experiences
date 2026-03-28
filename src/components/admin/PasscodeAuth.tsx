@@ -29,7 +29,7 @@ export function PasscodeAuth() {
           viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-12 h-12 text-[var(--color-charcoal)]"
+          className="w-12 h-12 text-[var(--color-admin-accent)]"
         >
           <path
             d="M20 0L40 10V30L20 40L0 30V10L20 0ZM18.5 4.5L3 12V28.5L18.5 36V4.5ZM21.5 4.5V36L37 28.5V12L21.5 4.5Z"
@@ -40,7 +40,7 @@ export function PasscodeAuth() {
 
       <div className="w-full max-w-[400px] border border-[var(--color-admin-border)] bg-[var(--color-admin-surface)] shadow-xl shadow-black/[0.03] p-8 md:p-12">
         <div className="mb-10 text-center">
-          <h1 className="font-serif text-3xl text-[var(--color-charcoal)] mb-3">
+          <h1 className="font-serif text-3xl text-[var(--color-admin-text)] mb-3">
             Admin Access
           </h1>
           <p className="font-sans text-sm tracking-widest uppercase text-[var(--color-admin-text-muted)]">

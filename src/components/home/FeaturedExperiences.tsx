@@ -52,7 +52,7 @@ function ExperienceCardItem({
         )}
 
         {isFeatured && (
-          <div className="absolute top-3 right-3 bg-[var(--color-terracotta)] text-white font-sans text-[7px] font-semibold tracking-[0.1em] uppercase px-2 py-1">
+          <div className="absolute top-3 right-3 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[7px] font-semibold tracking-[0.1em] uppercase px-2 py-1">
             High demand
           </div>
         )}
@@ -86,7 +86,7 @@ function ExperienceCardItem({
             </span>
           )}
 
-          <span className="bg-[var(--color-terracotta)] text-white font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-4 py-2 group-hover:bg-[var(--color-terracotta-dark)] transition-colors">
+          <span className="bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-4 py-2 group-hover:bg-[var(--color-terracotta-dark)] transition-colors">
             Book Now
           </span>
         </div>

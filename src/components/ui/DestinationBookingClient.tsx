@@ -23,7 +23,7 @@ export function DestinationBookingClient({ destination, whatsappUrl, whatsappMes
       <div className="flex flex-col gap-3 mt-5">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center justify-center gap-2 h-12 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
+          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-surface)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta)] transition-colors duration-300 rounded-none"
         >
           <FileText size={15} />
           Request Details
@@ -32,7 +32,7 @@ export function DestinationBookingClient({ destination, whatsappUrl, whatsappMes
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 h-12 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
+          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-surface)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={15} />
           Enquire on WhatsApp
@@ -69,7 +69,7 @@ export function MobileStickyDestinationBar({
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[var(--color-surface)] border-t border-white/5 px-4 py-3 flex gap-3 shadow-premium">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#1A1A1A] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
+          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[var(--color-obsidian)] text-[var(--color-sand-light)] font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta)] transition-colors duration-300 rounded-none"
         >
           <FileText size={14} />
           Request
@@ -78,7 +78,7 @@ export function MobileStickyDestinationBar({
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[#C56B5C] text-white font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
+          className="flex-1 flex items-center justify-center gap-2 h-11 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[11px] tracking-[0.15em] uppercase hover:bg-[var(--color-obsidian)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={14} />
           WhatsApp

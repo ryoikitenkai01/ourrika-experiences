@@ -16,18 +16,18 @@ export default async function AdminLayout({
 
   if (!isAuthenticated) {
     return (
-      <div className="font-sans">
+      <div className="admin-theme font-sans">
         <PasscodeAuth />
       </div>
     );
   }
 
   return (
-    <div className="flex bg-[#F9F9F9] text-zinc-800 min-h-screen font-sans">
+    <div className="admin-theme flex bg-[var(--color-admin-bg)] text-[var(--color-admin-text)] min-h-screen font-sans">
       <Sidebar />
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="h-16 px-8 border-b border-zinc-200 bg-white flex items-center justify-between sticky top-0 z-10 flex-shrink-0">
-          <div className="text-sm font-sans tracking-wide text-zinc-500">
+        <header className="h-16 px-8 border-b border-[var(--color-admin-border)] bg-[var(--color-admin-surface)]/95 flex items-center justify-between sticky top-0 z-10 flex-shrink-0 backdrop-blur-sm">
+          <div className="text-[10px] font-sans tracking-[0.2em] uppercase text-[var(--color-admin-text-muted)]">
             Operations Management
           </div>
           <div className="flex gap-4 items-center">

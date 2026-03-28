@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 2592000, // 30 days
+    minimumCacheTTL: 86400, // 24 hours (safer for content updates)
     remotePatterns: [
       {
         protocol: "https",
@@ -21,20 +21,19 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.googleusercontent.com",
+        hostname: "lh3.googleusercontent.com",
       },
       {
         protocol: "https",
         hostname: "chez-ali.ma",
       },
-      // Firebase Storage
       {
         protocol: "https",
         hostname: "firebasestorage.googleapis.com",
       },
       {
         protocol: "https",
-        hostname: "*.firebasestorage.app",
+        hostname: "ourrika-experiences-*.firebasestorage.app",
       },
     ],
   },

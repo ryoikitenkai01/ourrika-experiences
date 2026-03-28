@@ -34,18 +34,18 @@ export function Sidebar() {
   }
 
   return (
-    <div className="w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col h-full text-zinc-300">
-      <div className="h-16 flex items-center px-6 border-b border-zinc-800/50 flex-shrink-0">
+    <div className="w-64 bg-[var(--color-admin-surface)] border-r border-[var(--color-admin-border)] flex flex-col h-full text-[var(--color-admin-text)]">
+      <div className="h-16 flex items-center px-6 border-b border-[var(--color-admin-border)] flex-shrink-0">
         <Link
           href="/admin"
-          className="font-serif text-lg text-white tracking-wide"
+          className="font-serif text-lg text-[var(--color-admin-accent)] tracking-wide"
         >
           Ourrika Admin
         </Link>
       </div>
 
       <div className="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
-        <div className="px-3 mb-2 text-xs font-sans font-medium tracking-wider text-zinc-500 uppercase">
+        <div className="px-3 mb-2 text-[10px] font-sans font-medium tracking-[0.2em] uppercase text-[var(--color-admin-text-muted)]">
           Operations
         </div>
         {navItems.map((item) => {
@@ -58,8 +58,8 @@ export function Sidebar() {
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg font-sans text-sm transition-colors ${
                 isActive
-                  ? "bg-zinc-800 text-white"
-                  : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                  ? "bg-[var(--color-admin-surface-raised)] text-[var(--color-admin-text)] border border-[var(--color-admin-border)]"
+                  : "text-[var(--color-admin-text-muted)] hover:text-[var(--color-admin-text)] hover:bg-[var(--color-admin-hover)]"
               }`}
             >
               <Icon size={18} />
@@ -69,11 +69,11 @@ export function Sidebar() {
         })}
       </div>
 
-      <div className="p-4 border-t border-zinc-800 mt-auto">
+      <div className="p-4 border-t border-[var(--color-admin-border)] mt-auto">
         <button
           onClick={handleLogout}
           disabled={isPending}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg font-sans text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/50 w-full text-left transition-colors disabled:opacity-50"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg font-sans text-sm text-[var(--color-admin-text-muted)] hover:text-[var(--color-admin-text)] hover:bg-[var(--color-admin-hover)] w-full text-left transition-colors disabled:opacity-50"
         >
           <LogOut size={18} />
           {isPending ? "Logging out..." : "Logout"}

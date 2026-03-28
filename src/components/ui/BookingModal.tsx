@@ -201,7 +201,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
             aria-labelledby="modal-title"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-8 py-6 border-b border-[rgba(224,214,200,0.6)] bg-[#F5EFE4]/90">
+            <div className="flex items-center justify-between px-8 py-6 border-b border-[var(--color-gold)]/10 bg-[var(--color-surface)]/95">
               <div>
                 <p className="font-sans text-[10px] tracking-widest uppercase text-[var(--color-terracotta)] mb-0.5">
                   Request Availability
@@ -234,7 +234,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-[#F5EFE4] border border-[#C56B5C]/30 text-[#C56B5C] text-[13px] p-4 flex gap-3"
+                      className="bg-[var(--color-surface)] border border-[var(--color-terracotta)]/30 text-[var(--color-terracotta)] text-[13px] p-4 flex gap-3"
                     >
                       <p>{errorMsg}</p>
                     </motion.div>
@@ -307,7 +307,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                       Message
                     </label>
                     <div className="relative">
-                      <MessageSquare size={15} className="absolute top-3.5 left-3.5 text-gray-400 pointer-events-none" />
+                      <MessageSquare size={15} className="absolute top-3.5 left-3.5 text-[var(--color-charcoal-light)]/50 pointer-events-none" />
                       <textarea
                         name="message"
                         rows={3}
@@ -323,7 +323,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="flex items-center justify-center gap-2 h-12 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] disabled:opacity-60 disabled:pointer-events-none transition-colors duration-300 rounded-none mt-2"
+                    className="flex items-center justify-center gap-2 h-12 bg-[var(--color-surface)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta)] disabled:opacity-60 disabled:pointer-events-none transition-colors duration-300 rounded-none mt-2"
                   >
                     {status === "loading" ? (
                       <><Loader2 size={16} className="animate-spin" /> Sending…</>
@@ -335,9 +335,9 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                   {/* WhatsApp alternative */}
                   {whatsappUrl && (
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-px bg-gray-200" />
-                      <span className="font-sans text-[10px] uppercase tracking-widest text-gray-400">or</span>
-                      <div className="flex-1 h-px bg-gray-200" />
+                      <div className="flex-1 h-px bg-white/5" />
+                      <span className="font-sans text-[10px] uppercase tracking-widest text-[var(--color-charcoal-light)]/40">or</span>
+                      <div className="flex-1 h-px bg-white/5" />
                     </div>
                   )}
                   {whatsappUrl && (
@@ -351,7 +351,7 @@ export function BookingModal({ isOpen, onClose, service }: BookingModalProps) {
                       })}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 h-12 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
+                      className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-surface)] transition-colors duration-300 rounded-none"
                     >
                       <MessageCircle size={16} />
                       Book on WhatsApp
@@ -408,7 +408,7 @@ function InputField({ icon, label, name, type, placeholder, value, onChange, req
         />
       </div>
       {error && (
-        <p className="text-[11px] text-[#C56B5C] tracking-wide mt-1">
+        <p className="text-[11px] text-[var(--color-terracotta)] tracking-wide mt-1">
           {error}
         </p>
       )}
@@ -452,7 +452,7 @@ function SuccessState({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 h-14 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
+            className="flex items-center justify-center gap-2 h-14 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-surface)] transition-colors duration-300 rounded-none"
           >
             <MessageCircle size={18} />
             Immediate WhatsApp Claim

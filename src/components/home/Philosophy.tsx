@@ -44,7 +44,7 @@ export function Philosophy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-            className="font-serif italic text-3xl md:text-5xl text-white mb-10 leading-tight"
+            className="font-serif italic text-3xl md:text-5xl text-[var(--color-sand-light)] mb-10 leading-tight"
           >
             &quot;Travel is not about the destination, but the perspective.&quot;
           </motion.h2>
@@ -54,7 +54,7 @@ export function Philosophy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.16, ease: "easeOut" }}
-            className="text-white/70 font-light leading-relaxed mb-12 text-sm"
+            className="text-[var(--color-sand-light)]/70 font-light leading-relaxed mb-12 text-sm"
           >
             At Ourrika, we believe in slow travel. We curate experiences that challenge your viewpoint and immerse you in the quiet luxury of genuine human connection and raw natural beauty.
           </motion.p>
@@ -67,10 +67,10 @@ export function Philosophy() {
           >
             <Link
               href="/about"
-              className="inline-flex items-center text-white font-sans text-[10px] tracking-widest uppercase group"
+              className="inline-flex items-center text-[var(--color-sand-light)] font-sans text-[10px] tracking-widest uppercase group"
             >
               <span>Explore Our Story</span>
-              <div className="ml-4 w-8 h-px bg-white/40 transition-all group-hover:w-12 group-hover:bg-white" />
+              <div className="ml-4 w-8 h-px bg-[var(--color-sand-light)]/40 transition-all group-hover:w-12 group-hover:bg-[var(--color-sand-light)]" />
             </Link>
           </motion.div>
         </div>

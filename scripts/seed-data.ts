@@ -28,22 +28,32 @@ if (!admin.apps.length) {
 
 const db = admin.firestore();
 
+const SITE_SETTINGS = {
+  hero_title: "Escape. Breathe. Explore. Discover Morocco through a curated lens of slow luxury.",
+  hero_media_url: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80",
+  whatsapp_number: "212600000000",
+  instagram_link: "https://instagram.com/ourrika",
+  contact_email: "hello@ourrika.com",
+};
+
 const DESTINATIONS = [
   {
     name: "Marrakech",
     slug: "marrakech",
     cover_image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?auto=format&fit=crop&w=1200&q=80",
-    short_description: "The medina, the souks, and the rooftops — all of it.",
+    short_description: "The red city. A labyrinth of sensory wonder, where ancient medinas meet modern luxury rooftops.",
+    full_description: "Marrakech is more than a city; it is a pulse. From the quiet gardens of Majorelle to the chaotic energy of Jemaa el-Fnaa, we curate the moments that most visitors miss.",
     starting_price: 30,
     currency: "€",
     is_featured: true,
     homepage_order: 1,
   },
   {
-    name: "Ourika Valley",
+    name: "Ourrika Valley",
     slug: "ourika-valley",
     cover_image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-    short_description: "The Atlas foothills, an hour from the city.",
+    short_description: "The emerald heart of the Atlas. Terraced gardens, cold springs, and the breath of the mountains.",
+    full_description: "Just an hour from the city, the Ourrika Valley offers a landscape of verdant greens and cool stone. Here, we host our most intimate cooking classes and mountain walks.",
     starting_price: 65,
     currency: "€",
     is_featured: true,
@@ -53,31 +63,11 @@ const DESTINATIONS = [
     name: "Chefchaouen",
     slug: "chefchaouen",
     cover_image: "https://images.unsplash.com/photo-1548041019-7217fc7d7bc9?auto=format&fit=crop&w=1200&q=80",
-    short_description: "The Blue Pearl of the Rif Mountains.",
+    short_description: "The Blue Pearl. A dreamscape of azure alleys and Rif mountain hospitality.",
     starting_price: 90,
     currency: "€",
     is_featured: true,
     homepage_order: 3,
-  },
-  {
-    name: "Merzouga",
-    slug: "merzouga",
-    cover_image: "https://images.unsplash.com/photo-1509233725247-49e657c54213?auto=format&fit=crop&w=1200&q=80",
-    short_description: "Gateway to the majestic Erg Chebbi dunes.",
-    starting_price: 140,
-    currency: "€",
-    is_featured: true,
-    homepage_order: 4,
-  },
-  {
-    name: "Essaouira",
-    slug: "essaouira",
-    cover_image: "https://images.unsplash.com/photo-1559586061-3c73ef795604?auto=format&fit=crop&w=1200&q=80",
-    short_description: "The windy city by the Atlantic coast.",
-    starting_price: 50,
-    currency: "€",
-    is_featured: true,
-    homepage_order: 5,
   },
 ];
 
@@ -86,7 +76,13 @@ const EXPERIENCES = [
     title: "Table in the Desert",
     slug: "table-in-the-desert",
     cover_image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?auto=format&fit=crop&w=1200&q=80",
-    short_description: "Dinner under the stars in the Agafay stone desert.",
+    short_description: "An intimate dinner under the obsidian sky of Agafay.",
+    full_description: "Escape the city for the silence of the stone desert. We set a single table, lit by lanterns, where you share a traditional feast as the sun dips below the Atlas peaks.",
+    highlights: ["Private transport from Marrakech", "Traditional 3-course Moroccan dinner", "Stargazing with a nomad guide", "Welcome tea and pastries"],
+    gallery: [
+      "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800&q=80",
+      "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80"
+    ],
     price: 130,
     currency: "€",
     location: "Agafay Desert",
@@ -96,10 +92,12 @@ const EXPERIENCES = [
     homepage_order: 1,
   },
   {
-    title: "Friday Rooftop",
+    title: "Friday Rooftop Ritual",
     slug: "friday-rooftop",
-    cover_image: "https://picsum.photos/seed/marrakech-rooftop/1200/800",
-    short_description: "DJ set, tapas, and the Marrakech skyline every Friday evening.",
+    cover_image: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=1200&q=80",
+    short_description: "Vinyl sets and golden hour vistas over the Medina.",
+    full_description: "The finest rooftop session in Marrakech. Curated music, hand-crafted tapas, and the best view of the Koutoubia as the call to prayer echoes through the valley.",
+    highlights: ["Reserved rooftop seating", "Signature cocktail/mocktail", "Live DJ sets", "Tapas selection"],
     price: 45,
     currency: "€",
     location: "Marrakech Medina",
@@ -108,49 +106,25 @@ const EXPERIENCES = [
     is_featured: true,
     homepage_order: 2,
   },
+];
+
+const BLOG_POSTS = [
   {
-    title: "Blue Alley Photo Walk",
-    slug: "blue-alley-photo-walk",
-    cover_image: "https://images.unsplash.com/photo-1548041019-7217fc7d7bc9?auto=format&fit=crop&w=1200&q=80",
-    short_description: "Discover the hidden gems of Chefchaouen with a professional photographer.",
-    price: 85,
-    currency: "€",
-    location: "Chefchaouen",
-    duration: "2 hours",
-    whatsapp_message_template: "Hi! I'm interested in the Blue Alley Photo Walk.",
-    is_featured: true,
-    homepage_order: 3,
-  },
-  {
-    title: "Sunset Camel Trek",
-    slug: "sunset-camel-trek",
-    cover_image: "https://images.unsplash.com/photo-1509233725247-49e657c54213?auto=format&fit=crop&w=1200&q=80",
-    short_description: "An iconic Saharan journey into the golden dunes of Merzouga.",
-    price: 150,
-    currency: "€",
-    location: "Merzouga",
-    duration: "Overnight",
-    whatsapp_message_template: "Hi! I'd like to book the Sunset Camel Trek.",
-    is_featured: true,
-    homepage_order: 4,
-  },
-  {
-    title: "Kasbah Cooking Class",
-    slug: "kasbah-cooking-class",
-    cover_image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1200&q=80",
-    short_description: "Learn the secrets of Moroccan spices in an ancient Kasbah in the Ourrika Valley.",
-    price: 110,
-    currency: "€",
-    location: "Ourrika Valley",
-    duration: "Half-day",
-    whatsapp_message_template: "Hi! Tell me more about the Kasbah Cooking Class.",
-    is_featured: true,
-    homepage_order: 5,
-  },
+    title: "The Art of Slow Travel in Morocco",
+    slug: "slow-travel-morocco",
+    image: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=1200&q=80",
+    excerpt: "Why the best way to see the medina is to sit still and watch the light change.",
+    body: "<p>In a world of fast transit, Morocco demands a different rhythm...</p>",
+    publish_date: new Date().toISOString(),
+  }
 ];
 
 async function seed() {
-  console.log("Starting seed...");
+  console.log("Starting premium seed...");
+
+  // Seed Site Settings
+  console.log("Adding site settings...");
+  await db.collection("site_settings").doc("main").set(SITE_SETTINGS, { merge: true });
 
   // Seed Destinations
   for (const item of DESTINATIONS) {
@@ -164,7 +138,13 @@ async function seed() {
     await db.collection("experiences").doc(item.slug).set(item, { merge: true });
   }
 
-  console.log("Seed completed successfully!");
+  // Seed Blog Posts
+  for (const item of BLOG_POSTS) {
+    console.log(`Adding blog post: ${item.title}`);
+    await db.collection("blog_posts").doc(item.slug).set(item, { merge: true });
+  }
+
+  console.log("Premium seed completed successfully!");
   process.exit(0);
 }
 

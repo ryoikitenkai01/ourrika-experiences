@@ -100,7 +100,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
                 <div className="bg-[var(--color-surface)] border border-[var(--color-gold)]/20 mb-6 overflow-hidden">
                   {/* Urgency bar */}
                   <div className="bg-[var(--color-terracotta)] px-5 py-2.5 text-center">
-                    <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-white font-semibold">
+                    <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-[var(--color-sand-light)] font-semibold">
                       High demand — reply within 2hrs
                     </p>
                   </div>

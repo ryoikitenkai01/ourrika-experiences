@@ -55,13 +55,13 @@ export function PremiumCard({
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-sand)] to-[var(--color-sand-dark)] flex items-center justify-center">
-              <span className="text-white/20 font-serif text-lg">Ourrika</span>
+              <span className="text-[var(--color-sand-light)]/20 font-serif text-lg">Ourrika</span>
             </div>
           )}
 
           {/* Badge */}
           {badge && (
-            <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-[var(--color-terracotta)] text-white px-3 py-1 text-[10px] tracking-widest uppercase font-sans font-semibold">
+            <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] px-3 py-1 text-[10px] tracking-widest uppercase font-sans font-semibold">
               <Tag size={10} />
               {badge}
             </div>
@@ -80,14 +80,14 @@ export function PremiumCard({
 
           {/* Subtitle (price / location / date) */}
           {subtitle && (
-            <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-white/50 mb-3">
+            <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-[var(--color-sand-light)]/50 mb-3">
               {subtitle}
             </p>
           )}
 
           {/* Description */}
           {description && (
-            <p className="font-sans text-sm text-white/60 leading-relaxed line-clamp-2 mb-4 flex-1">
+            <p className="font-sans text-sm text-[var(--color-sand-light)]/60 leading-relaxed line-clamp-2 mb-4 flex-1">
               {description}
             </p>
           )}
@@ -96,7 +96,7 @@ export function PremiumCard({
           {!description && <div className="flex-1" />}
 
           {/* CTA Visual */}
-          <div className="group/cta inline-flex items-center gap-2 mt-3 text-white/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[var(--color-terracotta)] transition-colors duration-300 border-b border-transparent group-hover:border-[var(--color-terracotta)] pb-0.5 self-start">
+          <div className="group/cta inline-flex items-center gap-2 mt-3 text-[var(--color-sand-light)]/80 font-sans text-xs tracking-[0.2em] uppercase group-hover:text-[var(--color-terracotta)] transition-colors duration-300 border-b border-transparent group-hover:border-[var(--color-terracotta)] pb-0.5 self-start">
             {ctaLabel}
             <ArrowRight size={12} className="transition-transform group-hover/cta:translate-x-1" />
           </div>

@@ -31,7 +31,7 @@ export function WhatsAppButton({ phoneNumber }: WhatsAppButtonProps) {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }}
       whileHover={{ scale: 1.1 }}
-      className="fixed bottom-24 md:bottom-6 right-6 z-50 bg-[#C56B5C] text-white p-4 rounded-full shadow-sm hover:bg-[#1A1A1A] transition-colors duration-300 focus:outline-none"
+      className="fixed bottom-24 md:bottom-6 right-6 z-50 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] p-4 rounded-full shadow-premium hover:bg-[var(--color-surface)] transition-colors duration-300 focus:outline-none"
       aria-label="Contact us on WhatsApp"
     >
       <MessageCircle size={28} />

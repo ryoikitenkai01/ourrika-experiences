@@ -24,10 +24,10 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 flex items-end p-12 md:p-20">
           <div>
-            <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-white/60 mb-4">
+            <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[var(--color-sand-light)]/60 mb-4">
               Who we are
             </p>
-            <h1 className="font-serif italic text-4xl md:text-6xl text-white leading-tight">
+            <h1 className="font-serif italic text-4xl md:text-6xl text-[var(--color-sand-light)] leading-tight">
               Our Story
             </h1>
           </div>

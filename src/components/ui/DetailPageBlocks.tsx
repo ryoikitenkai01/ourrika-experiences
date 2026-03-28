@@ -100,7 +100,7 @@ export function HeroSectionDetail({
       {/* Back link */}
       <Link
         href={backHref}
-        className="absolute top-28 left-6 lg:left-12 flex items-center gap-2 text-white/70 hover:text-white text-xs font-sans tracking-widest uppercase transition-colors z-10 group"
+        className="absolute top-28 left-6 lg:left-12 flex items-center gap-2 text-[var(--color-sand-light)]/70 hover:text-[var(--color-sand-light)] text-xs font-sans tracking-widest uppercase transition-colors z-10 group"
       >
         <ArrowLeft
           size={14}
@@ -112,11 +112,11 @@ export function HeroSectionDetail({
       {/* Text block */}
       <div className="absolute bottom-0 left-0 right-0 px-6 lg:px-12 pb-10 lg:pb-14 z-10 max-w-5xl">
         <div className="w-10 h-px bg-[var(--color-terracotta)] mb-5" />
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight mb-4" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[var(--color-sand-light)] leading-tight mb-4" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
           {title}
         </h1>
         {subtitle && (
-          <p className="font-sans text-white/70 text-sm tracking-[0.2em] uppercase mb-4" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
+          <p className="font-sans text-[var(--color-sand-light)]/70 text-sm tracking-[0.2em] uppercase mb-4" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
             {subtitle}
           </p>
         )}
@@ -156,7 +156,7 @@ export function GalleryBlock({
              key={i}
              src={img}
              alt={`${altPrefix} — photo ${i + 1}`}
-             className={`relative overflow-hidden bg-[var(--color-sand)] group ${
+             className={`relative overflow-hidden bg-[var(--color-surface)] group ${
               i === 0
                 ? "col-span-2 row-span-2 aspect-[4/3]"
                 : "aspect-square"
@@ -236,14 +236,14 @@ export function CTASection({
       {onPrimary ? (
         <button
           onClick={onPrimary}
-          className="flex items-center justify-center gap-2 h-12 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
+          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-surface)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta)] transition-colors duration-300 rounded-none"
         >
           {primaryLabel}
         </button>
       ) : primaryHref ? (
         <Link
           href={primaryHref}
-          className="flex items-center justify-center gap-2 h-12 bg-[#1A1A1A] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#C56B5C] transition-colors duration-300 rounded-none"
+          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-surface)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta)] transition-colors duration-300 rounded-none"
         >
           {primaryLabel}
         </Link>
@@ -254,7 +254,7 @@ export function CTASection({
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 h-12 bg-[#C56B5C] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[#1A1A1A] transition-colors duration-300 rounded-none"
+          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-surface)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={15} />
           {whatsappLabel}
@@ -300,8 +300,8 @@ export function ExperienceMeta({ location, duration, price, currency }: Experien
           key={i}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm ${
             item.highlight
-              ? "bg-[var(--color-terracotta)]/90 text-white font-semibold"
-              : "bg-white/10 backdrop-blur-sm text-white/70"
+              ? "bg-[var(--color-terracotta)]/90 text-[var(--color-sand-light)] font-semibold"
+              : "bg-[var(--color-sand-light)]/10 backdrop-blur-sm text-[var(--color-sand-light)]/70"
           }`}
         >
           {item.icon}
@@ -343,7 +343,7 @@ export function RichContentSection({
         </div>
       )}
       {!shortDescription && !fullDescription && (
-        <p className="text-gray-400 italic font-sans">{emptyMessage}</p>
+        <p className="text-[var(--color-charcoal-light)] italic font-sans">{emptyMessage}</p>
       )}
     </>
   );
@@ -389,7 +389,7 @@ export function ArticleContent({
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(body) }}
             />
           ) : (
-            <p className="text-gray-400 italic font-sans">Full article coming soon.</p>
+            <p className="text-[var(--color-charcoal-light)] italic font-sans">Full article coming soon.</p>
           )}
 
           {(backHref || forwardHref) && (

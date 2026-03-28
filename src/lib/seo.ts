@@ -19,14 +19,15 @@ export function generateDynamicMetadata({
   publishedTime,
   authors,
 }: SEOProps): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://ourrika-experiences.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL 
+    || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://ourrika-experiences.com");
   const siteName = "Ourrika Experiences";
   const fullTitle = `${title} | ${siteName}`;
   const url = `${baseUrl}${path}`;
   const defaultDescription = "Escape. Breathe. Explore. Discover premium, authentic Moroccan experiences.";
   const finalDescription = description || defaultDescription;
 
-  const fallbackImage = { url: `${baseUrl}/hero-agafay.jpg`, width: 1200, height: 800 };
+  const fallbackImage = { url: `${baseUrl}/hero-agafay.jpg`, width: 1200, height: 630 };
   const images = image ? [{ url: image, width: 1200, height: 630 }] : [fallbackImage];
 
   const openGraph =

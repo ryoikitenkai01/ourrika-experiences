@@ -155,7 +155,7 @@ function DarkExperienceCard({ exp, index }: { exp: ExperienceCard; index: number
             <div className="absolute top-2.5 left-2.5 bg-[var(--color-gold)] text-[var(--color-obsidian)] font-sans text-[7px] font-bold tracking-[0.15em] uppercase px-2 py-1">
               Featured
             </div>
-            <div className="absolute top-2.5 right-2.5 bg-[var(--color-terracotta)] text-white font-sans text-[7px] font-semibold tracking-[0.1em] uppercase px-2 py-1">
+            <div className="absolute top-2.5 right-2.5 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[7px] font-semibold tracking-[0.1em] uppercase px-2 py-1">
               High demand
             </div>
           </>
@@ -190,7 +190,7 @@ function DarkExperienceCard({ exp, index }: { exp: ExperienceCard; index: number
             </span>
           )}
 
-          <span className="bg-[var(--color-terracotta)] text-white font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-3.5 py-2 group-hover:bg-[var(--color-terracotta-dark)] transition-colors">
+          <span className="bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[8px] font-semibold tracking-[0.12em] uppercase px-3.5 py-2 group-hover:bg-[var(--color-terracotta-dark)] transition-colors">
             Book Now
           </span>
         </div>
@@ -216,7 +216,7 @@ export function ExperiencesListing({ experiences }: ExperiencesListingProps) {
             onClick={() => setActiveFilter(f)}
             className={`font-sans text-[9px] tracking-[0.1em] uppercase px-4 py-1.5 transition-colors ${
               activeFilter === f
-                ? "bg-[var(--color-terracotta)] text-white"
+                ? "bg-[var(--color-terracotta)] text-[var(--color-sand-light)]"
                 : "border border-white/[0.1] text-[var(--color-sand-light)]/50 hover:text-[var(--color-sand-light)] hover:border-white/[0.25]"
             }`}
           >

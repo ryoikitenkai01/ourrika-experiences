@@ -124,7 +124,7 @@ function RelatedSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="py-24 bg-[#0A0A0A]">
+    <section className="py-24 bg-[var(--color-obsidian)]">
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -134,12 +134,12 @@ function RelatedSection({
           className="flex items-end justify-between mb-10"
         >
           <div>
-            <div className="w-10 h-px bg-[#C56B5C] mb-4" />
-            <h2 className="font-serif text-3xl text-white">{title}</h2>
+            <div className="w-10 h-px bg-[var(--color-terracotta)] mb-4" />
+            <h2 className="font-serif text-3xl text-[var(--color-sand-light)]">{title}</h2>
           </div>
           <Link
             href={viewAllHref}
-            className="group hidden sm:flex items-center gap-2 font-sans text-[11px] tracking-[0.2em] uppercase text-white/50 hover:text-[#C56B5C] transition-colors duration-300"
+            className="group hidden sm:flex items-center gap-2 font-sans text-[11px] tracking-[0.2em] uppercase text-[var(--color-sand-light)]/50 hover:text-[var(--color-terracotta)] transition-colors duration-300"
           >
             View all
             <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />

@@ -61,7 +61,7 @@ export default async function DestinationDetailPage({ params }: Props) {
         heightClass="h-[75vh] min-h-[460px]"
       >
         {dest.starting_price != null && (
-          <span className="inline-block font-sans text-xs tracking-widest uppercase text-white bg-[var(--color-terracotta)]/90 px-3 py-1.5 mt-1">
+          <span className="inline-block font-sans text-xs tracking-widest uppercase text-[var(--color-sand-light)] bg-[var(--color-terracotta)]/90 px-3 py-1.5 mt-1">
             Experiences from {dest.starting_price.toLocaleString()}{" "}
             {dest.currency}
           </span>
@@ -100,12 +100,12 @@ export default async function DestinationDetailPage({ params }: Props) {
 
                   {dest.starting_price != null && (
                     <div className="mb-5">
-                      <p className="font-sans text-[10px] uppercase tracking-widest text-gray-400 mb-1">
+                      <p className="font-sans text-[10px] uppercase tracking-widest text-[var(--color-charcoal-light)]/70 mb-1">
                         Experiences from
                       </p>
                       <p className="font-serif text-2xl text-[var(--color-gold)]">
                         {dest.starting_price.toLocaleString()}{" "}
-                        <span className="text-sm font-sans text-gray-400">
+                        <span className="text-sm font-sans text-[var(--color-charcoal-light)]/70">
                           {dest.currency}
                         </span>
                       </p>
@@ -128,7 +128,7 @@ export default async function DestinationDetailPage({ params }: Props) {
                   </div>
                 </div>
 
-                <p className="mt-4 font-sans text-[11px] text-gray-400 text-center leading-relaxed">
+                <p className="mt-4 font-sans text-[11px] text-[var(--color-charcoal-light)]/70 text-center leading-relaxed">
                   Our team will craft a personalised itinerary to fit your
                   preferences.
                 </p>
