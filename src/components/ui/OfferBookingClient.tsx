@@ -26,7 +26,7 @@ export function OfferBookingClient({ offer, whatsappUrl, whatsappMessage, whatsa
           className="flex items-center justify-center gap-2 h-12 bg-[var(--color-surface)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta)] transition-colors duration-300 rounded-none"
         >
           <Gift size={15} />
-          Claim Offer
+          Book Now
         </button>
         <a
           href={whatsappUrl}
@@ -35,7 +35,7 @@ export function OfferBookingClient({ offer, whatsappUrl, whatsappMessage, whatsa
           className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-surface)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={15} />
-          Claim on WhatsApp
+          Book now on WhatsApp
         </a>
       </div>
 

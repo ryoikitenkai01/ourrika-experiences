@@ -39,7 +39,7 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
           className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 bg-[var(--color-terracotta)] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={16} />
-          Book on WhatsApp
+          Book now on WhatsApp
         </a>
 
         {/* Secondary: Request Availability */}
@@ -48,7 +48,7 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
           className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 border border-white/[0.15] text-[var(--color-sand-light)]/70 font-sans text-[13px] tracking-[0.15em] uppercase hover:border-white/[0.3] hover:text-[var(--color-sand-light)] transition-colors duration-300 rounded-none"
         >
           <CalendarDays size={16} />
-          Request Availability
+          Book Now
         </button>
       </motion.div>
 

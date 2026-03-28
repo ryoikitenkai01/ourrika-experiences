@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Home, Compass, Map, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,6 +8,23 @@ import { motion } from "framer-motion";
 
 export function MobileStickyBar({ whatsappNumber }: { whatsappNumber: string }) {
   const pathname = usePathname();
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    // Hide when modal is open (tracked via body attribute in BookingPanel)
+    const checkModal = () => {
+      setIsHidden(document.body.hasAttribute("data-modal-open"));
+    };
+
+    // Initial check
+    checkModal();
+
+    // Observe body attributes
+    const observer = new MutationObserver(checkModal);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["data-modal-open"] });
+
+    return () => observer.disconnect();
+  }, []);
 
   const navItems = [
     { label: "Home", href: "/", icon: Home },
@@ -20,8 +38,12 @@ export function MobileStickyBar({ whatsappNumber }: { whatsappNumber: string }) 
 
   return (
     <motion.div 
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ 
+        y: isHidden ? 120 : 0, 
+        opacity: isHidden ? 0 : 1 
+      }}
+      transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
       className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-sm"
     >
       <nav className="glass-dark border border-white/5 rounded-full px-6 py-4 flex items-center justify-between shadow-premium">

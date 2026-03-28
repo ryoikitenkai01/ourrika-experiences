@@ -94,15 +94,18 @@ export function BookingPanel({
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // ── Body scroll lock
+  // ── Body scroll lock + Nav hide attribute
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.body.setAttribute("data-modal-open", "true");
     } else {
       document.body.style.overflow = "";
+      document.body.removeAttribute("data-modal-open");
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.removeAttribute("data-modal-open");
     };
   }, [isOpen]);
 
@@ -416,7 +419,7 @@ function Step1Panel({
         className="flex items-center justify-center h-14 w-full bg-[var(--color-terracotta)] text-white font-sans text-sm tracking-widest uppercase hover:brightness-110 active:brightness-95 transition-all duration-200"
         style={{ boxShadow: "0 0 24px rgba(197,107,92,0.35)" }}
       >
-        CHECK AVAILABILITY →
+        BOOK NOW →
       </button>
 
       {/* WhatsApp soft link */}
