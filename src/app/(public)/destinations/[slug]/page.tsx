@@ -12,7 +12,7 @@ import {
   GalleryBlock,
 } from "@/components/ui/DetailPageBlocks";
 import { RelatedExperiences } from "@/components/ui/RelatedSections";
-import { DestinationBookingClient, MobileStickyDestinationBar } from "@/components/ui/DestinationBookingClient";
+import { DestinationBookingClient } from "@/components/ui/DestinationBookingClient";
 
 import { generateDynamicMetadata } from "@/lib/seo";
 
@@ -146,16 +146,6 @@ export default async function DestinationDetailPage({ params }: Props) {
         />
       )}
 
-      {/* Mobile sticky bar */}
-      <MobileStickyDestinationBar
-        destination={{ id: dest.id, name: dest.name, slug: dest.slug }}
-        whatsappUrl={whatsappUrl}
-        whatsappMessage={whatsappText}
-        whatsappNumber={settings.whatsapp_number}
-      />
-
-      {/* Spacer so sticky bar doesn't cover content */}
-      <div className="md:hidden h-20" />
     </div>
   );
 }

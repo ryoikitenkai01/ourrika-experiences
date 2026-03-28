@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/DetailPageBlocks";
 import {
   ExperienceBookingClient,
-  MobileStickyBookingBar,
 } from "@/components/ui/ExperienceBookingClient";
 import { RelatedExperiences } from "@/components/ui/RelatedSections";
 
@@ -191,19 +190,6 @@ export default async function ExperienceDetailPage({ params }: Props) {
         />
       )}
 
-      {/* Mobile sticky bar always visible while scrolling */}
-      <MobileStickyBookingBar
-        experience={{
-          id: exp.id,
-          title: exp.title,
-          slug: exp.slug,
-          whatsappMessage: exp.whatsappMessage,
-          whatsappNumber: whatsappNumber,
-        }}
-      />
-
-      {/* Spacer so sticky bar doesn't cover content */}
-      <div className="md:hidden h-20" />
     </div>
   );
 }
