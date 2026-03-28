@@ -20,19 +20,22 @@ export function DestinationBookingClient({ destination, whatsappUrl, whatsappMes
 
   return (
     <>
-      <div className="flex flex-col gap-3 mt-5">
+      <div className="flex flex-col gap-3 mt-8">
+        {/* Primary: Book Now */}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-surface)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta)] transition-colors duration-300 rounded-none"
+          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors duration-300 rounded-none shadow-premium"
         >
           <FileText size={15} />
           Book Now
         </button>
+
+        {/* Secondary: WhatsApp */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 h-12 bg-[var(--color-terracotta)] text-[var(--color-sand-light)] font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-surface)] transition-colors duration-300 rounded-none"
+          className="flex items-center justify-center gap-2 h-12 border border-white/10 text-[var(--color-sand-light)]/70 font-sans text-[13px] tracking-[0.15em] uppercase hover:border-white/25 hover:text-[var(--color-sand-light)] transition-colors duration-300 rounded-none"
         >
           <MessageCircle size={15} />
           Book now on WhatsApp

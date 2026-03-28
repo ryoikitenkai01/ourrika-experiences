@@ -58,7 +58,7 @@ function DarkDestinationCard({
         {isHero && (
           <div className="absolute bottom-6 right-6 z-10">
             <span className="inline-block border border-[var(--color-gold)]/50 text-[var(--color-gold)] font-sans text-[9px] tracking-[0.15em] uppercase px-5 py-2.5 hover:bg-[var(--color-gold)]/10 transition-colors">
-              Explore →
+              Book Now
             </span>
           </div>
         )}
@@ -75,7 +75,7 @@ function DarkDestinationCard({
             )}
           </div>
           <span className="ml-4 shrink-0 border border-[var(--color-gold)]/40 text-[var(--color-gold)] font-sans text-[8px] tracking-[0.12em] uppercase px-3.5 py-2 hover:bg-[var(--color-gold)]/10 transition-colors">
-            Explore →
+            Book Now
           </span>
         </div>
       )}

@@ -31,25 +31,25 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
         transition={{ delay: 0.3, duration: 0.5 }}
         className="flex flex-col gap-3"
       >
-        {/* Primary: WhatsApp */}
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 bg-[var(--color-terracotta)] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors duration-300 rounded-none"
-        >
-          <MessageCircle size={16} />
-          Book now on WhatsApp
-        </a>
-
-        {/* Secondary: Request Availability */}
+        {/* Primary: Book Now */}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 border border-white/[0.15] text-[var(--color-sand-light)]/70 font-sans text-[13px] tracking-[0.15em] uppercase hover:border-white/[0.3] hover:text-[var(--color-sand-light)] transition-colors duration-300 rounded-none"
+          className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 bg-[var(--color-terracotta)] text-white font-sans text-[13px] tracking-[0.15em] uppercase hover:bg-[var(--color-terracotta-dark)] transition-colors duration-300 rounded-none shadow-premium"
         >
           <CalendarDays size={16} />
           Book Now
         </button>
+
+        {/* Secondary: WhatsApp */}
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center justify-center gap-2 w-full px-8 py-3.5 border border-white/[0.15] text-[var(--color-sand-light)]/70 font-sans text-[13px] tracking-[0.15em] uppercase hover:border-white/[0.3] hover:text-[var(--color-sand-light)] transition-colors duration-300 rounded-none"
+        >
+          <MessageCircle size={16} />
+          Book now on WhatsApp
+        </a>
       </motion.div>
 
       {/* Modal */}
