@@ -7,7 +7,7 @@ export interface BookingRequest {
   message: string;
   service_id: string;
   service_title: string;
-  service_type: "experience" | "destination" | "offer";
+  service_type: "experience" | "destination";
   service_slug: string;
   source_page: string;
 }

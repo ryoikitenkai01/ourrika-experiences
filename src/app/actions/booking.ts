@@ -14,6 +14,7 @@ const bookingSchema = z.object({
   service_id: z.string().optional().nullable(),
   service_title: z.string().optional().nullable(),
   service_type: z.string().optional().nullable(),
+  service_slug: z.string().optional().nullable(),
   source_page: z.string().optional().nullable(),
 });
 
@@ -43,6 +44,7 @@ export async function submitBookingRequest(data: BookingRequest): Promise<Bookin
       status: "new",
       source_page: validatedData.source_page || null,
       service_type: validatedData.service_type || null,
+      service_slug: validatedData.service_slug || null,
     });
 
     return { success: true };

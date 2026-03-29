@@ -39,7 +39,7 @@ export interface BookingPanelProps {
     id: string;
     title: string;
     slug: string;
-    type: "experience" | "destination" | "offer";
+    type: "experience" | "destination";
     whatsappMessage?: string;
     whatsappNumber?: string;
     sourcePage?: string;
