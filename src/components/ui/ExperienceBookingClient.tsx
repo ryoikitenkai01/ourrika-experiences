@@ -12,6 +12,10 @@ interface ExperienceBookingClientProps {
     slug: string;
     whatsappMessage: string;
     whatsappNumber?: string;
+    location?: string | null;
+    duration?: string | null;
+    price?: number | null;
+    currency?: string | null;
   };
 }
 
@@ -64,6 +68,13 @@ export function ExperienceBookingClient({ experience }: ExperienceBookingClientP
           whatsappMessage: experience.whatsappMessage,
           whatsappNumber: experience.whatsappNumber,
           sourcePage: `/experiences/${experience.slug}`,
+        }}
+        meta={{
+          location: experience.location ?? undefined,
+          duration: experience.duration ?? undefined,
+          price: experience.price != null
+            ? `${experience.price.toLocaleString("en-US")} ${experience.currency ?? ""}`.trim()
+            : undefined,
         }}
       />
     </>

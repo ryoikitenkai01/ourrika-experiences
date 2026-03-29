@@ -61,6 +61,10 @@ export default async function ExperienceDetailPage({ params }: Props) {
     slug: exp.slug,
     whatsappMessage: exp.whatsappMessage,
     whatsappNumber,
+    location: exp.location,
+    duration: exp.duration,
+    price: exp.price,
+    currency: exp.currency,
   };
 
   return (
@@ -104,7 +108,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
             </p>
             {exp.price != null ? (
               <p className="font-serif text-3xl text-[var(--color-gold)] mb-1">
-                {exp.price.toLocaleString()}
+                {exp.price.toLocaleString("en-US")}
                 <span className="text-sm ml-1 font-sans text-[var(--color-charcoal-light)]">
                   {exp.currency}
                 </span>

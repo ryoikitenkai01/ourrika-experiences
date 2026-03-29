@@ -56,6 +56,8 @@ export default async function DestinationDetailPage({ params }: Props) {
     whatsappUrl,
     whatsappMessage: whatsappText,
     whatsappNumber: settings.whatsapp_number,
+    startingPrice: dest.starting_price,
+    currency: dest.currency,
   };
 
   const browseLink = (
@@ -80,7 +82,7 @@ export default async function DestinationDetailPage({ params }: Props) {
       >
         {dest.starting_price != null && (
           <span className="inline-block font-sans text-xs tracking-widest uppercase text-[var(--color-sand-light)] bg-[var(--color-terracotta)]/90 px-3 py-1.5 mt-1">
-            Experiences from {dest.starting_price.toLocaleString()}{" "}
+            Experiences from {dest.starting_price.toLocaleString("en-US")}{" "}
             {dest.currency}
           </span>
         )}
@@ -114,7 +116,7 @@ export default async function DestinationDetailPage({ params }: Props) {
                   Experiences from
                 </p>
                 <p className="font-serif text-2xl text-[var(--color-gold)]">
-                  {dest.starting_price.toLocaleString()}{" "}
+                  {dest.starting_price.toLocaleString("en-US")}{" "}
                   <span className="text-sm font-sans text-[var(--color-charcoal-light)]/70">
                     {dest.currency}
                   </span>

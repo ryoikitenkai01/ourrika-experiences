@@ -13,9 +13,11 @@ interface DestinationBookingClientProps {
   whatsappUrl: string;
   whatsappMessage: string;
   whatsappNumber?: string;
+  startingPrice?: number | null;
+  currency?: string | null;
 }
 
-export function DestinationBookingClient({ destination, whatsappUrl, whatsappMessage, whatsappNumber }: DestinationBookingClientProps) {
+export function DestinationBookingClient({ destination, whatsappUrl, whatsappMessage, whatsappNumber, startingPrice, currency }: DestinationBookingClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -53,6 +55,11 @@ export function DestinationBookingClient({ destination, whatsappUrl, whatsappMes
           whatsappMessage: whatsappMessage,
           whatsappNumber: whatsappNumber,
           sourcePage: `/destinations/${destination.slug}`,
+        }}
+        meta={{
+          price: startingPrice != null
+            ? `from ${startingPrice.toLocaleString("en-US")} ${currency ?? ""}`.trim()
+            : undefined,
         }}
       />
     </>
