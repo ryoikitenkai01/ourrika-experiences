@@ -323,7 +323,7 @@ export interface RichContentSectionProps {
 /**
  * Editorial content section: serif pull-quote (short_description)
  * followed by body text (full_description).
- * Used consistently across Experience, Destination, and Offer detail pages.
+ * Used consistently across Experience and Destination detail pages.
  */
 export function RichContentSection({
   shortDescription,
@@ -412,7 +412,7 @@ export interface ServiceDetailLayoutProps {
 }
 
 /**
- * Unified two-column layout for all service detail pages (Experiences, Destinations, Offers).
+ * Unified two-column layout for all service detail pages (Experiences, Destinations).
  * Renders a `lg:grid-cols-3` grid with a sticky sidebar and a mobile CTA band at the bottom.
  */
 export function ServiceDetailLayout({

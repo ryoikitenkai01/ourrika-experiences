@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Home, Compass, Map, MessageCircle } from "lucide-react";
+import { Compass, Map, BookOpen, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -27,9 +27,9 @@ export function MobileStickyBar({ whatsappNumber }: { whatsappNumber: string }) 
   }, []);
 
   const navItems = [
-    { label: "Home", href: "/", icon: Home },
     { label: "Experiences", href: "/experiences", icon: Compass },
     { label: "Destinations", href: "/destinations", icon: Map },
+    { label: "Journal", href: "/journal", icon: BookOpen },
     { label: "Chat", href: `https://wa.me/${whatsappNumber.replace(/\D/g, "")}`, icon: MessageCircle, isExternal: true },
   ];
 

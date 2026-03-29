@@ -66,25 +66,7 @@ export interface Database {
           updated_at: string;
         };
       };
-      offers: {
-        Row: {
-          id: string;
-          title: string;
-          slug: string | null;
-          description: string | null;
-          cover_image: string | null;
-          original_price: number | null;
-          promo_price: number | null;
-          valid_from: string | null;
-          valid_until: string | null;
-          linked_experience_id: string | null;
-          linked_destination_id: string | null;
-          is_featured: boolean | null;
-          display_order: number | null;
-          created_at: string;
-          updated_at: string;
-        };
-      };
+
       blog_posts: {
         Row: {
           id: string;

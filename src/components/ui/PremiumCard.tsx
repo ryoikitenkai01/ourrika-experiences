@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Tag } from "lucide-react";
 
-// ── Shared luxury card for Destinations, Experiences, Offers ──────────────────
+// ── Shared luxury card for Destinations and Experiences ───────────────────────
 
 interface PremiumCardProps {
   id: string;

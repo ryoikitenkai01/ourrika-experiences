@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { SiteSettings } from "@/lib/types/ui";
@@ -13,7 +13,6 @@ interface NavbarProps {
 
 export function Navbar({ settings }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -84,65 +83,12 @@ export function Navbar({ settings }: NavbarProps) {
               <MessageCircle size={22} strokeWidth={1.5} />
             </a>
 
-            <button
-              className="md:hidden text-[var(--color-sand-light)] p-2"
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open menu"
-            >
-              <Menu size={24} strokeWidth={1.5} />
-            </button>
+
           </div>
         </div>
       </motion.header>
 
-      {/* MOBILE MENU OVERLAY */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed inset-0 z-[1001] bg-[var(--color-obsidian)] flex flex-col p-8"
-          >
-            <div className="flex justify-between items-center mb-12">
-              <span className="font-serif text-[15px] tracking-[0.25em] text-[var(--color-sand-light)] uppercase">Ourrika</span>
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-[var(--color-sand-light)] p-2"
-                aria-label="Close menu"
-              >
-                <X size={32} strokeWidth={1.5} />
-              </button>
-            </div>
 
-            <nav className="flex flex-col items-center justify-center flex-1 gap-12">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08, duration: 0.5, ease: "easeOut" }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`font-serif text-3xl tracking-wide transition-colors ${
-                      isActive(link.href) ? "text-[var(--color-terracotta)]" : "text-[var(--color-sand-light)] hover:text-[var(--color-terracotta)]"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-
-            <div className="text-center pt-8 border-t border-[rgba(201,169,110,0.15)]">
-              <p className="font-serif italic text-sm text-[var(--color-gold)]/60">Escape, Breathe, Explore Morocco</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
