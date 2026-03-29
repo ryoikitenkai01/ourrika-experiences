@@ -7,6 +7,7 @@ import React, {
   useRef,
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import {
   X,
   Zap,
@@ -234,7 +235,12 @@ export function BookingPanel({
   // ── Mobile sheet height expands when going to step 2 or success
   const isExpanded = step === 2 || status === "success";
 
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -328,7 +334,8 @@ export function BookingPanel({
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 
