@@ -12,7 +12,8 @@
       "Bash(git commit:*)",
       "Bash(grep -r \"High demand\" src/app/\\\\\\(public\\\\\\)/experiences/[slug]/page.tsx)",
       "Bash(git push:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": [
       "Bash(rm -rf /:*)",
